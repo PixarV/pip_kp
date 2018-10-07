@@ -74,4 +74,6 @@ dependencies {
 
     compile hibernate["core"]
     compile hibernate["em"]
+
+    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
 }
