@@ -72,8 +72,6 @@ dependencies {
     compile 'org.wildfly:wildfly-ejb-client-bom:14.0.1.Final'
     compileOnly "org.projectlombok:lombok:1.18.2"
 
-    compile hibernate["core"]
-    compile hibernate["em"]
-
-    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
+    compileOnly hibernate["core"]
+    compileOnly hibernate["em"]
 }
