@@ -14,6 +14,10 @@ public class UserDao {
 
     public void saveUser(UserEntity user) {
         entityManager.persist(user);
-
     }
+
+    public UserEntity getUser(int id) {
+        return entityManager.find(UserEntity.class, id);
+    }
+
 }
