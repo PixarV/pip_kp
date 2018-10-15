@@ -22,5 +22,4 @@ public abstract class CommonDao<T> {
     public T getEntity(int id) {
         return entityManager.find(type, id);
     }
-
 }

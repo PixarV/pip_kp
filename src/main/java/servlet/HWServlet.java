@@ -1,7 +1,13 @@
 package servlet;
 
-import dao.UserDao;
-import entity.UserEntity;
+import dao.EngineDao;
+import dao.ModelDao;
+import entity.Engine;
+import entity.Model;
+import enums.TypeFuel;
+import enums.TypeModel;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import service.HWService;
 
 import javax.ejb.EJB;
@@ -12,32 +18,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 @WebServlet("/hello")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class HWServlet extends HttpServlet {
 
     @Inject
-    private HWService helloService;
+    HWService helloService;
 
     @EJB
-    private UserDao userDao;
+    EngineDao engineDao;
+
+    @EJB
+    ModelDao modelDao;
+//    @EJB
+//    private UserDao userDao;
+//    @EJB
+//    private AmmunitionDao ammunitionDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         System.out.println(helloService.createHelloMessage("ritt"));
 
-        System.out.println(userDao.getUser(1));
-        UserEntity user = new UserEntity();
-        user.setName("ritt");
-        user.setSurname("fedotova");
-//        UserEntity user = UserEntity.builder()
-//                .name("ritt")
-//                .surname("fedotova")
-//                .build();
-//
-        userDao.saveUser(user);
-        System.out.println(user);
+        Model model = Model.builder().armor("kk")
+                .type(TypeModel.M)
+                .maxSpeedBackward(1)
+                .maxSpeedForward(2)
+                .title("lll")
+                .build();
+
+        Engine lll = Engine.builder().
+                weight(1).title("lll")
+                .power(1).fuel(TypeFuel.BENZIN)
+                .build();
+
+        engineDao.saveEntity(lll);
+        model.getEngines().add(lll);
+        modelDao.saveEntity(model);
+//        lll.getModels().add(model);
+
+
+//        lll.setModels(Collections.singletonList(model));
+//        engineDao.flush();
+
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
