@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import enums.TypeFuel;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package dao;
 
-import entity.Model;
+import entities.Model;
 
 import javax.ejb.Stateless;
 
