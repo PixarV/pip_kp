@@ -1,6 +1,6 @@
 package dao;
 
-import entity.Engine;
+import entities.Engine;
 
 import javax.ejb.Stateless;
 

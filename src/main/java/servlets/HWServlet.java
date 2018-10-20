@@ -1,14 +1,14 @@
-package servlet;
+package servlets;
 
 import dao.EngineDao;
 import dao.ModelDao;
-import entity.Engine;
-import entity.Model;
+import entities.Engine;
+import entities.Model;
 import enums.TypeFuel;
 import enums.TypeModel;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import service.HWService;
+import services.HWService;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 @WebServlet("/hello")
 @FieldDefaults(level = AccessLevel.PRIVATE)

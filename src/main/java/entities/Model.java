@@ -1,5 +1,5 @@
 
-package entity;
+package entities;
 
 import enums.TypeModel;
 import lombok.AllArgsConstructor;
