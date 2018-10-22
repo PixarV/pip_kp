@@ -47,7 +47,11 @@ public class Model {
     String armor;
     // TODO: 10/15/18 armor -> struct
 
-    @ManyToMany
+    // TODO: 10/22/18 Fetch type 
+    // TODO: 10/22/18 restrict 
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
     @Builder.Default
     @JoinTable(name = "model_engine",
             joinColumns = @JoinColumn(name = "id_model", referencedColumnName = "id"),

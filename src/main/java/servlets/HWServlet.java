@@ -49,19 +49,20 @@ public class HWServlet extends HttpServlet {
                 .build();
 
         Engine lll = Engine.builder().
+                weight(1).title("ppp")
+                .power(1).fuel(TypeFuel.BENZIN)
+                .build();
+
+        Engine ppp = Engine.builder().
                 weight(1).title("lll")
                 .power(1).fuel(TypeFuel.BENZIN)
                 .build();
 
-        engineDao.saveEntity(lll);
         model.getEngines().add(lll);
         modelDao.saveEntity(model);
-//        lll.getModels().add(model);
-
-
-//        lll.setModels(Collections.singletonList(model));
-//        engineDao.flush();
-
+        engineDao.saveEntity(ppp);
+        model.getEngines().add(ppp);
+        modelDao.updateEntity(model);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

@@ -15,11 +15,16 @@ public abstract class CommonDao<T> {
     @PersistenceContext(unitName = "pip")
     private EntityManager entityManager;
 
+    // TODO: 10/22/18 Transactions
     public void saveEntity(T entity) {
         entityManager.persist(entity);
     }
 
     public T getEntity(int id) {
         return entityManager.find(type, id);
+    }
+
+    public T updateEntity(T entity) {
+        return entityManager.merge(entity);
     }
 }
