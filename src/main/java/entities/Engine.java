@@ -35,9 +35,10 @@ public class Engine {
     int id;
     String title;
 
-    @Enumerated(EnumType.STRING)
     @Type(type = "psql_enum")
+    @Enumerated(EnumType.STRING)
     TypeFuel fuel;
+
     int power;
     double weight;
 
