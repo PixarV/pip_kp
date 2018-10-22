@@ -1,7 +1,9 @@
 package servlets;
 
+import dao.ChassisDao;
 import dao.EngineDao;
 import dao.ModelDao;
+import entities.Chassis;
 import entities.Engine;
 import entities.Model;
 import enums.TypeFuel;
@@ -31,8 +33,8 @@ public class HWServlet extends HttpServlet {
 
     @EJB
     ModelDao modelDao;
-//    @EJB
-//    private UserDao userDao;
+    @EJB
+    ChassisDao chassisDao;
 //    @EJB
 //    private AmmunitionDao ammunitionDao;
 
@@ -48,21 +50,16 @@ public class HWServlet extends HttpServlet {
                 .title("lll")
                 .build();
 
-        Engine lll = Engine.builder().
-                weight(1).title("ppp")
-                .power(1).fuel(TypeFuel.BENZIN)
+        Chassis chassis = Chassis.builder()
+                .title("first")
+                .carring(11.2)
+                .weight(5)
+                .model(model)
+                .turnSpeed(33)
                 .build();
 
-        Engine ppp = Engine.builder().
-                weight(1).title("lll")
-                .power(1).fuel(TypeFuel.BENZIN)
-                .build();
-
-        model.getEngines().add(lll);
         modelDao.saveEntity(model);
-        engineDao.saveEntity(ppp);
-        model.getEngines().add(ppp);
-        modelDao.updateEntity(model);
+        chassisDao.saveEntity(chassis);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

@@ -58,6 +58,9 @@ public class Model {
             inverseJoinColumns = @JoinColumn(name = "id_engine", referencedColumnName = "id")
     )
     List<Engine> engines = new ArrayList<>();
+
+    @OneToOne(mappedBy = "model")
+    Chassis chassis;
 }
 
 
