@@ -1,9 +1,14 @@
 package entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -32,4 +37,16 @@ public class Chassis {
     @Column(name = "turn_speed")
     double turnSpeed;
     double weight;
+
+    // TODO: 10/22/18 Fetch type
+    // TODO: 10/22/18 restrict
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
+    @Builder.Default
+    @JoinTable(name = "chassis_tower",
+            joinColumns = @JoinColumn(name = "id_chassis", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id")
+    )
+    List<Tower> towers = new ArrayList<>();
 }

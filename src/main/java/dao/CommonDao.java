@@ -1,19 +1,20 @@
 package dao;
 
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public abstract class CommonDao<T> {
 
     final Class<T> type;
 
     @PersistenceContext(unitName = "pip")
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     // TODO: 10/22/18 Transactions
     public void saveEntity(T entity) {
