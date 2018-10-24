@@ -1,11 +1,10 @@
 package servlets;
 
+import dao.AmmunitionDao;
 import dao.ChassisDao;
 import dao.EngineDao;
 import dao.ModelDao;
-import entities.Chassis;
-import entities.Engine;
-import entities.Model;
+import entities.*;
 import enums.TypeFuel;
 import enums.TypeModel;
 import lombok.AccessLevel;
@@ -35,6 +34,9 @@ public class HWServlet extends HttpServlet {
     ModelDao modelDao;
     @EJB
     ChassisDao chassisDao;
+
+    @EJB
+    AmmunitionDao ammunitionDao;
 //    @EJB
 //    private AmmunitionDao ammunitionDao;
 
@@ -54,12 +56,38 @@ public class HWServlet extends HttpServlet {
                 .title("first")
                 .carring(11.2)
                 .weight(5)
-                .model(model)
+//                .model(model)
                 .turnSpeed(33)
                 .build();
 
-        modelDao.saveEntity(model);
-        chassisDao.saveEntity(chassis);
+        Tower tower = Tower.builder()
+                .armor("fdgh")
+                .title("tower")
+                .turnSpeed(12)
+                .viewRadius(13)
+                .weight(14)
+                .build();
+
+
+        Ammunition ammunition = Ammunition.builder()
+                .breakage(1)
+                .callibr(2)
+                .type("dsds")
+                .build();
+
+        Weapon weapon = Weapon.builder()
+                .callibr(2)
+                .title("weapon")
+                .weight(22.5)
+                .build();
+
+        ammunition.getWeapons().add(weapon);
+
+        ammunitionDao.saveEntity(ammunition);
+//        chassis.getTowers().add(tower);
+
+//        modelDao.saveEntity(model);
+//        chassisDao.saveEntity(chassis);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
