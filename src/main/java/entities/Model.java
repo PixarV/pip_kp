@@ -13,7 +13,8 @@ import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -51,15 +52,19 @@ public class Model {
     // TODO: 10/22/18 restrict 
     @Builder.Default
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.MERGE,
+            CascadeType.REFRESH
     })
     @JoinTable(name = "model_engine",
             joinColumns = @JoinColumn(name = "id_model", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_engine", referencedColumnName = "id")
     )
-    List<Engine> engines = new ArrayList<>();
+    Set<Engine> engines = new HashSet<>();
 
-    @OneToOne(mappedBy = "model")
+    @OneToOne(mappedBy = "model", cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
     Chassis chassis;
 }
 

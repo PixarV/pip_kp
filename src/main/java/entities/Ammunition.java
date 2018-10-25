@@ -1,12 +1,14 @@
 package entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -37,12 +39,13 @@ public class Ammunition {
     // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.MERGE,
+            CascadeType.REFRESH
     })
     @Builder.Default
     @JoinTable(name = "ammunition_weapon",
             joinColumns = @JoinColumn(name = "id_ammunition", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")
     )
-    List<Weapon> weapons = new ArrayList<>();
+    Set<Weapon> weapons = new HashSet<>();
 }

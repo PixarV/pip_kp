@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -33,14 +33,14 @@ public class Weapon {
 
     @Builder.Default
     @ManyToMany(mappedBy = "weapons")
-    List<Ammunition> ammunition = new ArrayList<>();
+    Set<Ammunition> ammunition = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(mappedBy = "weapons")
-    List<Tower> towers = new ArrayList<>();
+    Set<Tower> towers = new HashSet<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
     @OneToMany(mappedBy = "weapon")
-    List<FirmWeapon> firms = new ArrayList<>();
+    Set<FirmWeapon> firms = new HashSet<>();
 }

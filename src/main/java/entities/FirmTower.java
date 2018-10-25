@@ -25,11 +25,18 @@ public class FirmTower {
     @Column(name = "serial_no")
     String serialNo = UUID.randomUUID().toString();
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
     @JoinColumn(name = "id_firm", referencedColumnName = "id")
     Firm firm;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
     @JoinColumn(name = "id_tower", referencedColumnName = "id")
     Tower tower;
 }

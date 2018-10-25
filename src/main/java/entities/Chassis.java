@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -45,11 +45,12 @@ public class Chassis {
     // TODO: 10/22/18 restrict
     @Builder.Default
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.MERGE,
+            CascadeType.REFRESH
     })
     @JoinTable(name = "chassis_tower",
             joinColumns = @JoinColumn(name = "id_chassis", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id")
     )
-    List<Tower> towers = new ArrayList<>();
+    Set<Tower> towers = new HashSet<>();
 }
