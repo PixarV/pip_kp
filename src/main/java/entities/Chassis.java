@@ -27,7 +27,10 @@ public class Chassis {
             generator="chassis_seq")
     int id;
 
-    @OneToOne
+    @OneToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
     @JoinColumn(name = "id_model", referencedColumnName = "id")
     Model model;
 
@@ -40,10 +43,10 @@ public class Chassis {
 
     // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
+    @Builder.Default
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
-    @Builder.Default
     @JoinTable(name = "chassis_tower",
             joinColumns = @JoinColumn(name = "id_chassis", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id")

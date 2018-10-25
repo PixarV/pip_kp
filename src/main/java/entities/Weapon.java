@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +34,10 @@ public class Weapon {
     @Builder.Default
     @ManyToMany(mappedBy = "weapons")
     List<Ammunition> ammunition = new ArrayList<>();
+
+    @Builder.Default
+    @ManyToMany(mappedBy = "weapons")
+    List<Tower> towers = new ArrayList<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default

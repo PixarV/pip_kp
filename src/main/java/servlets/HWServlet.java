@@ -38,6 +38,18 @@ public class HWServlet extends HttpServlet {
     //    @EJB
     @EJB
     FirmEngineDao firmEngineDao;
+
+    @EJB
+    FirmWeaponDao firmWeaponDao;
+
+    @EJB
+    FirmTowerDao firmTowerDao;
+
+    @EJB
+    TowerDao towerDao;
+
+    @EJB
+    WeaponDao weaponDao;
 //    private AmmunitionDao ammunitionDao;
 
     @Override
@@ -56,7 +68,7 @@ public class HWServlet extends HttpServlet {
                 .title("first")
                 .carring(11.2)
                 .weight(5)
-//                .model(model)
+                .model(model)
                 .turnSpeed(33)
                 .build();
 
@@ -99,13 +111,33 @@ public class HWServlet extends HttpServlet {
                 .build();
 
 
+        FirmWeapon firmWeapon = FirmWeapon.builder()
+                .firm(firm)
+                .weapon(weapon)
+                .build();
+
+        FirmTower firmTower = FirmTower.builder()
+                .firm(firm)
+                .tower(tower)
+                .build();
+
+//        firmTowerDao.saveEntity(firmTower);
+
+//        weaponDao.saveEntity(weapon);
+//        firmWeaponDao.updateEntity(firmWeapon);
 //        ammunition.getWeapons().add(weapon);
-        firmEngineDao.saveEntity(build);
+//        tower.getWeapons().add(weapon);
+//        System.out.println(weapon);
+//        towerDao.updateEntity(tower);
+//        firmEngineDao.saveEntity(build);
 //        ammunitionDao.saveEntity(ammunition);
 //        chassis.getTowers().add(tower);
 
-//        modelDao.saveEntity(model);
-//        chassisDao.saveEntity(chassis);
+        modelDao.saveEntity(model);
+//        modelDao.updateFromDB(model);
+        System.out.println(model);
+        chassisDao.saveEntity(chassis);
+        System.out.println(chassis);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

@@ -47,7 +47,7 @@ public class Firm {
 
     // TODO: 10/25/10 get weapon methods
     @Builder.Default
-    @OneToMany(mappedBy = "firm")
+    @OneToMany(mappedBy = "firm", cascade = {CascadeType.MERGE})
     List<FirmWeapon> weapon = new ArrayList<>();
 
     // TODO: 10/25/10 get tower methods
