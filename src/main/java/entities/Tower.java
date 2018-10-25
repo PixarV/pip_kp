@@ -44,4 +44,9 @@ public class Tower {
     @Builder.Default
     @ManyToMany(mappedBy = "towers")
     List<Chassis> chassis = new ArrayList<>();
+
+    // TODO: 10/25/18 get firm methods
+    @Builder.Default
+    @OneToMany(mappedBy = "tower")
+    List<FirmTower> firms = new ArrayList<>();
 }
