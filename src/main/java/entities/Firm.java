@@ -1,6 +1,7 @@
 package entities;
 
-import enums.TypeFuel;
+
+import enums.FirmSpecializtion;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,30 +25,23 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
-public class Engine {
+public class Firm {
 
     @Id
-    @SequenceGenerator(name = "engine_seq",
-            sequenceName = "engine_id_seq",
+    @SequenceGenerator(name = "firm_seq",
+            sequenceName = "firm_id_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "engine_seq")
+            generator = "firm_seq")
     int id;
     String title;
 
     @Type(type = "psql_enum")
     @Enumerated(EnumType.STRING)
-    TypeFuel fuel;
+    FirmSpecializtion specialization;
 
-    int power;
-    double weight;
-
+    // TODO: 10/25/10 get engine methods
     @Builder.Default
-    @ManyToMany(mappedBy = "engines")
-    List<Model> models = new ArrayList<>();
-
-    // TODO: 10/25/18 get firm methods
-    @Builder.Default
-    @OneToMany(mappedBy = "engine")
-    List<FirmEngine> firms = new ArrayList<>();
+    @OneToMany(mappedBy = "firm")
+    List<FirmEngine> engines = new ArrayList<>();
 }

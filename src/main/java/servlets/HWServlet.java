@@ -1,10 +1,8 @@
 package servlets;
 
-import dao.AmmunitionDao;
-import dao.ChassisDao;
-import dao.EngineDao;
-import dao.ModelDao;
+import dao.*;
 import entities.*;
+import enums.FirmSpecializtion;
 import enums.TypeFuel;
 import enums.TypeModel;
 import lombok.AccessLevel;
@@ -37,7 +35,9 @@ public class HWServlet extends HttpServlet {
 
     @EJB
     AmmunitionDao ammunitionDao;
-//    @EJB
+    //    @EJB
+    @EJB
+    FirmEngineDao firmEngineDao;
 //    private AmmunitionDao ammunitionDao;
 
     @Override
@@ -81,9 +81,27 @@ public class HWServlet extends HttpServlet {
                 .weight(22.5)
                 .build();
 
-        ammunition.getWeapons().add(weapon);
+        Firm firm = Firm.builder()
+                .specialization(FirmSpecializtion.BOTH)
+                .title("first")
+                .build();
 
-        ammunitionDao.saveEntity(ammunition);
+        Engine engine = Engine.builder()
+                .fuel(TypeFuel.BENZIN)
+                .power(1)
+                .title("engine")
+                .weight(1.55)
+                .build();
+
+        FirmEngine build = FirmEngine.builder()
+                .engine(engine)
+                .firm(firm)
+                .build();
+
+
+//        ammunition.getWeapons().add(weapon);
+        firmEngineDao.saveEntity(build);
+//        ammunitionDao.saveEntity(ammunition);
 //        chassis.getTowers().add(tower);
 
 //        modelDao.saveEntity(model);
