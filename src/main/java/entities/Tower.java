@@ -9,8 +9,8 @@ import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -43,22 +43,23 @@ public class Tower {
 
     @Builder.Default
     @ManyToMany(mappedBy = "towers")
-    List<Chassis> chassis = new ArrayList<>();
+    Set<Chassis> chassis = new HashSet<>();
 
     // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
     @Builder.Default
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.MERGE,
+            CascadeType.REFRESH
     })
     @JoinTable(name = "tower_weapon",
             joinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")
     )
-    List<Weapon> weapons = new ArrayList<>();
+    Set<Weapon> weapons = new HashSet<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
     @OneToMany(mappedBy = "tower")
-    List<FirmTower> firms = new ArrayList<>();
+    Set<FirmTower> firms = new HashSet<>();
 }

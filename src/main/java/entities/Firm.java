@@ -12,9 +12,8 @@ import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -43,15 +42,15 @@ public class Firm {
     // TODO: 10/25/10 get engine methods
     @Builder.Default
     @OneToMany(mappedBy = "firm")
-    List<FirmEngine> engines = new ArrayList<>();
+    Set<FirmEngine> engines = new HashSet<>();
 
     // TODO: 10/25/10 get weapon methods
     @Builder.Default
-    @OneToMany(mappedBy = "firm", cascade = {CascadeType.MERGE})
-    List<FirmWeapon> weapon = new ArrayList<>();
+    @OneToMany(mappedBy = "firm")
+    Set<FirmWeapon> weapon = new HashSet<>();
 
     // TODO: 10/25/10 get tower methods
     @Builder.Default
     @OneToMany(mappedBy = "firm")
-    List<FirmTower> towers = new ArrayList<>();
+    Set<FirmTower> towers = new HashSet<>();
 }

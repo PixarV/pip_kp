@@ -11,9 +11,8 @@ import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -44,10 +43,10 @@ public class Engine {
 
     @Builder.Default
     @ManyToMany(mappedBy = "engines")
-    List<Model> models = new ArrayList<>();
+    Set<Model> models = new HashSet<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
     @OneToMany(mappedBy = "engine")
-    List<FirmEngine> firms = new ArrayList<>();
+    Set<FirmEngine> firms = new HashSet<>();
 }
