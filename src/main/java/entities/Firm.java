@@ -44,4 +44,14 @@ public class Firm {
     @Builder.Default
     @OneToMany(mappedBy = "firm")
     List<FirmEngine> engines = new ArrayList<>();
+
+    // TODO: 10/25/10 get weapon methods
+    @Builder.Default
+    @OneToMany(mappedBy = "firm")
+    List<FirmWeapon> weapon = new ArrayList<>();
+
+    // TODO: 10/25/10 get tower methods
+    @Builder.Default
+    @OneToMany(mappedBy = "firm")
+    List<FirmTower> towers = new ArrayList<>();
 }

@@ -32,8 +32,12 @@ public class Weapon {
     int callibr;
     double weight;
 
-
     @Builder.Default
     @ManyToMany(mappedBy = "weapons")
     List<Ammunition> ammunition = new ArrayList<>();
+
+    // TODO: 10/25/18 get firm methods
+    @Builder.Default
+    @OneToMany(mappedBy = "weapon")
+    List<FirmWeapon> firms = new ArrayList<>();
 }
