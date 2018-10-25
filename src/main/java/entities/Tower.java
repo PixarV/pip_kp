@@ -45,6 +45,18 @@ public class Tower {
     @ManyToMany(mappedBy = "towers")
     List<Chassis> chassis = new ArrayList<>();
 
+    // TODO: 10/22/18 Fetch type
+    // TODO: 10/22/18 restrict
+    @Builder.Default
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
+    @JoinTable(name = "tower_weapon",
+            joinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")
+    )
+    List<Weapon> weapons = new ArrayList<>();
+
     // TODO: 10/25/18 get firm methods
     @Builder.Default
     @OneToMany(mappedBy = "tower")

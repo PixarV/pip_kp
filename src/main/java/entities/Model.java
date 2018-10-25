@@ -49,10 +49,10 @@ public class Model {
 
     // TODO: 10/22/18 Fetch type 
     // TODO: 10/22/18 restrict 
+    @Builder.Default
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
-    @Builder.Default
     @JoinTable(name = "model_engine",
             joinColumns = @JoinColumn(name = "id_model", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_engine", referencedColumnName = "id")
