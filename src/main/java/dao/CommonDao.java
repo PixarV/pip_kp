@@ -1,12 +1,14 @@
 package dao;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+@Transactional
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public abstract class CommonDao<T> {
@@ -15,8 +17,6 @@ public abstract class CommonDao<T> {
 
     @PersistenceContext(unitName = "pip")
     EntityManager entityManager;
-
-    // TODO: 10/22/18 Transactions
 
     /**
      * Use save if you 100% sure that this entity is not in db.
@@ -40,6 +40,8 @@ public abstract class CommonDao<T> {
     }
 
     public void updateFromDB(T entity) {
+        if (!entityManager.contains(entity))
+            entity = entityManager.merge(entity);
         entityManager.refresh(entity);
     }
 }
