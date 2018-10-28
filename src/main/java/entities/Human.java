@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -36,4 +38,11 @@ public class Human {
 
     @Column(name = "vacation_end")
     LocalDate vacationEnd;
+
+    // TODO: 10/25/10 get specialization methods
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "human")
+    Set<SpecializationHuman> specializations = new HashSet<>();
 }

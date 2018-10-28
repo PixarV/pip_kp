@@ -1,13 +1,12 @@
-
 package entities;
 
 import enums.TypeModel;
+import util.PostgreSQLEnumType;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
 import java.util.HashSet;

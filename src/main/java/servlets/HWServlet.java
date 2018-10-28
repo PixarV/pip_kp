@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet("/hello")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -35,7 +36,10 @@ public class HWServlet extends HttpServlet {
 
     @EJB
     AmmunitionDao ammunitionDao;
-    //    @EJB
+
+    @EJB
+    FirmDao firmDao;
+
     @EJB
     FirmEngineDao firmEngineDao;
 
@@ -50,6 +54,12 @@ public class HWServlet extends HttpServlet {
 
     @EJB
     WeaponDao weaponDao;
+
+    @EJB
+    HumanDao humanDao;
+
+    @EJB
+    RelationDao relationDao;
 //    private AmmunitionDao ammunitionDao;
 
     @Override
@@ -67,10 +77,12 @@ public class HWServlet extends HttpServlet {
         Chassis chassis = Chassis.builder()
                 .title("first")
                 .carring(11.2)
-                .weight(5)
                 .model(model)
+                .weight(5)
                 .turnSpeed(33)
                 .build();
+
+//        model.getChassis().add(chassis);
 
         Tower tower = Tower.builder()
                 .armor("fdgh")
@@ -105,7 +117,7 @@ public class HWServlet extends HttpServlet {
                 .weight(1.55)
                 .build();
 
-        FirmEngine build = FirmEngine.builder()
+        FirmEngine firmEngine = FirmEngine.builder()
                 .engine(engine)
                 .firm(firm)
                 .build();
@@ -121,23 +133,31 @@ public class HWServlet extends HttpServlet {
                 .tower(tower)
                 .build();
 
-//        firmTowerDao.saveEntity(firmTower);
+        Human human = Human.builder()
+                .name("ritt")
+                .vacationEnd(LocalDate.now())
+                .vacationStart(LocalDate.now().minusDays(5))
+                .build();
 
-//        weaponDao.saveEntity(weapon);
-//        firmWeaponDao.updateEntity(firmWeapon);
-//        ammunition.getWeapons().add(weapon);
-//        tower.getWeapons().add(weapon);
-//        System.out.println(weapon);
-//        towerDao.updateEntity(tower);
-//        firmEngineDao.saveEntity(build);
-//        ammunitionDao.saveEntity(ammunition);
-//        chassis.getTowers().add(tower);
+        Relation r1 = Relation.builder()
+                .stage(1)
+                .human(human)
+                .build();
 
-        modelDao.saveEntity(model);
-//        modelDao.updateFromDB(model);
-        System.out.println(model);
-        chassisDao.saveEntity(chassis);
-        System.out.println(chassis);
+        Relation r2 = Relation.builder()
+                .stage(2)
+                .human(human)
+                .parent(r1)
+                .build();
+
+        humanDao.saveEntity(human);
+        relationDao.saveEntity(r1);
+        relationDao.saveEntity(r2);
+
+        System.out.println(r1);
+        System.out.println(r2);
+
+
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }

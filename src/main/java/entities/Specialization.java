@@ -1,12 +1,12 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -26,4 +26,10 @@ public class Specialization {
     int id;
 
     String title;
+
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(mappedBy = "weapons")
+    Set<Tower> towers = new HashSet<>();
 }
