@@ -149,16 +149,15 @@ CREATE TABLE specialization (
   title VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE "group" (
+CREATE TABLE relation (
   id SERIAL PRIMARY KEY ,
   id_human INTEGER,
-  id_parent INTEGER REFERENCES "group" ON DELETE SET NULL,
-  level INTEGER
+  id_parent INTEGER REFERENCES relation ON DELETE SET NULL,
+  stage INTEGER
 );
 
 CREATE TABLE human (
   id SERIAL PRIMARY KEY ,
-  id_base INTEGER REFERENCES "group" ON DELETE SET NULL ,
   id_tank INTEGER REFERENCES tank ON DELETE SET NULL ,
   name VARCHAR(255) NOT NULL ,
   vacation_start TIMESTAMP,

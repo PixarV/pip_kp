@@ -18,11 +18,11 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class Specialization {
     @Id
-    @SequenceGenerator(name = "chassis_seq",
-            sequenceName = "chassis_id_seq",
+    @SequenceGenerator(name = "specialization_seq",
+            sequenceName = "specialization_id_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "chassis_seq")
+            generator = "specialization_seq")
     int id;
 
     String title;
