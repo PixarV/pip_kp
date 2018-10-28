@@ -167,6 +167,7 @@ CREATE TABLE human (
 );
 
 CREATE TABLE specialization_human (
+  id SERIAL PRIMARY KEY,
   id_specialization INTEGER REFERENCES specialization ON DELETE SET NULL ,
   id_human INTEGER REFERENCES human ON DELETE RESTRICT ,
   type_tank type_model NOT NULL
@@ -174,7 +175,8 @@ CREATE TABLE specialization_human (
 
 CREATE TABLE tank_specialization (
   id_tank INTEGER REFERENCES tank,
-  id_specialization INTEGER REFERENCES specialization ON DELETE SET NULL
+  id_specialization INTEGER REFERENCES specialization ON DELETE SET NULL,
+  PRIMARY KEY (id_tank, id_specialization)
 );
 
 CREATE OR REPLACE FUNCTION add_to_tank(id_model INTEGER, id_chassis INTEGER, sn_engine INTEGER,

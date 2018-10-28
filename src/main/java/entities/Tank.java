@@ -1,6 +1,5 @@
 package entities;
 
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -50,4 +49,17 @@ public class Tank {
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "tank")
     Set<Human> humans = new HashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
+    @JoinTable(name = "tank_specialization",
+            joinColumns = @JoinColumn(name = "id_tank", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_specialization", referencedColumnName = "id")
+    )
+    Set<Specialization> specializations = new HashSet<>();
 }
