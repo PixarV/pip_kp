@@ -48,9 +48,7 @@ public abstract class CommonDao<T> {
     }
 
     public void refreshEntity(T entity) {
-        if (!entityManager.contains(entity))
-            entity = entityManager.merge(entity);
-        entityManager.refresh(entity);
+        entityManager.refresh(entityManager.contains(entity) ? entity : entityManager.merge(entity));
     }
 
     public List<T> findAllEntities() {
@@ -63,6 +61,6 @@ public abstract class CommonDao<T> {
     }
 
     public void removeEntity(T entity) {
-        entityManager.remove(entity);
+       entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
     }
 }

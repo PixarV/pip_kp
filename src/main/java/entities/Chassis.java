@@ -37,7 +37,6 @@ public class Chassis implements Serializable {
     double turnSpeed;
     double weight;
 
-    // TODO: 10/22/18 restrict
     @Builder.Default
     @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {

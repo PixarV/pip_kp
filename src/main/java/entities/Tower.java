@@ -44,7 +44,6 @@ public class Tower {
     @ManyToMany(mappedBy = "towers")
     Set<Chassis> chassis = new HashSet<>();
 
-    // TODO: 10/22/18 restrict
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
