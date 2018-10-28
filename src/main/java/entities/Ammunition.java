@@ -1,7 +1,11 @@
 package entities;
 
+import enums.TypeAmmunition;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,6 +19,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
+@TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
 public class Ammunition {
     
     @Id
@@ -25,9 +30,11 @@ public class Ammunition {
             generator="ammunition_seq")
     int id;
 
-    // TODO: 10/24/18 make enum
+    @Type(type = "psql_enum")
+    @Enumerated(EnumType.STRING)
     @Column(name = "ammunition_type")
-    String type;
+    TypeAmmunition type;
+
     int callibr;
 
     // TODO: 10/24/18 Nullable & not nullable 

@@ -16,6 +16,7 @@ drop table weapon CASCADE;
 drop table ammunition CASCADE;
 drop type type_fuel;
 drop type type_model;
+drop type type_ammunition;
 drop type firm_specialization CASCADE;
 drop table firm CASCADE; 
 drop table specialization CASCADE;
