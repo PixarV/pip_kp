@@ -44,7 +44,6 @@ public class Model {
     String armor;
     // TODO: 10/15/18 armor -> struct
 
-    // TODO: 10/22/18 restrict
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

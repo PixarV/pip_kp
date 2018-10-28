@@ -40,7 +40,6 @@ public class Ammunition {
     // TODO: 10/24/18 Nullable & not nullable 
     int breakage;
 
-    // TODO: 10/22/18 restrict
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
