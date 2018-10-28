@@ -1,9 +1,6 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -26,7 +23,7 @@ public class Ammunition {
             allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator="ammunition_seq")
-    private int id;
+    int id;
 
     // TODO: 10/24/18 make enum
     @Column(name = "ammunition_type")
@@ -36,13 +33,14 @@ public class Ammunition {
     // TODO: 10/24/18 Nullable & not nullable 
     int breakage;
 
-    // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {
             CascadeType.MERGE,
             CascadeType.REFRESH
     })
-    @Builder.Default
     @JoinTable(name = "ammunition_weapon",
             joinColumns = @JoinColumn(name = "id_ammunition", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")

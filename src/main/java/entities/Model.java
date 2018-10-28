@@ -2,17 +2,14 @@
 package entities;
 
 import enums.TypeModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,9 +45,10 @@ public class Model {
     String armor;
     // TODO: 10/15/18 armor -> struct
 
-    // TODO: 10/22/18 Fetch type 
-    // TODO: 10/22/18 restrict 
+    // TODO: 10/22/18 restrict
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {
             CascadeType.MERGE,
             CascadeType.REFRESH
@@ -61,11 +59,11 @@ public class Model {
     )
     Set<Engine> engines = new HashSet<>();
 
-    @OneToOne(mappedBy = "model", cascade = {
-            CascadeType.MERGE,
-            CascadeType.REFRESH
-    })
-    Chassis chassis;
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "model")
+    Set<Chassis> chassis = new HashSet<>();
 }
 
 

@@ -2,10 +2,7 @@ package entities;
 
 
 import enums.FirmSpecializtion;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -41,16 +38,22 @@ public class Firm {
 
     // TODO: 10/25/10 get engine methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmEngine> engines = new HashSet<>();
 
     // TODO: 10/25/10 get weapon methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmWeapon> weapon = new HashSet<>();
 
     // TODO: 10/25/10 get tower methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmTower> towers = new HashSet<>();
 }
