@@ -80,6 +80,8 @@ CREATE TABLE weapon (
   )
 );
 
+CREATE TYPE type_ammunition AS ENUM ('ARMOR_PIERCING', 'SUBCALLIBER', 'HIGH_EXPLOSIVE', 'CUMULATIVE');
+
 CREATE TABLE ammunition (
   id SERIAL PRIMARY KEY ,
   ammunition_type VARCHAR(255) NOT NULL ,
