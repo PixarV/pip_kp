@@ -6,7 +6,11 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -26,8 +30,12 @@ public abstract class CommonDao<T> {
         entityManager.persist(entity);
     }
 
-    public T getEntity(int id) {
+    public T findEntityById(int id) {
         return entityManager.find(type, id);
+    }
+
+    public void detachEntity(T entity) {
+        entityManager.detach(entity);
     }
 
     /**
@@ -35,13 +43,26 @@ public abstract class CommonDao<T> {
      * @param entity new Entity with OR without id
      * @return merged Entity
      */
-    public T updateEntity(T entity) {
+    public T mergeEntity(T entity) {
         return entityManager.merge(entity);
     }
 
-    public void updateFromDB(T entity) {
+    public void refreshEntity(T entity) {
         if (!entityManager.contains(entity))
             entity = entityManager.merge(entity);
         entityManager.refresh(entity);
+    }
+
+    public List<T> findAllEntities() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(type);
+        Root<T> all = query.from(type);
+        query.select(all);
+        return entityManager.createQuery(query).getResultList();
+    }
+
+    public void removeEntity(T entity) {
+        entityManager.remove(entity);
     }
 }
