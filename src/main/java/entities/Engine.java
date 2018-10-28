@@ -1,10 +1,8 @@
 package entities;
 
 import enums.TypeFuel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -42,11 +40,15 @@ public class Engine {
     double weight;
 
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "engines")
     Set<Model> models = new HashSet<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "engine")
     Set<FirmEngine> firms = new HashSet<>();
 }

@@ -1,9 +1,6 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -32,15 +29,21 @@ public class Weapon {
     double weight;
 
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "weapons")
     Set<Ammunition> ammunition = new HashSet<>();
 
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "weapons")
     Set<Tower> towers = new HashSet<>();
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "weapon")
     Set<FirmWeapon> firms = new HashSet<>();
 }

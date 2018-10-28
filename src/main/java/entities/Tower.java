@@ -1,9 +1,6 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
@@ -42,12 +39,15 @@ public class Tower {
     double weight;
 
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "towers")
     Set<Chassis> chassis = new HashSet<>();
 
-    // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {
             CascadeType.MERGE,
             CascadeType.REFRESH
@@ -60,6 +60,8 @@ public class Tower {
 
     // TODO: 10/25/18 get firm methods
     @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "tower")
     Set<FirmTower> firms = new HashSet<>();
 }

@@ -1,12 +1,10 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,19 +16,17 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class Chassis {
+public class Chassis implements Serializable {
     @Id
-    @SequenceGenerator(name="chassis_seq",
-            sequenceName="chassis_id_seq",
-            allocationSize=1)
+    @SequenceGenerator(name = "chassis_seq",
+            sequenceName = "chassis_id_seq",
+            allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator="chassis_seq")
+            generator = "chassis_seq")
     int id;
 
-    @OneToOne(cascade = {
-            CascadeType.MERGE,
-            CascadeType.REFRESH
-    })
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "id_model", referencedColumnName = "id")
     Model model;
 
@@ -41,9 +37,9 @@ public class Chassis {
     double turnSpeed;
     double weight;
 
-    // TODO: 10/22/18 Fetch type
     // TODO: 10/22/18 restrict
     @Builder.Default
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = {
             CascadeType.MERGE,
             CascadeType.REFRESH
