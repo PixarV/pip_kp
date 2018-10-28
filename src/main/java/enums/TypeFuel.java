@@ -1,6 +1,6 @@
 package enums;
 
-public enum  TypeFuel {
+public enum TypeFuel {
     BENZIN,
     DIZEL;
 }
