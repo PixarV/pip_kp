@@ -1,9 +1,6 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -20,19 +17,17 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class Human {
     @Id
-    @SequenceGenerator(name = "chassis_seq",
-            sequenceName = "chassis_id_seq",
+    @SequenceGenerator(name = "human_seq",
+            sequenceName = "human_id_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "chassis_seq")
+            generator = "human_seq")
     int id;
 
-//    @OneToOne(cascade = {
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH
-//    })
-//    @JoinColumn(name = "id_model", referencedColumnName = "id")
-//    Model model;
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "id_tank", referencedColumnName = "id")
+    Tank tank;
 
     String name;
 
