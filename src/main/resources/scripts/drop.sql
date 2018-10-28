@@ -20,7 +20,4 @@ drop type firm_specialization CASCADE;
 drop table firm CASCADE; 
 drop table specialization CASCADE;
 drop table human CASCADE;
-drop table "group" CASCADE;
-
-
-
+drop table relation CASCADE;

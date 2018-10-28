@@ -16,8 +16,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-// TODO: 10/27/18 and dao!!! 
 public class Relation {
+
     @Id
     @SequenceGenerator(name = "relation_seq",
             sequenceName = "relation_id_seq",
@@ -26,18 +26,16 @@ public class Relation {
             generator = "relation_seq")
     private int id;
 
-//    @Column(name = "id_human")
-//    int idHuman;
-//
-//    int id_parent;
-//
-//
-//    @ManyToOne(cascade = {
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH
-//    })
-//    @JoinColumn(name = "id", referencedColumnName = "id_parent")
-//    Relation parent;
-//
-//    int stage;
+    @OneToOne
+    @JoinColumn(name = "id_human", referencedColumnName = "id")
+    Human human;
+
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    })
+    @JoinColumn(name = "id_parent", referencedColumnName = "id")
+    Relation parent;
+
+    int stage;
 }
