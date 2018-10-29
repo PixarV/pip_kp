@@ -11,6 +11,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -36,24 +37,84 @@ public class Firm {
     @Enumerated(EnumType.STRING)
     FirmSpecializtion specialization;
 
-    // TODO: 10/25/10 get engine methods
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmEngine> engines = new HashSet<>();
 
-    // TODO: 10/25/10 get weapon methods
+    public void addEngine(Engine engine) {
+        FirmEngine firmEngine = FirmEngine.builder()
+                .engine(engine)
+                .firm(this)
+                .build();
+
+        engines.add(firmEngine);
+        engine.getFirms().add(firmEngine);
+    }
+
+    public void removeFirm(Engine engine) {
+        Predicate<FirmEngine> condition = firmEngine -> {
+            Engine tempE = firmEngine.getEngine();
+            Firm tempF = firmEngine.getFirm();
+            return engine.equals(tempE) && this.equals(tempF);
+        };
+
+        engines.removeIf(condition);
+        engine.getFirms().removeIf(condition);
+    }
+
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmWeapon> weapon = new HashSet<>();
 
-    // TODO: 10/25/10 get tower methods
+    public void addWeapon(Weapon weapon) {
+        FirmWeapon firmWeapon = FirmWeapon.builder()
+                .weapon(weapon)
+                .firm(this)
+                .build();
+
+        this.weapon.add(firmWeapon);
+        weapon.getFirms().add(firmWeapon);
+    }
+
+    public void removeWeapon(Weapon weapon) {
+        Predicate<FirmWeapon> condition = firmWeapon -> {
+            Weapon tempE = firmWeapon.getWeapon();
+            Firm tempF = firmWeapon.getFirm();
+            return weapon.equals(tempE) && this.equals(tempF);
+        };
+
+        this.weapon.removeIf(condition);
+        weapon.getFirms().removeIf(condition);
+    }
+
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
     Set<FirmTower> towers = new HashSet<>();
+
+    public void addTower(Tower tower) {
+        FirmTower firmTower = FirmTower.builder()
+                .tower(tower)
+                .firm(this)
+                .build();
+
+        this.towers.add(firmTower);
+        tower.getFirms().add(firmTower);
+    }
+
+    public void removeTower(Tower tower) {
+        Predicate<FirmTower> condition = firmTower -> {
+            Tower tempE = firmTower.getTower();
+            Firm tempF = firmTower.getFirm();
+            return tower.equals(tempE) && this.equals(tempF);
+        };
+
+        towers.removeIf(condition);
+        tower.getFirms().removeIf(condition);
+    }
 }
