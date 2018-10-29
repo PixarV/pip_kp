@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -20,7 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 @Table(name = "specialization_human")
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
-public class SpecializationHuman {
+public class SpecializationHuman implements Serializable {
 
     @Id
     @SequenceGenerator(name = "specialization_human_seq",

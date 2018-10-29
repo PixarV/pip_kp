@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -18,7 +19,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 @Table(name = "firm_tower")
-public class FirmTower {
+public class FirmTower implements Serializable {
 
     @Id
     @Builder.Default
