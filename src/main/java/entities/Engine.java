@@ -11,6 +11,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -45,10 +46,30 @@ public class Engine {
     @ManyToMany(mappedBy = "engines")
     Set<Model> models = new HashSet<>();
 
-    // TODO: 10/25/18 get firm methods
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "engine")
     Set<FirmEngine> firms = new HashSet<>();
+
+    public void addFirm(Firm firm) {
+        FirmEngine firmEngine = FirmEngine.builder()
+                .engine(this)
+                .firm(firm)
+                .build();
+
+        firms.add(firmEngine);
+        firm.getEngines().add(firmEngine);
+    }
+
+    public void removeFirm(Firm firm) {
+        Predicate<FirmEngine> condition= firmEngine -> {
+            Engine tempE = firmEngine.getEngine();
+            Firm tempF = firmEngine.getFirm();
+            return firm.equals(tempF) && this.equals(tempE);
+        };
+
+        firms.removeIf(condition);
+        firm.getEngines().removeIf(condition);
+    }
 }

@@ -8,6 +8,7 @@ import util.PostgreSQLEnumType;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -57,10 +58,30 @@ public class Tower {
     )
     Set<Weapon> weapons = new HashSet<>();
 
-    // TODO: 10/25/18 get firm methods
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "tower")
     Set<FirmTower> firms = new HashSet<>();
+
+    public void addFirm(Firm firm) {
+        FirmTower firmTower = FirmTower.builder()
+                .tower(this)
+                .firm(firm)
+                .build();
+
+        firms.add(firmTower);
+        firm.getTowers().add(firmTower);
+    }
+
+    public void removeFirm(Firm firm) {
+        Predicate<FirmTower> condition = firmTower -> {
+            Tower tempE = firmTower.getTower();
+            Firm tempF = firmTower.getFirm();
+            return firm.equals(tempF) && this.equals(tempE);
+        };
+
+        firms.removeIf(condition);
+        firm.getTowers().removeIf(condition);
+    }
 }
