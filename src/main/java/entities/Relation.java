@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
@@ -16,7 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class Relation {
+public class Relation implements Serializable {
 
     @Id
     @SequenceGenerator(name = "relation_seq",

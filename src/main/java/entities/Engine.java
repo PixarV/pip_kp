@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -22,7 +23,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
-public class Engine {
+public class Engine implements Serializable {
 
     @Id
     @SequenceGenerator(name = "engine_seq",
@@ -63,7 +64,7 @@ public class Engine {
     }
 
     public void removeFirm(Firm firm) {
-        Predicate<FirmEngine> condition= firmEngine -> {
+        Predicate<FirmEngine> condition = firmEngine -> {
             Engine tempE = firmEngine.getEngine();
             Firm tempF = firmEngine.getFirm();
             return firm.equals(tempF) && this.equals(tempE);

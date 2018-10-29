@@ -8,6 +8,7 @@ import org.hibernate.annotations.TypeDef;
 import util.PostgreSQLEnumType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
-public class Ammunition {
+public class Ammunition implements Serializable {
     
     @Id
     @SequenceGenerator(name="ammunition_seq",
