@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Model;
+import com.pip.entities.Model;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class ModelDao extends CommonDao<Model> {
     public ModelDao() {
         super(Model.class);

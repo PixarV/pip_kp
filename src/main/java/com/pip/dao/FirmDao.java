@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Firm;
+import com.pip.entities.Firm;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class FirmDao extends CommonDao<Firm> {
     public FirmDao() {
         super(Firm.class);

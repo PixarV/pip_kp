@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Tower;
+import com.pip.entities.Tower;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class TowerDao extends CommonDao<Tower> {
     public TowerDao() {
         super(Tower.class);

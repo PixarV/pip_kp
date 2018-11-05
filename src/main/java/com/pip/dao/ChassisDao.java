@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Chassis;
+import com.pip.entities.Chassis;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class ChassisDao extends CommonDao<Chassis> {
     public ChassisDao() {
         super(Chassis.class);

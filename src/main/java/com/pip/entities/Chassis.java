@@ -17,6 +17,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class Chassis implements Serializable {
+
     @Id
     @SequenceGenerator(name = "chassis_seq",
             sequenceName = "chassis_id_seq",

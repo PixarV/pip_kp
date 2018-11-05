@@ -1,10 +1,9 @@
 package dao;
 
-import entities.SpecializationHuman;
+import com.pip.entities.SpecializationHuman;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class SpecializationHumanDao extends CommonDao<SpecializationHuman> {
     public SpecializationHumanDao() {
         super(SpecializationHuman.class);

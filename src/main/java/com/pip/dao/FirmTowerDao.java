@@ -1,10 +1,9 @@
 package dao;
 
-import entities.FirmTower;
+import com.pip.entities.FirmTower;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class FirmTowerDao extends CommonDao<FirmTower> {
     public FirmTowerDao() {
         super(FirmTower.class);

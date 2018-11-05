@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Relation;
+import com.pip.entities.Relation;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class RelationDao extends CommonDao<Relation> {
     public RelationDao() {
         super(Relation.class);

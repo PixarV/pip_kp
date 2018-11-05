@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Tank;
+import com.pip.entities.Tank;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class TankDao extends CommonDao<Tank> {
     public TankDao() {
         super(Tank.class);

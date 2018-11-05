@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Specialization;
+import com.pip.entities.Specialization;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class SpecializationDao extends CommonDao<Specialization> {
     public SpecializationDao() {
         super(Specialization.class);

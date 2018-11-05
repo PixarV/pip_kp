@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Weapon;
+import com.pip.entities.Weapon;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class WeaponDao extends CommonDao<Weapon> {
     public WeaponDao() {
         super(Weapon.class);

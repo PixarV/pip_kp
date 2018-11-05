@@ -1,10 +1,9 @@
 package dao;
 
-import entities.Human;
+import com.pip.entities.Human;
+import org.springframework.stereotype.Repository;
 
-import javax.ejb.Stateless;
-
-@Stateless
+@Repository
 public class HumanDao extends CommonDao<Human> {
     public HumanDao() {
         super(Human.class);
