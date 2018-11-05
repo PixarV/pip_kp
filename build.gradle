@@ -13,6 +13,8 @@ repositories {
 }
 
 ext {
+    springBootVersion = '2.1.0.RELEASE'
+
     //testing libs
     mockitoVersion = '2.0.2-beta'
     junitVersion = '5.3.0-M1'
@@ -29,6 +31,20 @@ ext {
 
     //lombok annotation processing
     lombokVersion = '1.18.0'
+
+    boot = [
+            springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
+            starterWeb      : "org.springframework.boot:spring-boot-starter-web:$springBootVersion",
+            starterJetty    : "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion",
+            starterSecurity : "org.springframework.boot:spring-boot-starter-security:$springBootVersion",
+            starterJpa      : "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion",
+            starterTest     : "org.springframework.boot:spring-boot-starter-test:$springBootVersion",
+            starterTomcat   : "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion",
+            actuator        : "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion",
+            starterWs       : "org.springframework.boot:spring-boot-starter-ws:$springBootVersion",
+            devtools        : "org.springframework.boot:spring-boot-devtools:$springBootVersion",
+            mq              : "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
+    ]
 
 
     test = [
@@ -66,11 +82,10 @@ ext {
 }
 
 dependencies {
-    compile 'javax:javaee-api:8.0'
-    compile 'org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.2.Final'
-    compile 'org.jboss.spec.javax.servlet:jboss-servlet-api_4.0_spec:1.0.0.Final'
+    compile boot["springBootPlugin"]
+    compile boot["starterWeb"]
+    compile boot["devtools"]
 
-    compile 'org.wildfly:wildfly-ejb-client-bom:14.0.1.Final'
     compileOnly "org.projectlombok:lombok:1.18.2"
 
     compileOnly hibernate["core"]
