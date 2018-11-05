@@ -1,4 +1,4 @@
-package dao;
+package com.pip.dao;
 
 import com.pip.entities.Chassis;
 import org.springframework.stereotype.Repository;
