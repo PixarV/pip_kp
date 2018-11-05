@@ -85,6 +85,7 @@ dependencies {
     compile boot["springBootPlugin"]
     compile boot["starterWeb"]
     compile boot["devtools"]
+    compile boot["starterJetty"]
 
     compileOnly "org.projectlombok:lombok:1.18.2"
 
