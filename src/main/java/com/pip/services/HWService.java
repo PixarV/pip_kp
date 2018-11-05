@@ -1,8 +1,8 @@
-package services;
+package com.pip.services;
 
-import javax.enterprise.context.Dependent;
+import org.springframework.stereotype.Service;
 
-//@Dependent
+@Service
 public class HWService {
 
     public String createHelloMessage(String name) {

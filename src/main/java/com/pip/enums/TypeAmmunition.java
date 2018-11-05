@@ -1,4 +1,4 @@
-package enums;
+package com.pip.enums;
 
 public enum TypeAmmunition {
     ARMOR_PIERCING,

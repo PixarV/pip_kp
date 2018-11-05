@@ -1,9 +1,9 @@
-package entities;
+package com.pip.entities;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.TypeDef;
-import util.PostgreSQLEnumType;
+import com.pip.util.PostgreSQLEnumType;
 
 import javax.persistence.*;
 import java.io.Serializable;

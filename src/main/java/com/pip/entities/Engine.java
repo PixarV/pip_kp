@@ -1,7 +1,7 @@
-package entities;
+package com.pip.entities;
 
-import enums.TypeFuel;
-import util.PostgreSQLEnumType;
+import com.pip.enums.TypeFuel;
+import com.pip.util.PostgreSQLEnumType;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

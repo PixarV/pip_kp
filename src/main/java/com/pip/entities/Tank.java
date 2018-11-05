@@ -1,4 +1,4 @@
-package entities;
+package com.pip.entities;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

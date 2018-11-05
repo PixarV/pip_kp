@@ -1,4 +1,4 @@
-package enums;
+package com.pip.enums;
 
 public enum TypeFuel {
     BENZIN,

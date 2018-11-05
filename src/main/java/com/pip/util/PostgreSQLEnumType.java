@@ -1,4 +1,4 @@
-package util;
+package com.pip.util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

@@ -1,11 +1,11 @@
-package entities;
+package com.pip.entities;
 
-import enums.TypeAmmunition;
+import com.pip.enums.TypeAmmunition;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import util.PostgreSQLEnumType;
+import com.pip.util.PostgreSQLEnumType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,7 +22,8 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
 public class Ammunition implements Serializable {
-    
+
+    // TODO: 11/5/18 @JsonIgnore 
     @Id
     @SequenceGenerator(name="ammunition_seq",
             sequenceName="ammunition_id_seq",
