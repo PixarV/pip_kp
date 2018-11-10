@@ -3,6 +3,8 @@ package com.pip.dao;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,14 +13,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+@Transactional
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public abstract class CommonDao<T> {
 
-    // TODO: 11/5/18 Transactional 
     final Class<T> type;
 
-    @PersistenceContext(unitName = "pip")
+    @Autowired
     EntityManager entityManager;
 
     /**
