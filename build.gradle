@@ -69,7 +69,8 @@ ext {
             javaxEl           : "javax.el:javax.el-api:3.0.0",
             javax_inject      : "javax.inject:javax.inject:1",
             servlet           : "javax.servlet:javax.servlet-api:3.1.0",
-            javaee_api        : "javax:javaee-api:7.0"
+            javaee_api        : "javax:javaee-api:7.0",
+            postgresql        : "postgresql:postgresql:9.1-901-1.jdbc4"
     ]
 
     hibernate = [
@@ -81,15 +82,20 @@ ext {
     ]
 }
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
 dependencies {
     compile boot["springBootPlugin"]
     compile boot["starterWeb"]
     compile boot["devtools"]
     compile boot["starterJetty"]
+    compile boot["starterJpa"]
 
-    compileOnly "org.projectlombok:lombok:1.18.2"
+    compileOnly misc["lombok"]
 
-    compileOnly hibernate["core"]
     compileOnly hibernate["em"]
     compileOnly hibernate["java8"]
+    compile misc["postgresql"]
 }
