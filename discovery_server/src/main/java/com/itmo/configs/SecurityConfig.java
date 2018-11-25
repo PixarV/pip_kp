@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("discUser")
                 .password("discPassword")
-                .roles("SYSTEimport org.springframework.cloud.config.server.EnableConfigServer;M");
+                .roles("SYSTEM");
     }
 
     @Override
