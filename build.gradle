@@ -45,7 +45,9 @@ allprojects {
                 starterConfig: "org.springframework.cloud:spring-cloud-starter-config:$cloudVersion",
                 eureka: "org.springframework.cloud:spring-cloud-starter-eureka:$eurekaVersion",
                 eurekaServer: "org.springframework.cloud:spring-cloud-starter-eureka-server:$eurekaVersion",
-                zuul: "org.springframework.cloud:spring-cloud-starter-zuul:$eurekaVersion"
+                zuul: "org.springframework.cloud:spring-cloud-starter-zuul:$eurekaVersion",
+                springSession: "org.springframework.session:spring-session:1.3.4.RELEASE",
+                starterRedis: "org.springframework.boot:spring-boot-starter-data-redis:2.1.0.RELEASE"
         ]
 
         test = [
