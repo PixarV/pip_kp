@@ -22,6 +22,10 @@ allprojects {
         //lombok annotation processing
         lombokVersion = '1.18.0'
 
+        //spring cloud
+        cloudVersion = '2.0.2.RELEASE'
+        eurekaVersion = '1.4.6.RELEASE'
+
         boot = [
                 springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
                 starterWeb      : "org.springframework.boot:spring-boot-starter-web:$springBootVersion",
@@ -37,8 +41,11 @@ allprojects {
         ]
 
         cloud = [
-                configServer: "org.springframework.cloud:spring-cloud-config-server:2.0.2.RELEASE",
-                eureka: "org.springframework.cloud:spring-cloud-starter-eureka:1.4.6.RELEASE"
+                configServer: "org.springframework.cloud:spring-cloud-config-server:$cloudVersion",
+                starterConfig: "org.springframework.cloud:spring-cloud-starter-config:$cloudVersion",
+                eureka: "org.springframework.cloud:spring-cloud-starter-eureka:$eurekaVersion",
+                eurekaServer: "org.springframework.cloud:spring-cloud-starter-eureka-server:$eurekaVersion"
+
         ]
 
         test = [

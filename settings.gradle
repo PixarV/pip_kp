@@ -1,3 +1,4 @@
 rootProject.name = 'kp'
 include 'app'
 include 'config_server'
+include 'discovery_server'
