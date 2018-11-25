@@ -1,0 +1,7 @@
+dependencies {
+    compile boot["starterWeb"]
+    compile boot["springBootPlugin"]
+    compile boot["devtools"]
+
+    compile project(':app')
+}
