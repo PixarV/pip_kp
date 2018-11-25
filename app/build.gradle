@@ -1,0 +1,12 @@
+dependencies {
+    compile boot["springBootPlugin"]
+    compile boot["starterWeb"]
+    compile boot["devtools"]
+    compile boot["starterJetty"]
+    compile boot["starterJpa"]
+
+
+    compileOnly hibernate["em"]
+    compileOnly hibernate["java8"]
+    compile misc["postgresql"]
+}
