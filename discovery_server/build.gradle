@@ -4,5 +4,5 @@ dependencies {
     compile boot["starterSecurity"]
 
     compile cloud["springSession"]
-    compile cloud["starterRedis"]
+//    compile cloud["starterRedis"]
 }

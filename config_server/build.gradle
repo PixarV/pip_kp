@@ -1,5 +1,6 @@
 dependencies {
+    compile boot["starterWeb"]
     compile cloud["configServer"]
-    compile cloud["eureka"]
-    compile boot["starterSecurity"]
+//    compile cloud["eureka"]
+//    compile boot["starterSecurity"]
 }

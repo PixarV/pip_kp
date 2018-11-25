@@ -12,3 +12,7 @@ dependencies {
 
     compile project(':app')
 }
+
+configurations {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}

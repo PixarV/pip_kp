@@ -3,7 +3,7 @@ allprojects {
     version '0.0.1-SNAPSHOT'
 
     ext {
-        springBootVersion = '2.1.0.RELEASE'
+        springBootVersion = '1.5.17.RELEASE'
 
         //testing libs
         mockitoVersion = '2.0.2-beta'
@@ -94,9 +94,6 @@ subprojects {
 
     sourceCompatibility = 1.8
 
-    configurations {
-        compile.exclude module: 'spring-boot-starter-tomcat'
-    }
 
     repositories {
         mavenCentral()
