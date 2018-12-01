@@ -1,6 +1,4 @@
 dependencies {
-//    compile boot["starterTomcat"]
     compile cloud["configServer"]
     compile cloud["eurekaClient"]
-//    compile boot["starterSecurity"]
 }

@@ -2,8 +2,4 @@ dependencies {
     compile cloud["starterConfig"]
     compile cloud["eurekaClient"]
     compile cloud["zuul"]
-//    compile boot["starterSecurity"]
-
-//    compile cloud["springSession"]
-//    compile cloud["starterRedis"]
 }
