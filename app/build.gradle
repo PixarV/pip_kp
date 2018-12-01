@@ -1,8 +1,8 @@
 dependencies {
     compile boot["springBootPlugin"]
-//    compile boot["starterWeb"]
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.0.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.1.0.RELEASE'
+    compile boot["starterWeb"]
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.0.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.1.0.RELEASE'
 
     compile boot["devtools"]
     compile boot["starterJetty"]
@@ -16,4 +16,6 @@ dependencies {
 
 configurations {
     compile.exclude module: 'spring-boot-starter-tomcat'
+
+//    compile.exclude module: 'hibernate-validator'
 }

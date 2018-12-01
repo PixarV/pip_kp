@@ -2,17 +2,17 @@ dependencies {
     compile boot["starterWeb"]
     compile boot["springBootPlugin"]
     compile boot["devtools"]
-    compile boot["starterSecurity"]
+//    compile boot["starterSecurity"]
 
     compile cloud["starterConfig"]
     compile cloud["eureka"]
 
-    compile cloud["springSession"]
-    compile cloud["starterRedis"]
+//    compile cloud["springSession"]
+//    compile cloud["starterRedis"]
 
     compile project(':app')
 }
 
 configurations {
-    compile.exclude module: 'spring-boot-starter-tomcat'
+//    compile.exclude module: 'spring-boot-starter-tomcat'
 }

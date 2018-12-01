@@ -12,7 +12,6 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/firms")
 public class MainController {
     FirmService firmService;
 

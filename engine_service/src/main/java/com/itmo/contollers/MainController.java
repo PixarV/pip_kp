@@ -12,14 +12,13 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/engines")
 public class MainController {
 
     EngineService engineService;
 
     @GetMapping("/getAll")
     @ResponseBody
-    List<Engine> getAllFirms() {
+    List<Engine> getAllEngines() {
         System.out.println("hey");
         return engineService.findAllEngines();
     }

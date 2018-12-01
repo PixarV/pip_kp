@@ -53,6 +53,7 @@ public abstract class CommonDao<T> {
     }
 
     public List<T> findAllEntities() {
+//        entityManager.createQuery("")
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<T> query = criteriaBuilder.createQuery(type);

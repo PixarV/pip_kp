@@ -10,12 +10,12 @@ import org.springframework.http.HttpStatus;
 @Configuration
 public class JettyConfig {
 
-    @Bean
-    public ConfigurableServletWebServerFactory webServerFactory() {
-        JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
-        factory.setPort(9001);
-        factory.setContextPath("/firm_services");
-        factory.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notfound.html"));
-        return factory;
-    }
+//    @Bean
+//    public ConfigurableServletWebServerFactory webServerFactory() {
+//        JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
+//        factory.setPort(9001);
+//        factory.setContextPath("/firm_services");
+//        factory.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notfound.html"));
+//        return factory;
+//    }
 }

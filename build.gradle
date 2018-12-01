@@ -1,9 +1,10 @@
-allprojects {
+buildscript {
     group 'com.itmo'
     version '0.0.1-SNAPSHOT'
 
     ext {
-        springBootVersion = '1.5.17.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
+        springCloudVersion = 'Finchley.SR1'
 
         //testing libs
         mockitoVersion = '2.0.2-beta'
@@ -23,8 +24,8 @@ allprojects {
         lombokVersion = '1.18.0'
 
         //spring cloud
-        cloudVersion = '2.0.2.RELEASE'
         eurekaVersion = '1.4.6.RELEASE'
+        zuulVersion = '1.4.6.RELEASE'
 
         boot = [
                 springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
@@ -41,13 +42,14 @@ allprojects {
         ]
 
         cloud = [
-                configServer: "org.springframework.cloud:spring-cloud-config-server:$cloudVersion",
-                starterConfig: "org.springframework.cloud:spring-cloud-starter-config:$cloudVersion",
-                eureka: "org.springframework.cloud:spring-cloud-starter-eureka:$eurekaVersion",
-                eurekaServer: "org.springframework.cloud:spring-cloud-starter-eureka-server:$eurekaVersion",
-                zuul: "org.springframework.cloud:spring-cloud-starter-zuul:$eurekaVersion",
+                configServer : "org.springframework.cloud:spring-cloud-config-server",
+                starterConfig: "org.springframework.cloud:spring-cloud-starter-config",
+                eureka       : "org.springframework.cloud:spring-cloud-starter-eureka:$eurekaVersion",
+                eurekaServer : "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server",
+                eurekaClient : "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
+                zuul         : "org.springframework.cloud:spring-cloud-starter-zuul:$zuulVersion",
                 springSession: "org.springframework.session:spring-session:1.3.4.RELEASE",
-                starterRedis: "org.springframework.boot:spring-boot-starter-data-redis:2.1.0.RELEASE"
+                starterRedis : "org.springframework.boot:spring-boot-starter-data-redis:2.1.0.RELEASE"
         ]
 
         test = [
@@ -68,6 +70,7 @@ allprojects {
         misc = [
                 swagger2    : "io.springfox:springfox-swagger2:2.9.2",
                 swagger_ui  : "io.springfox:springfox-swagger-ui:2.9.2",
+                gson        : "com.google.code.gson:gson:2.8.5",
                 h2          : "com.h2database:h2:$h2Version",
                 lombok      : "org.projectlombok:lombok:$lombokVersion",
                 jstl        : "javax.servlet:jstl:1.2",
@@ -86,14 +89,25 @@ allprojects {
                 core     : "org.hibernate:hibernate-core:$hibernateVersion",
         ]
     }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+    }
 }
+
+
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'war'
 
-    sourceCompatibility = 1.8
+    apply plugin: 'io.spring.dependency-management'
 
+    sourceCompatibility = 1.8
 
     repositories {
         mavenCentral()
@@ -103,5 +117,12 @@ subprojects {
         compileOnly misc["lombok"]
         compile misc["swagger2"]
         compile misc["swagger_ui"]
+        compile misc["gson"]
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
     }
 }
