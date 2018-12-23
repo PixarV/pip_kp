@@ -24,7 +24,7 @@ public class EngineContoller {
 
     @GetMapping
     @ResponseBody
-    List<Engine> findAllFirms() {
+    List<Engine> findAllEngines() {
         return engineService.findAllEngines();
     }
 

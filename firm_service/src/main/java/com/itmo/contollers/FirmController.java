@@ -24,7 +24,7 @@ public class FirmController {
 
     @GetMapping
     @ResponseBody
-    List<Firm> findAllEngines() {
+    List<Firm> findAllFirms() {
         return firmService.findAllFirms();
     }
 
