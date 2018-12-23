@@ -102,8 +102,9 @@ CREATE TYPE firm_specialization AS ENUM ('TANK', 'ENGINE', 'BOTH');
 
 CREATE TABLE firm (
   id SERIAL PRIMARY KEY ,
-  title VARCHAR(255) NOT NULL ,
-  specialization firm_specialization NOT NULL
+  title VARCHAR(255) UNIQUE NOT NULL,
+  specialization firm_specialization NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE firm_engine (

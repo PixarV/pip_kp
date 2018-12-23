@@ -33,6 +33,7 @@ public class Firm implements Serializable {
             generator = "firm_seq")
     int id;
     String title;
+    String email;
 
     @Type(type = "psql_enum")
     @Enumerated(EnumType.STRING)
