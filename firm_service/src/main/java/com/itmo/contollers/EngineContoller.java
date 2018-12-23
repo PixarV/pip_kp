@@ -1,14 +1,14 @@
-package com.pip.controllers;
+package com.itmo.contollers;
 
-import com.pip.entities.Firm;
-import com.pip.enums.FirmSpecializtion;
-import com.pip.services.FirmService;
+import com.pip.entities.Engine;
+import com.pip.enums.TypeFuel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.itmo.services.EngineService;
 
 import java.util.List;
 
@@ -16,27 +16,28 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/firms")
+@RequestMapping("/engines")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-public class FirmController {
+public class EngineContoller {
 
-    FirmService firmService;
+    EngineService engineService;
 
     @GetMapping
     @ResponseBody
-    List<Firm> findAllEngines() {
-        return firmService.findAllFirms();
+    List<Engine> findAllFirms() {
+        return engineService.findAllEngines();
     }
 
     @ResponseBody
     @GetMapping("/add")
-    String addFirm() {
-        Firm firm = Firm.builder()
-                .title("probe_firm")
-                .specialization(FirmSpecializtion.BOTH)
+    String addEngine() {
+        Engine engine = Engine.builder()
+                .weight(4242)
+                .title("probe")
+                .fuel(TypeFuel.DIZEL)
+                .power(1005000)
                 .build();
-
-        firmService.addFirm(firm);
+        engineService.addEngine(engine);
         return "hey";
     }
 }

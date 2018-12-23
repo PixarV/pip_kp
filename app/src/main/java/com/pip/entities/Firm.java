@@ -1,8 +1,8 @@
 package com.pip.entities;
 
 import com.pip.enums.FirmSpecializtion;
-import com.pip.util.PostgreSQLEnumType;
 
+import com.pip.util.PostgreSQLEnumType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;

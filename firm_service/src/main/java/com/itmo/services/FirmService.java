@@ -1,7 +1,7 @@
-package com.pip.services;
+package com.itmo.services;
 
-import com.pip.dao.FirmDao;
 import com.pip.entities.Firm;
+import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;

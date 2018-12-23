@@ -1,4 +1,4 @@
-package com.pip.dao;
+package com.itmo.dao;
 
 import com.pip.entities.FirmEngine;
 import org.springframework.stereotype.Repository;
