@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -20,7 +21,7 @@ public abstract class CommonDao<T> {
     final Class<T> type;
 
     @Autowired
-    EntityManager entityManager;
+    protected EntityManager entityManager;
 
     /**
      * Use save if you 100% sure that this entity is not in db.
@@ -63,5 +64,10 @@ public abstract class CommonDao<T> {
 
     public void removeEntity(T entity) {
        entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+    }
+
+    public T updateEntity(T entity) {
+        entityManager.refresh(entity);
+        return entityManager.merge(entity);
     }
 }

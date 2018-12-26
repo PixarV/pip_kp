@@ -16,7 +16,7 @@ CREATE TYPE type_model AS ENUM ('H', 'M', 'L');
 
 CREATE TABLE model (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
+  title VARCHAR(255) UNIQUE NOT NULL,
   type type_model NOT NULL,
   max_speed_forward DOUBLE PRECISION NOT NULL CHECK (
     max_speed_forward > 0),
