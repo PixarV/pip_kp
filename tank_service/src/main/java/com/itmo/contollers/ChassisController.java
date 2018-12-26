@@ -19,11 +19,11 @@ public class ChassisController {
 
     ChassisService chassisService;
 
-//    @ResponseBody
-//    @GetMapping("/getAll")
-//    List<Chassis> findAllChassiss() {
-//        return chassisService.findAllChassiss();
-//    }
+    @ResponseBody
+    @GetMapping("/getAll")
+    List<Chassis> findAllChassiss() {
+        return chassisService.findAllChassiss();
+    }
 
     @ResponseBody
     @PostMapping("/add")
@@ -32,11 +32,11 @@ public class ChassisController {
         return chassis;
     }
 
-//    @ResponseBody
-//    @GetMapping("/get/{chassisId}")
-//    Chassis getChassis(@PathVariable int chassisId) {
-//        return chassisService.getChassisById(chassisId);
-//    }
+    @ResponseBody
+    @GetMapping("/get/{chassisId}")
+    Chassis getChassis(@PathVariable int chassisId) {
+        return chassisService.getChassisById(chassisId);
+    }
 
     @ResponseBody
     @PostMapping("/update")

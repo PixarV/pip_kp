@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pip.enums.TypeModel;
 import com.pip.util.PostgreSQLEnumType;
 
@@ -56,12 +57,14 @@ public class Model implements Serializable {
             joinColumns = @JoinColumn(name = "id_model", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_engine", referencedColumnName = "id")
     )
+    @JsonIgnoreProperties("models")
     Set<Engine> engines = new HashSet<>();
 
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "model")
+    @JsonIgnoreProperties("model")
     Set<Chassis> chassis = new HashSet<>();
 }
 

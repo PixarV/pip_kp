@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.TypeDef;
@@ -44,6 +45,7 @@ public class Tower implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "towers")
+    @JsonIgnoreProperties("towers")
     Set<Chassis> chassis = new HashSet<>();
 
     @Builder.Default
@@ -57,12 +59,14 @@ public class Tower implements Serializable {
             joinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")
     )
+    @JsonIgnoreProperties("towers")
     Set<Weapon> weapons = new HashSet<>();
 
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "tower")
+    @JsonIgnoreProperties("towers")
     Set<FirmTower> firms = new HashSet<>();
 
     public void addFirm(Firm firm) {

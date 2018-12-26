@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -29,6 +30,7 @@ public class Chassis implements Serializable {
     @ManyToOne
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "id_model", referencedColumnName = "id")
+    @JsonIgnoreProperties("chassis")
     Model model;
 
     String title;
@@ -48,5 +50,6 @@ public class Chassis implements Serializable {
             joinColumns = @JoinColumn(name = "id_chassis", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_tower", referencedColumnName = "id")
     )
+    @JsonIgnoreProperties("chassis")
     Set<Tower> towers = new HashSet<>();
 }
