@@ -35,7 +35,7 @@ CREATE TABLE model_engine (
 CREATE TABLE chassis (
   id SERIAL PRIMARY KEY,
   id_model INTEGER REFERENCES model ON DELETE RESTRICT,
-  title VARCHAR(255) NOT NULL,
+  title VARCHAR(255) UNIQUE NOT NULL,
   carring DOUBLE PRECISION CHECK (
     carring >= 0
   ),
