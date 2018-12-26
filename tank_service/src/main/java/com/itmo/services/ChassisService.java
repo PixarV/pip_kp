@@ -24,4 +24,20 @@ public class ChassisService {
     public void addChassis(Chassis chassis) {
         chassisDao.saveEntity(chassis);
     }
+
+    public void deleteChassis(Chassis chassis) {
+        chassisDao.removeEntity(chassis);
+    }
+
+    public int deleteChassisById(int chassisId) {
+        return chassisDao.removeChassisById(chassisId);
+    }
+
+    public Chassis getChassisById(int chassisId) {
+        return chassisDao.findEntityById(chassisId);
+    }
+
+    public Chassis updateChassis(Chassis chassis) {
+        return chassisDao.updateEntity(chassis);
+    }
 }
