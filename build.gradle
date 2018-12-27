@@ -99,12 +99,13 @@ buildscript {
     }
 }
 
-
+plugins {
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+}
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'war'
-
+    apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = 1.8
