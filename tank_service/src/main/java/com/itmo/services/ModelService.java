@@ -1,12 +1,14 @@
 package com.itmo.services;
 
+import com.itmo.dao.EngineDao;
 import com.itmo.dao.ModelDao;
+import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -16,6 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class ModelService {
 
     ModelDao modelDao;
+    EngineDao engineDao;
 
     public List<Model> findAllModels() {
         return modelDao.findAllEntities();
@@ -39,5 +42,16 @@ public class ModelService {
 
     public Model updateModel(Model model) {
         return modelDao.updateEntity(model);
+    }
+
+    public Model addEngine(Model model, int engineId) {
+        modelDao.detachEntity(model);
+        Engine engine = engineDao.findEntityById(engineId);
+        Set<Engine> engines = model.getEngines();
+        if (!Objects.nonNull(engines)) engines = new HashSet<>();
+        engines.add(engine);
+        modelDao.refreshEntity(model);
+        modelDao.mergeEntity(model);
+        return model;
     }
 }

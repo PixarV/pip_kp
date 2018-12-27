@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pip.enums.TypeFuel;
 import com.pip.util.PostgreSQLEnumType;
 
@@ -45,12 +46,14 @@ public class Engine implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "engines")
+    @JsonIgnoreProperties("engines")
     Set<Model> models = new HashSet<>();
 
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "engine")
+    @JsonIgnoreProperties("engine")
     Set<FirmEngine> firms = new HashSet<>();
 
     public void addFirm(Firm firm) {

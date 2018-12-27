@@ -1,7 +1,9 @@
 package com.itmo.services;
 
-import com.pip.entities.Engine;
 import com.itmo.dao.EngineDao;
+import com.itmo.dao.EngineDao;
+import com.pip.entities.Engine;
+import com.pip.entities.Engine;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -23,5 +25,21 @@ public class EngineService {
 
     public void addEngine(Engine engine) {
         engineDao.saveEntity(engine);
+    }
+
+    public void deleteEngine(Engine engine) {
+        engineDao.removeEntity(engine);
+    }
+
+    public int deleteEngineById(int engineId) {
+        return engineDao.removeEngineById(engineId);
+    }
+
+    public Engine getEngineById(int engineId) {
+        return engineDao.findEntityById(engineId);
+    }
+
+    public Engine updateEngine(Engine engine) {
+        return engineDao.updateEntity(engine);
     }
 }
