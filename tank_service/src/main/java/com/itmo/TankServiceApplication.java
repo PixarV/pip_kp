@@ -1,47 +1,13 @@
 package com.itmo;
 
-import com.google.common.collect.ImmutableMap;
-import com.itmo.probe.ViewScope;
-import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.context.ServletContextAware;
-
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class TankServiceApplication implements ServletContextAware {
-
+public class TankServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(TankServiceApplication.class, args);
     }
-
-    @Bean
-    public static CustomScopeConfigurer viewScope() {
-        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-        configurer.setScopes(new ImmutableMap.Builder<String, Object>().put("view", new ViewScope()).build());
-        return configurer;
-    }
-
-    @Bean
-    public ServletRegistrationBean<FacesServlet> servletRegistrationBean() {
-        ServletRegistrationBean<FacesServlet> servletRegistrationBean = new ServletRegistrationBean<>(
-                new FacesServlet(), "*.xhtml");
-        servletRegistrationBean.setLoadOnStartup(1);
-        return servletRegistrationBean;
-    }
-
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        // Iniciar el contexto de JSF
-        // http://stackoverflow.com/a/25509937/1199132
-        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-        servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", "true");
-    }
-
 }
