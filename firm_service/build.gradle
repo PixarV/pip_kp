@@ -1,0 +1,10 @@
+dependencies {
+    compile boot["starterWeb"]
+    compile boot["springBootPlugin"]
+    compile boot["starterJetty"]
+
+    compile cloud["starterConfig"]
+    compile cloud["eurekaClient"]
+
+    compile project(':app')
+}

@@ -1,0 +1,14 @@
+dependencies {
+    compile boot["starterWeb"]
+    compile boot["springBootPlugin"]
+    compile boot["starterJetty"]
+
+    compile cloud["starterConfig"]
+    compile cloud["eurekaClient"]
+
+    compile project(':app')
+    compile 'org.glassfish:javax.faces:2.4.0'
+//    compile 'org.springframework.boot:spring-boot-starter-webflux:2.1.1.RELEASE'
+    compile 'com.google.guava:guava:27.0.1-jre'
+    compileOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.14'
+}

@@ -1,0 +1,8 @@
+dependencies {
+    compile cloud["configServer"]
+    compile cloud["eurekaClient"]
+}
+
+springBoot {
+    mainClassName = 'com.itmo.ConfigServerApplication'
+}

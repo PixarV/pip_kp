@@ -1,0 +1,5 @@
+dependencies {
+    compile cloud["starterConfig"]
+    compile cloud["eurekaClient"]
+    compile cloud["zuul"]
+}
