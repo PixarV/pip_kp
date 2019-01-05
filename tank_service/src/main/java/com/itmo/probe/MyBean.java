@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("view")
+//@Scope("view")
 public class MyBean {
 
     public MyBean() {
