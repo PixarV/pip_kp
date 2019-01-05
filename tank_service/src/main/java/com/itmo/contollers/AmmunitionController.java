@@ -9,6 +9,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -32,8 +34,17 @@ public class AmmunitionController {
     }
 
     @PostMapping("/add")
-        ammunitionService.addAmmunition(ammunition);
     public Ammunition addAmmunition(@RequestBody Ammunition ammunition) {
+        try {
+            Ammunition tempAmmun = ammunition;
+            ammunition = new Ammunition();
+            ammunitionService.addAmmunition(tempAmmun);
+        } catch (Exception e) {
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addForm:addButton", // id ratget form and target element
+                                new FacesMessage("Error :(", e.getMessage()));
+        }
         return ammunition;
     }
 
