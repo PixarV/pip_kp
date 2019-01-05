@@ -18,6 +18,7 @@
         <h:inputText value="#{ammunitionController.ammunition.callibr}"/>
         <br/>
         <h:outputText value="Type"/>
+        <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
         <h:inputText value="#{ammunitionController.ammunition.type}"/>
         <br/>
         <h:commandButton id="addButton" value="Add" action="#{ammunitionController.addAmmunition(ammunitionController.ammunition)}">
