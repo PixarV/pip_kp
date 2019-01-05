@@ -19,34 +19,34 @@ public class AmmunitionController {
     AmmunitionService ammunitionService;
 
     @GetMapping("/getAll")
-    List<Ammunition> findAllAmmunitions() {
+    public List<Ammunition> findAllAmmunitions() {
         return ammunitionService.findAllAmmunitions();
     }
 
     @PostMapping("/add")
-    Ammunition addAmmunition(@RequestBody Ammunition ammunition) {
         ammunitionService.addAmmunition(ammunition);
+    public Ammunition addAmmunition(@RequestBody Ammunition ammunition) {
         return ammunition;
     }
 
     @GetMapping("/get/{ammunitionId}")
-    Ammunition getAmmunition(@PathVariable int ammunitionId) {
+    public Ammunition getAmmunitionById(@PathVariable int ammunitionId) {
         return ammunitionService.getAmmunitionById(ammunitionId);
     }
 
     @PutMapping("/update")
-    Ammunition updateAmmunition(@RequestBody Ammunition ammunition) {
+    public Ammunition updateAmmunition(@RequestBody Ammunition ammunition) {
         // TODO: 12/26/18 check entity not managed problem
         return ammunitionService.updateAmmunition(ammunition);
     }
 
     @DeleteMapping("/delete")
-    void deleteAmmunition(@RequestBody Ammunition ammunition) {
+    public void deleteAmmunition(@RequestBody Ammunition ammunition) {
         ammunitionService.deleteAmmunition(ammunition);
     }
 
     @DeleteMapping("/delete/{ammunitionId}")
-    void deleteAmmunitionById(@PathVariable int ammunitionId) {
+    public void deleteAmmunitionById(@PathVariable int ammunitionId) {
         ammunitionService.deleteAmmunitionById(ammunitionId);
     }
 
