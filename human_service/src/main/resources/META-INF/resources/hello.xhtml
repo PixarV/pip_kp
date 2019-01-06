@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:outputText id="greeting" value="Hello from #{myBean.from} it's #{myBean.date}" />
+
+    <!--<h:form id="addForm">-->
+        <!--<h:outputText value="Breakage"/>-->
+        <!--<h:inputText value="#{ammunitionController.ammunition.breakage}"/>-->
+        <!--<br/>-->
+        <!--<h:outputText value="Callibr"/>-->
+        <!--<h:inputText value="#{ammunitionController.ammunition.callibr}"/>-->
+        <!--<br/>-->
+        <!--<h:outputText value="Type"/>-->
+        <!--&lt;!&ndash;if type isn't in UPPER CASE, we have unexpected behaivor&ndash;&gt;-->
+        <!--<h:inputText value="#{ammunitionController.ammunition.type}"/>-->
+        <!--<br/>-->
+        <!--<h:commandButton id="addButton" value="Add" action="#{ammunitionController.addAmmunition(ammunitionController.ammunition)}">-->
+            <!--<f:ajax execute="@form" render="addForm" />-->
+        <!--</h:commandButton>-->
+        <!--<br/>-->
+        <!--<h:message class="error" for="addButton"/>-->
+    <!--</h:form>-->
+</h:body>
+</html>
