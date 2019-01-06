@@ -7,4 +7,5 @@ dependencies {
     compile cloud["eurekaClient"]
 
     compile project(':app')
+    compile "org.joinfaces:jsf-spring-boot-starter:4.0.1"
 }
