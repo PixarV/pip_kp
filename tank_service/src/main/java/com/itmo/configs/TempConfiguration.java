@@ -5,8 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan({
-        "com.pip.services",
-        "com.pip.dao",
+        "com.pip.entities",
         "com.pip.configs.common"
 })
 public class TempConfiguration {

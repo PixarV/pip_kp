@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -22,7 +24,15 @@ public class AmmunitionService {
     }
 
     public void addAmmunition(Ammunition ammunition) {
-        ammunitionDao.saveEntity(ammunition);
+        try {
+            Ammunition tempAmmun = ammunition.withId(0);
+            ammunitionDao.saveEntity(tempAmmun);
+        } catch (Exception e) {
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addForm:addButton", // id ratget form and target element
+                            new FacesMessage("Error :(", e.getMessage()));
+        }
     }
 
     public void deleteAmmunition(Ammunition ammunition) {

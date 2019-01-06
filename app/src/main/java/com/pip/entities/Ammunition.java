@@ -3,9 +3,12 @@ package com.pip.entities;
 import com.pip.enums.TypeAmmunition;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.Wither;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import com.pip.util.PostgreSQLEnumType;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,15 +18,17 @@ import java.util.Set;
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
+@Wither
 @Entity
 @Builder
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 @TypeDef(name = "psql_enum", typeClass = PostgreSQLEnumType.class)
 public class Ammunition implements Serializable {
 
-    // TODO: 11/5/18 @JsonIgnore 
+    // TODO: 11/5/18 @JsonIgnore
     @Id
     @SequenceGenerator(name="ammunition_seq",
             sequenceName="ammunition_id_seq",
