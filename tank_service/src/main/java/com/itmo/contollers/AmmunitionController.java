@@ -24,10 +24,6 @@ public class AmmunitionController {
 
     AmmunitionService ammunitionService;
 
-    @Setter
-    @Getter
-    private Ammunition ammunition = new Ammunition();
-
     @GetMapping("/getAll")
     public List<Ammunition> findAllAmmunitions() {
         return ammunitionService.findAllAmmunitions();
@@ -35,16 +31,7 @@ public class AmmunitionController {
 
     @PostMapping("/add")
     public Ammunition addAmmunition(@RequestBody Ammunition ammunition) {
-        try {
-            Ammunition tempAmmun = ammunition;
-            ammunition = new Ammunition();
-            ammunitionService.addAmmunition(tempAmmun);
-        } catch (Exception e) {
-            FacesContext
-                    .getCurrentInstance()
-                    .addMessage("addForm:addButton", // id ratget form and target element
-                                new FacesMessage("Error :(", e.getMessage()));
-        }
+        ammunitionService.addAmmunition(ammunition);
         return ammunition;
     }
 
