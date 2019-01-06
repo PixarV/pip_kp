@@ -12,16 +12,16 @@
 
     <h:form id="addForm">
         <h:outputText value="Breakage"/>
-        <h:inputText value="#{ammunitionController.ammunition.breakage}"/>
+        <h:inputText value="#{ammunition.breakage}"/>
         <br/>
         <h:outputText value="Callibr"/>
-        <h:inputText value="#{ammunitionController.ammunition.callibr}"/>
+        <h:inputText value="#{ammunition.callibr}"/>
         <br/>
         <h:outputText value="Type"/>
         <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-        <h:inputText value="#{ammunitionController.ammunition.type}"/>
+        <h:inputText value="#{ammunition.type}"/>
         <br/>
-        <h:commandButton id="addButton" value="Add" action="#{ammunitionController.addAmmunition(ammunitionController.ammunition)}">
+        <h:commandButton id="addButton" value="Add" action="#{ammunitionService.addAmmunition(ammunition)}">
             <f:ajax execute="@form" render="addForm" />
         </h:commandButton>
         <br/>
