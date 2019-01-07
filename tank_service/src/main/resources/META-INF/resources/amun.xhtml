@@ -118,30 +118,32 @@
         </fieldset>
     </fieldset>
 
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{ammunition.id}"/>
+            <br/>
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="updateButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="updateForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateButton"/>
+        </h:form>
+    </fieldset>
 
 
 
-    <h:outputText value="Update amun" />
-    <h:form id="updateForm">
-        <h:outputText value="Id"/>
-        <h:inputText value="#{ammunition.id}"/>
-        <br/>
-        <h:outputText value="Breakage"/>
-        <h:inputText value="#{ammunition.breakage}"/>
-        <br/>
-        <h:outputText value="Callibr"/>
-        <h:inputText value="#{ammunition.callibr}"/>
-        <br/>
-        <h:outputText value="Type"/>
-        <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-        <h:inputText value="#{ammunition.type}"/>
-        <br/>
-        <h:commandButton id="updateButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
-            <f:ajax execute="@form" render="updateForm" />
-        </h:commandButton>
-        <br/>
-        <h:message class="error" for="updateButton"/>
-    </h:form>
 
 
 </h:body>
