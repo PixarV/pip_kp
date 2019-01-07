@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -43,8 +45,19 @@ public class AmmunitionService {
         return ammunitionDao.removeAmmunitionById(ammunitionId);
     }
 
-    public Ammunition getAmmunitionById(int ammunitionId) {
-        return ammunitionDao.findEntityById(ammunitionId);
+    public List<Ammunition> getAmmunitionById(int ammunitionId) {
+        if (ammunitionId != 0) {
+            Ammunition tempAmun = ammunitionDao.findEntityById(ammunitionId);
+            if (tempAmun != null)
+                return Arrays.asList(tempAmun);
+            else {
+                FacesContext
+                        .getCurrentInstance()
+                        .addMessage("getForm:getButton", // id ratget form and target element
+                                new FacesMessage("Error :(", "Can't find entry"));
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void updateAmmunition(Ammunition ammunition) {

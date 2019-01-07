@@ -37,7 +37,7 @@ public class AmmunitionController {
 
     @GetMapping("/get/{ammunitionId}")
     public Ammunition getAmmunitionById(@PathVariable int ammunitionId) {
-        return ammunitionService.getAmmunitionById(ammunitionId);
+        return ammunitionService.getAmmunitionById(ammunitionId).get(0);
     }
 
     @PutMapping("/update")
