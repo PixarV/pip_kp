@@ -141,6 +141,30 @@
             <h:message class="error" for="updateButton"/>
         </h:form>
     </fieldset>
+    <fieldset>
+        <legend>Remove</legend>
+        <h:form id="removeForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{ammunition.id}"/>
+            <br/>
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="removeButton" value="Remove" action="#{ammunitionService.deleteAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="removeForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="removeButton"/>
+        </h:form>
+
+    </fieldset>
 
 
 
