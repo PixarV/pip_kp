@@ -9,6 +9,19 @@
 
 <h:body>
     <h:outputText id="greeting" value="Hello from #{myBean.from} it's #{myBean.date}" />
+    <script type="text/javascript">
+        setInterval(function () {
+                        document.getElementById("hideForm:myButtonId").click();
+                        },
+                    3000);
+    </script>
+
+    <h:form id="hideForm">
+        <h:commandButton id = "myButtonId" style="visibility: hidden;">
+            <f:ajax render = "result-table" />
+        </h:commandButton>
+    </h:form>
+
     <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
                  styleClass="article-table"
                  rules="all" id="result-table">
@@ -30,13 +43,35 @@
         </h:column>
     </h:dataTable>
 
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addForm">
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="addButton" value="Add" action="#{ammunitionService.addAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="addForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addButton"/>
+        </h:form>
+    </fieldset>
+
+
 
     <h:outputText value="Get amun by Id" />
     <h:form id="getForm">
         <h:outputText value="Id"/>
         <h:inputText binding="#{id}" converter="javax.faces.Integer"/>
         <br/>
-        <h:commandButton id="getButton" value="Add" action="#{ammunitionService.getAmmunitionById(id.value)}">
+        <h:commandButton id="getButton" value="Get" action="#{ammunitionService.getAmmunitionById(id.value)}">
             <f:ajax execute="@form" render="getForm" />
         </h:commandButton>
         <br/>
@@ -62,6 +97,29 @@
                 #{amun.breakage}
             </h:column>
         </h:dataTable>
+    </h:form>
+
+
+    <h:outputText value="Update amun" />
+    <h:form id="updateForm">
+        <h:outputText value="Id"/>
+        <h:inputText value="#{ammunition.id}"/>
+        <br/>
+        <h:outputText value="Breakage"/>
+        <h:inputText value="#{ammunition.breakage}"/>
+        <br/>
+        <h:outputText value="Callibr"/>
+        <h:inputText value="#{ammunition.callibr}"/>
+        <br/>
+        <h:outputText value="Type"/>
+        <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+        <h:inputText value="#{ammunition.type}"/>
+        <br/>
+        <h:commandButton id="updateButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
+            <f:ajax execute="@form" render="updateForm" />
+        </h:commandButton>
+        <br/>
+        <h:message class="error" for="updateButton"/>
     </h:form>
 
 
