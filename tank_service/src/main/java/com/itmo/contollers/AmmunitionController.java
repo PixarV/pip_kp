@@ -41,9 +41,8 @@ public class AmmunitionController {
     }
 
     @PutMapping("/update")
-    public Ammunition updateAmmunition(@RequestBody Ammunition ammunition) {
-        // TODO: 12/26/18 check entity not managed problem
-        return ammunitionService.updateAmmunition(ammunition);
+    public void updateAmmunition(@RequestBody Ammunition ammunition) {
+        ammunitionService.updateAmmunition(ammunition);
     }
 
     @DeleteMapping("/delete")
@@ -55,6 +54,4 @@ public class AmmunitionController {
     public void deleteAmmunitionById(@PathVariable int ammunitionId) {
         ammunitionService.deleteAmmunitionById(ammunitionId);
     }
-
-
 }
