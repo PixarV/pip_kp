@@ -53,7 +53,7 @@ public class AmmunitionService {
             else {
                 FacesContext
                         .getCurrentInstance()
-                        .addMessage("getForm:getButton", // id ratget form and target element
+                        .addMessage("shortGetForm:shortGetButton", // id ratget form and target element
                                 new FacesMessage("Error :(", "Can't find entry"));
             }
         }
