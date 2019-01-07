@@ -101,6 +101,21 @@
                 </h:dataTable>
             </h:form>
         </fieldset>
+
+
+        <fieldset>
+            <legend>Delete</legend>
+            <h:form id="shortDelForm">
+            <h:outputText value="Id"/>
+            <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="shortDelButton" value="Delete" action="#{ammunitionService.deleteAmmunitionById(delId.value)}">
+                <f:ajax execute="@form" render="shortDelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="shortDelButton"/>
+            </h:form>
+        </fieldset>
     </fieldset>
 
 
