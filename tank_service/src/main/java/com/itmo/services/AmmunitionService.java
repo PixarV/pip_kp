@@ -47,7 +47,7 @@ public class AmmunitionService {
         return ammunitionDao.findEntityById(ammunitionId);
     }
 
-    public Ammunition updateAmmunition(Ammunition ammunition) {
-        return ammunitionDao.updateEntity(ammunition);
+    public void updateAmmunition(Ammunition ammunition) {
+        ammunitionDao.custom_update(ammunition);
     }
 }
