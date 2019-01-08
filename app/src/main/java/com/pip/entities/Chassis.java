@@ -3,6 +3,8 @@ package com.pip.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.Wither;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,8 +14,10 @@ import java.util.Set;
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
+@Wither
 @Entity
 @Builder
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
