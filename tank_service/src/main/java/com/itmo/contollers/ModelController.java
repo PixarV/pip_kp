@@ -36,8 +36,8 @@ public class ModelController {
     }
 
     @PutMapping("/update")
-    Model updateModel(@RequestBody Model model) {
-        return modelService.updateModel(model);
+    void updateModel(@RequestBody Model model) {
+        modelService.updateModel(model);
     }
 
     @DeleteMapping("/delete")

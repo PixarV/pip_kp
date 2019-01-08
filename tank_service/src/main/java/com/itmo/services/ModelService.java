@@ -40,8 +40,8 @@ public class ModelService {
         return modelDao.findEntityById(modelId);
     }
 
-    public Model updateModel(Model model) {
-        return modelDao.updateEntity(model);
+    public void updateModel(Model model) {
+        modelDao.custom_update(model);
     }
 
     public Model addEngine(Model model, int engineId) {
