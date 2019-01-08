@@ -2,7 +2,7 @@ CREATE TYPE type_fuel AS ENUM ('BENZIN', 'DIZEL');
 
 CREATE TABLE engine (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
+  title VARCHAR(255) UNIQUE NOT NULL,
   fuel type_fuel NOT NULL,
   power INTEGER NOT NULL CHECK (
     power > 0
