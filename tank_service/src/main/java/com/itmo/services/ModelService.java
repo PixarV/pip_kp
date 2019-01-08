@@ -47,11 +47,11 @@ public class ModelService {
     public Model addEngine(Model model, int engineId) {
         modelDao.detachEntity(model);
         Engine engine = engineDao.findEntityById(engineId);
+
         Set<Engine> engines = model.getEngines();
         if (!Objects.nonNull(engines)) engines = new HashSet<>();
         engines.add(engine);
-        modelDao.refreshEntity(model);
-        modelDao.mergeEntity(model);
+        modelDao.addEngine(model.getId(), engineId);
         return model;
     }
 }

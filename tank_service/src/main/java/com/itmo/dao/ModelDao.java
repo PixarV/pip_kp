@@ -1,5 +1,6 @@
 package com.itmo.dao;
 
+import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +30,12 @@ public class ModelDao extends CommonDao<Model> {
     public int removeModelById(int id) {
         Query query = entityManager.createQuery("DELETE FROM Model m WHERE m.id = :id");
         return query.setParameter("id", id).executeUpdate();
+    }
+
+    public int addEngine(int modelId, int engineId) {
+        Query query = entityManager.createNativeQuery("INSERT INTO model_engine VALUES(?, ?)");
+        return query.setParameter(1, modelId)
+                    .setParameter(2, engineId).executeUpdate();
     }
 }
 
