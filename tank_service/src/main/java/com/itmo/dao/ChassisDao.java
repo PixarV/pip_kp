@@ -1,7 +1,6 @@
 package com.itmo.dao;
 
 import com.pip.entities.Chassis;
-import com.pip.entities.Chassis;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
