@@ -49,4 +49,9 @@ public class EngineController {
     void deleteEngineById(@PathVariable int engineId) {
         engineService.deleteEngineById(engineId);
     }
+
+    @PutMapping("/removeModelEngine/{engineId}")
+    void removeModelFromMtoM(@PathVariable int engineId) {
+        engineService.removeModelFromMtoM(engineId);
+    }
 }

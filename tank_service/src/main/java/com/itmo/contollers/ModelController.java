@@ -55,4 +55,9 @@ public class ModelController {
                            @PathVariable int engineId) {
         return modelService.addEngine(model, engineId);
     }
+
+    @PutMapping("/removeModelEngine/{modelId}")
+    void removeModelFromMtoM(@PathVariable int modelId) {
+        modelService.removeModelFromMtoM(modelId);
+    }
 }

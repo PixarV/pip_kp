@@ -1,12 +1,13 @@
 package com.itmo.dao;
 
-import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 
 @Repository
+@Transactional
 public class ModelDao extends CommonDao<Model> {
     public ModelDao() {
         super(Model.class);
@@ -35,7 +36,13 @@ public class ModelDao extends CommonDao<Model> {
     public int addEngine(int modelId, int engineId) {
         Query query = entityManager.createNativeQuery("INSERT INTO model_engine VALUES(?, ?)");
         return query.setParameter(1, modelId)
-                    .setParameter(2, engineId).executeUpdate();
+                .setParameter(2, engineId).executeUpdate();
     }
+
+    public int removeModelFromMtoM(int modelId) {
+        Query query = entityManager.createNativeQuery("DELETE FROM model_engine WHERE id_model=?");
+        return query.setParameter(1, modelId).executeUpdate();
+    }
+
 }
 

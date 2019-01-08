@@ -54,4 +54,8 @@ public class ModelService {
         modelDao.addEngine(model.getId(), engineId);
         return model;
     }
+
+    public void removeModelFromMtoM(int modelId) {
+        modelDao.removeModelFromMtoM(modelId);
+    }
 }
