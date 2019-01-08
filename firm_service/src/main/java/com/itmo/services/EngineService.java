@@ -39,7 +39,7 @@ public class EngineService {
         return engineDao.findEntityById(engineId);
     }
 
-    public Engine updateEngine(Engine engine) {
-        return engineDao.updateEntity(engine);
+    public void updateEngine(Engine engine) {
+        engineDao.custom_update(engine);
     }
 }
