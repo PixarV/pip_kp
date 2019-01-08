@@ -42,4 +42,8 @@ public class EngineService {
     public void updateEngine(Engine engine) {
         engineDao.custom_update(engine);
     }
+
+    public void removeModelFromMtoM(int engineId) {
+        engineDao.removeEngineFromMtoM(engineId);
+    }
 }
