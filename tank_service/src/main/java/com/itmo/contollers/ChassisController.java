@@ -35,8 +35,8 @@ public class ChassisController {
     }
 
     @PutMapping("/update")
-    Chassis updateChassis(@RequestBody Chassis chassis) {
-        return chassisService.updateChassis(chassis);
+    void updateChassis(@RequestBody Chassis chassis) {
+       chassisService.updateChassis(chassis);
     }
 
     @DeleteMapping("/delete")

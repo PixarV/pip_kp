@@ -37,7 +37,7 @@ public class ChassisService {
         return chassisDao.findEntityById(chassisId);
     }
 
-    public Chassis updateChassis(Chassis chassis) {
-        return chassisDao.updateEntity(chassis);
+    public void updateChassis(Chassis chassis) {
+        chassisDao.custom_update(chassis);
     }
 }
