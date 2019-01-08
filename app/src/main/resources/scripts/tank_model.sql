@@ -221,7 +221,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER chassis_add BEFORE INSERT OR UPDATE ON chassis
+CREATE TRIGGER chassis_add BEFORE INSERT ON chassis
     FOR EACH ROW EXECUTE PROCEDURE check_unique_ch();
 
 
