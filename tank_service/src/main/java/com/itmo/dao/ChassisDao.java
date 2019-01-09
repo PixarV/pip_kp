@@ -38,7 +38,7 @@ public class ChassisDao extends CommonDao<Chassis> {
     }
 
     public int removeChassisFromMtoM(int chassisId) {
-        Query query = entityManager.createNativeQuery("DELETE FROM model_engine WHERE id_model=?");
+        Query query = entityManager.createNativeQuery("DELETE FROM chassis_tower WHERE id_chassis=?");
         return query.setParameter(1, chassisId).executeUpdate();
     }
 }
