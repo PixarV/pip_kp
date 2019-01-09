@@ -63,4 +63,12 @@ public class AmmunitionService {
     public void updateAmmunition(Ammunition ammunition) {
         ammunitionDao.custom_update(ammunition);
     }
+
+    public void addWeapon(Ammunition ammunition, int weaponId) {
+        ammunitionDao.addWeapon(ammunition.getId(), weaponId);
+    }
+
+    public void removeAmmunitionFromMtoM(int ammunitionId) {
+        ammunitionDao.removeAmmunitionFromMtoM(ammunitionId);
+    }
 }
