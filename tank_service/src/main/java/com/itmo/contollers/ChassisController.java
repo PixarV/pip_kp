@@ -49,5 +49,14 @@ public class ChassisController {
         chassisService.deleteChassisById(chassisId);
     }
 
+    @PutMapping("/addTower/{towerId}")
+    void addTowerToChassis(@RequestBody Chassis chassis,
+                           @PathVariable int towerId) {
+        chassisService.addTower(chassis, towerId);
+    }
 
+    @PutMapping("/removeChassisTower/{chassisId}")
+    void removeModelFromMtoM(@PathVariable int chassisId) {
+        chassisService.removeChassisFromMtoM(chassisId);
+    }
 }
