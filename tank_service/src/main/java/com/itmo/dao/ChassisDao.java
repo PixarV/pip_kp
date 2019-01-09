@@ -30,5 +30,16 @@ public class ChassisDao extends CommonDao<Chassis> {
         Query query = entityManager.createQuery("DELETE FROM Chassis m WHERE m.id = :id");
         return query.setParameter("id", id).executeUpdate();
     }
+
+    public int addTower(int chassisId, int towerId) {
+        Query query = entityManager.createNativeQuery("INSERT INTO chassis_tower VALUES(?, ?)");
+        return query.setParameter(1, chassisId)
+                .setParameter(2, towerId).executeUpdate();
+    }
+
+    public int removeChassisFromMtoM(int chassisId) {
+        Query query = entityManager.createNativeQuery("DELETE FROM model_engine WHERE id_model=?");
+        return query.setParameter(1, chassisId).executeUpdate();
+    }
 }
 

@@ -40,4 +40,12 @@ public class ChassisService {
     public void updateChassis(Chassis chassis) {
         chassisDao.custom_update(chassis);
     }
+
+    public void addTower(Chassis chassis, int towerId) {
+        chassisDao.addTower(chassis.getId(), towerId);
+    }
+
+    public void removeChassisFromMtoM(int chassisId) {
+        chassisDao.removeChassisFromMtoM(chassisId);
+    }
 }
