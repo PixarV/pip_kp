@@ -71,7 +71,7 @@ CREATE TABLE chassis_tower (
 
 CREATE TABLE weapon (
   id SERIAL PRIMARY KEY ,
-  title VARCHAR(255) NOT NULL ,
+  title VARCHAR(255) NOT UNIQUE NULL ,
   callibr INTEGER NOT NULL CHECK (
     callibr > 0
   ),
