@@ -18,7 +18,6 @@ import static lombok.AccessLevel.PRIVATE;
 public class ModelService {
 
     ModelDao modelDao;
-    EngineDao engineDao;
 
     public List<Model> findAllModels() {
         return modelDao.findAllEntities();
@@ -44,15 +43,8 @@ public class ModelService {
         modelDao.custom_update(model);
     }
 
-    public Model addEngine(Model model, int engineId) {
-        modelDao.detachEntity(model);
-        Engine engine = engineDao.findEntityById(engineId);
-
-        Set<Engine> engines = model.getEngines();
-        if (!Objects.nonNull(engines)) engines = new HashSet<>();
-        engines.add(engine);
+    public void addEngine(Model model, int engineId) {
         modelDao.addEngine(model.getId(), engineId);
-        return model;
     }
 
     public void removeModelFromMtoM(int modelId) {
