@@ -27,5 +27,16 @@ public class AmmunitionDao extends CommonDao<Ammunition> {
         Query query = entityManager.createQuery("DELETE FROM Ammunition m WHERE m.id = :id");
         return query.setParameter("id", id).executeUpdate();
     }
+
+    public int addWeapon(int ammunitionId, int weaponId) {
+        Query query = entityManager.createNativeQuery("INSERT INTO ammunition_weapon VALUES(?, ?)");
+        return query.setParameter(1, ammunitionId)
+                .setParameter(2, weaponId).executeUpdate();
+    }
+
+    public int removeAmmunitionFromMtoM(int ammunitionId) {
+        Query query = entityManager.createNativeQuery("DELETE FROM ammunition_weapon WHERE id_ammunition=?");
+        return query.setParameter(1, ammunitionId).executeUpdate();
+    }
 }
 

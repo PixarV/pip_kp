@@ -54,4 +54,15 @@ public class AmmunitionController {
     public void deleteAmmunitionById(@PathVariable int ammunitionId) {
         ammunitionService.deleteAmmunitionById(ammunitionId);
     }
+
+    @PutMapping("/addWeapon/{weaponId}")
+    void addWeaponToAmmunition(@RequestBody Ammunition ammunition,
+                               @PathVariable int weaponId) {
+        ammunitionService.addWeapon(ammunition, weaponId);
+    }
+
+    @PutMapping("/removeAmmunitionWeapon/{ammunitionId}")
+    void removeAmmuntionFromMtoM(@PathVariable int ammunitionId) {
+        ammunitionService.removeAmmunitionFromMtoM(ammunitionId);
+    }
 }
