@@ -51,9 +51,9 @@ public class ModelController {
     }
 
     @PutMapping("/addEngine/{engineId}")
-    Model addEngineToModel(@RequestBody Model model,
+    void addEngineToModel(@RequestBody Model model,
                            @PathVariable int engineId) {
-        return modelService.addEngine(model, engineId);
+        modelService.addEngine(model, engineId);
     }
 
     @PutMapping("/removeModelEngine/{modelId}")
