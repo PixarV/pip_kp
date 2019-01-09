@@ -50,7 +50,7 @@ public class EngineController {
     }
 
     @PutMapping("/removeModelEngine/{engineId}")
-    void removeModelFromMtoM(@PathVariable int engineId) {
+    void removeEngineFromMtoM(@PathVariable int engineId) {
         engineService.removeModelFromMtoM(engineId);
     }
 }
