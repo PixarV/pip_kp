@@ -2,6 +2,7 @@ package com.itmo.services;
 
 import com.itmo.dao.AmmunitionDao;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,9 @@ public class AmmunitionService {
 
     public void removeAmmunitionFromMtoM(int ammunitionId) {
         ammunitionDao.removeAmmunitionFromMtoM(ammunitionId);
+    }
+
+    public List<Weapon> getWeapons(int ammunitionId) {
+        return ammunitionDao.getWeapons(ammunitionId);
     }
 }

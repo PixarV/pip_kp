@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.AmmunitionService;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -64,5 +65,10 @@ public class AmmunitionController {
     @PutMapping("/removeAmmunitionWeapon/{ammunitionId}")
     void removeAmmuntionFromMtoM(@PathVariable int ammunitionId) {
         ammunitionService.removeAmmunitionFromMtoM(ammunitionId);
+    }
+
+    @GetMapping("/getWeapons/{ammunitionId}")
+    List<Weapon> getWeapons(@PathVariable int ammunitionId) {
+        return ammunitionService.getWeapons(ammunitionId);
     }
 }

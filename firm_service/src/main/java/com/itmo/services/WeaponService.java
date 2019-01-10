@@ -1,6 +1,7 @@
 package com.itmo.services;
 
 import com.itmo.dao.WeaponDao;
+import com.pip.entities.Ammunition;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -43,5 +44,9 @@ public class WeaponService {
 
     public void removeModelFromMtoM(int weaponId) {
         weaponDao.removeWeaponFromMtoM(weaponId);
+    }
+
+    public List<Ammunition> getAmmunition(int weaponId) {
+        return weaponDao.getAmmunition(weaponId);
     }
 }

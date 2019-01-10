@@ -1,7 +1,10 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.Wither;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +16,9 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @Entity
+@Wither
 @Builder
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
@@ -33,12 +38,14 @@ public class Weapon implements Serializable {
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties("weapons")
     @ManyToMany(mappedBy = "weapons")
     Set<Ammunition> ammunition = new HashSet<>();
 
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties("weapons")
     @ManyToMany(mappedBy = "weapons")
     Set<Tower> towers = new HashSet<>();
 
@@ -46,6 +53,7 @@ public class Weapon implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "weapon")
+    @JsonIgnoreProperties("weapon")
     Set<FirmWeapon> firms = new HashSet<>();
 
     public void addFirm(Firm firm) {
