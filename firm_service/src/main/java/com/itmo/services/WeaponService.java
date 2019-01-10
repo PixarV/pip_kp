@@ -40,6 +40,7 @@ public class WeaponService {
 
     public void updateWeapon(Weapon weapon) {
         weaponDao.custom_update(weapon);
+        weaponDao.removeWeaponFromMtoM(weapon.getId());
     }
 
     public void removeModelFromMtoM(int weaponId) {

@@ -40,6 +40,7 @@ public class TowerService {
 
     public void updateTower(Tower tower) {
         towerDao.custom_update(tower);
+        towerDao.removeTowerFromMtoM(tower.getId());
     }
 
     public void removeModelFromMtoM(int towerId) {
