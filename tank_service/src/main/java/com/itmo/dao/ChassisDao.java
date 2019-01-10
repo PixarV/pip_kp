@@ -1,9 +1,11 @@
 package com.itmo.dao;
 
 import com.pip.entities.Chassis;
+import com.pip.entities.Tower;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class ChassisDao extends CommonDao<Chassis> {
@@ -40,6 +42,12 @@ public class ChassisDao extends CommonDao<Chassis> {
     public int removeChassisFromMtoM(int chassisId) {
         Query query = entityManager.createNativeQuery("DELETE FROM chassis_tower WHERE id_chassis=?");
         return query.setParameter(1, chassisId).executeUpdate();
+    }
+
+    public List<Tower> getTowers(int chassisId) {
+        Query query = entityManager.createQuery("select a from Tower a left join a.chassis t where t.id=:id");
+        query.setParameter("id", chassisId);
+        return query.getResultList();
     }
 }
 

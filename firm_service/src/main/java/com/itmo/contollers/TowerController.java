@@ -1,6 +1,7 @@
 package com.itmo.contollers;
 
 import com.itmo.services.TowerService;
+import com.pip.entities.Chassis;
 import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -52,5 +53,10 @@ public class TowerController {
     @PutMapping("/removeChassisTower/{towerId}")
     void removeTowerFromMtoM(@PathVariable int towerId) {
         towerService.removeModelFromMtoM(towerId);
+    }
+
+    @GetMapping("/getChassis/{towerId}")
+    List<Chassis> getChassis(@PathVariable int towerId) {
+        return towerService.getChassis(towerId);
     }
 }
