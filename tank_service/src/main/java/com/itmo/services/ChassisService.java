@@ -2,6 +2,7 @@ package com.itmo.services;
 
 import com.itmo.dao.ChassisDao;
 import com.pip.entities.Chassis;
+import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,9 @@ public class ChassisService {
 
     public void removeChassisFromMtoM(int chassisId) {
         chassisDao.removeChassisFromMtoM(chassisId);
+    }
+
+    public List<Tower> getTowers(int chassisId) {
+        return chassisDao.getTowers(chassisId);
     }
 }

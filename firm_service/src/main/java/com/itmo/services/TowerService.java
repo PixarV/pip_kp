@@ -1,6 +1,7 @@
 package com.itmo.services;
 
 import com.itmo.dao.TowerDao;
+import com.pip.entities.Chassis;
 import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -43,5 +44,9 @@ public class TowerService {
 
     public void removeModelFromMtoM(int towerId) {
         towerDao.removeTowerFromMtoM(towerId);
+    }
+
+    public List<Chassis> getChassis(int towerId) {
+        return towerDao.getChassis(towerId);
     }
 }

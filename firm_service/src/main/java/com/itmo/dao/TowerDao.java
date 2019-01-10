@@ -1,10 +1,12 @@
 package com.itmo.dao;
 
+import com.pip.entities.Chassis;
 import com.pip.entities.Tower;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -36,6 +38,12 @@ public class TowerDao extends CommonDao<Tower> {
     public int removeTowerFromMtoM(int towerId) {
         Query query = entityManager.createNativeQuery("DELETE FROM chassis_tower WHERE id_tower=?");
         return query.setParameter(1, towerId).executeUpdate();
+    }
+
+    public List<Chassis> getChassis(int towerId) {
+        Query query = entityManager.createQuery("select a from Chassis a left join a.towers t where t.id=:id");
+        query.setParameter("id", towerId);
+        return query.getResultList();
     }
 }
 

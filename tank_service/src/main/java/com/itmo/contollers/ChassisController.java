@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.ChassisService;
 import com.pip.entities.Chassis;
+import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
@@ -58,5 +59,10 @@ public class ChassisController {
     @PutMapping("/removeChassisTower/{chassisId}")
     void removeModelFromMtoM(@PathVariable int chassisId) {
         chassisService.removeChassisFromMtoM(chassisId);
+    }
+
+    @GetMapping("/getTowers/{chassisId}")
+    List<Tower> getTowers(@PathVariable int chassisId) {
+        return chassisService.getTowers(chassisId);
     }
 }
