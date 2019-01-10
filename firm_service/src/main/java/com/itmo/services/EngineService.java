@@ -2,6 +2,7 @@ package com.itmo.services;
 
 import com.itmo.dao.EngineDao;
 import com.pip.entities.Engine;
+import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,9 @@ public class EngineService {
 
     public void removeModelFromMtoM(int engineId) {
         engineDao.removeEngineFromMtoM(engineId);
+    }
+
+    public List<Model> getModels(int engineId) {
+        return engineDao.getModels(engineId);
     }
 }
