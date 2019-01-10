@@ -1,12 +1,16 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pip.enums.Approve;
 import com.pip.enums.FirmSpecializtion;
 
 import com.pip.util.PostgreSQLEnumType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.Wither;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +22,9 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @Entity
+@Wither
 @Builder
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
@@ -43,6 +49,7 @@ public class Firm implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
+    @JsonIgnoreProperties("firm")
     Set<FirmEngine> engines = new HashSet<>();
 
     public void addEngine(Engine engine) {
@@ -70,6 +77,7 @@ public class Firm implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
+    @JsonIgnoreProperties("firm")
     Set<FirmWeapon> weapon = new HashSet<>();
 
     public void addWeapon(Weapon weapon) {
@@ -97,6 +105,7 @@ public class Firm implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "firm")
+    @JsonIgnoreProperties("firm")
     Set<FirmTower> towers = new HashSet<>();
 
     public void addTower(Tower tower) {
