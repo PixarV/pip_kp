@@ -8,7 +8,10 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
+import static com.pip.enums.Approve.APPROVED;
+import static com.pip.enums.Approve.NOT_APPROVED;
 import static lombok.AccessLevel.PRIVATE;
 
 @Service
@@ -23,6 +26,9 @@ public class FirmService {
     }
 
     public void addFirm(Firm firm) {
+        if (Objects.isNull(firm.getStatus()) || firm.getStatus() == APPROVED)
+            firm.setStatus(NOT_APPROVED);
+
         firmDao.saveEntity(firm);
     }
 
