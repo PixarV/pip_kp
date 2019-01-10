@@ -1,6 +1,7 @@
 package com.itmo.contollers;
 
 import com.itmo.services.ModelService;
+import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -59,5 +60,10 @@ public class ModelController {
     @PutMapping("/removeModelEngine/{modelId}")
     void removeModelFromMtoM(@PathVariable int modelId) {
         modelService.removeModelFromMtoM(modelId);
+    }
+
+    @GetMapping("/getEngines/{modelId}")
+    List<Engine> getEngines(@PathVariable int modelId) {
+        return modelService.getEngines(modelId);
     }
 }

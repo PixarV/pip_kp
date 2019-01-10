@@ -1,6 +1,7 @@
 package com.itmo.services;
 
 import com.itmo.dao.ModelDao;
+import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -47,5 +48,9 @@ public class ModelService {
 
     public void removeModelFromMtoM(int modelId) {
         modelDao.removeModelFromMtoM(modelId);
+    }
+
+    public List<Engine> getEngines(int modelId) {
+        return modelDao.getEngines(modelId);
     }
 }

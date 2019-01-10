@@ -1,10 +1,12 @@
 package com.itmo.dao;
 
+import com.pip.entities.Engine;
 import com.pip.entities.Model;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -44,5 +46,10 @@ public class ModelDao extends CommonDao<Model> {
         return query.setParameter(1, modelId).executeUpdate();
     }
 
+    public List<Engine> getEngines(int modelId) {
+        Query query = entityManager.createQuery("select a from Engine a left join a.models t where t.id=:id");
+        query.setParameter("id", modelId);
+        return query.getResultList();
+    }
 }
 
