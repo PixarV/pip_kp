@@ -2,10 +2,12 @@ package com.itmo.dao;
 
 import com.pip.entities.Engine;
 import com.pip.entities.Engine;
+import com.pip.entities.Model;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -35,6 +37,12 @@ public class EngineDao extends CommonDao<Engine> {
     public int removeEngineFromMtoM(int engineId) {
         Query query = entityManager.createNativeQuery("DELETE FROM model_engine WHERE id_engine=?");
         return query.setParameter(1, engineId).executeUpdate();
+    }
+
+    public List<Model> getModels(int engineId) {
+        Query query = entityManager.createQuery("select a from Model a left join a.engines t where t.id=:id");
+        query.setParameter("id", engineId);
+        return query.getResultList();
     }
 }
 

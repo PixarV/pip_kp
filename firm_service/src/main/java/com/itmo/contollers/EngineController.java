@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.EngineService;
 import com.pip.entities.Engine;
+import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,10 @@ public class EngineController {
     @PutMapping("/removeModelEngine/{engineId}")
     void removeEngineFromMtoM(@PathVariable int engineId) {
         engineService.removeModelFromMtoM(engineId);
+    }
+
+    @GetMapping("/getModels/{engineId}")
+    List<Model> getModels(@PathVariable int engineId) {
+        return engineService.getModels(engineId);
     }
 }
