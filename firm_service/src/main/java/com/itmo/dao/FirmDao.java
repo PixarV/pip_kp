@@ -1,5 +1,6 @@
 package com.itmo.dao;
 
+import com.pip.enums.Approve;
 import com.pip.entities.Firm;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +29,11 @@ public class FirmDao extends CommonDao<Firm> {
         Query query = entityManager.createQuery("DELETE FROM Firm m WHERE m.id = :id");
         return query.setParameter("id", id).executeUpdate();
     }
-}
 
+    public int changeStatus(int firmId, Approve status) {
+        Query query = entityManager.createQuery("update Firm c set c.status = :status WHERE c.id = :id");
+        return query.setParameter("status", Approve.APPROVED)
+                    .setParameter("id", firmId)
+                    .executeUpdate();
+    }
+}
