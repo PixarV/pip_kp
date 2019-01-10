@@ -3,7 +3,6 @@ package com.pip.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pip.enums.Approve;
 import com.pip.enums.FirmSpecializtion;
-
 import com.pip.util.PostgreSQLEnumType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,6 +43,11 @@ public class Firm implements Serializable {
     @Type(type = "psql_enum")
     @Enumerated(EnumType.STRING)
     FirmSpecializtion specialization;
+
+    @Type(type = "psql_enum")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "firm_status")
+    Approve status;
 
     @Builder.Default
     @ToString.Exclude
