@@ -1,6 +1,7 @@
 package com.itmo.contollers;
 
 import com.itmo.services.WeaponService;
+import com.pip.entities.Ammunition;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -52,5 +53,10 @@ public class WeaponController {
     @PutMapping("/removeAmmunitionWeapon/{weaponId}")
     void removeAmmunitionFromMtoM(@PathVariable int weaponId) {
         weaponService.removeModelFromMtoM(weaponId);
+    }
+
+    @GetMapping("/getAmmunition/{weaponId}")
+    List<Ammunition> getAmmunition(@PathVariable int weaponId) {
+        return weaponService.getAmmunition(weaponId);
     }
 }

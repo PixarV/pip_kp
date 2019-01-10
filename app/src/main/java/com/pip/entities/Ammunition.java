@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pip.enums.TypeAmmunition;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -58,5 +59,6 @@ public class Ammunition implements Serializable {
             joinColumns = @JoinColumn(name = "id_ammunition", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_weapon", referencedColumnName = "id")
     )
+    @JsonIgnoreProperties("ammunition")
     Set<Weapon> weapons = new HashSet<>();
 }
