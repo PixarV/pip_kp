@@ -40,6 +40,7 @@ public class ModelService {
 
     public void updateModel(Model model) {
         modelDao.custom_update(model);
+        modelDao.removeModelFromMtoM(model.getId());
     }
 
     public void addEngine(Model model, int engineId) {

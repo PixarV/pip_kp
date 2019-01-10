@@ -40,6 +40,7 @@ public class EngineService {
 
     public void updateEngine(Engine engine) {
         engineDao.custom_update(engine);
+        engineDao.removeEngineFromMtoM(engine.getId());
     }
 
     public void removeModelFromMtoM(int engineId) {
