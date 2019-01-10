@@ -24,4 +24,19 @@ public class FirmService {
     public void addFirm(Firm firm) {
         firmDao.saveEntity(firm);
     }
-}
+
+    public void deleteFirm(Firm firm) {
+        firmDao.removeEntity(firm);
+    }
+
+    public int deleteFirmById(int firmId) {
+        return firmDao.removeFirmById(firmId);
+    }
+
+    public Firm getFirmById(int firmId) {
+        return firmDao.findEntityById(firmId);
+    }
+
+    public void updateFirm(Firm firm) {
+        firmDao.custom_update(firm);
+    }}
