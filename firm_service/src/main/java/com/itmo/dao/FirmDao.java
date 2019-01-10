@@ -32,7 +32,7 @@ public class FirmDao extends CommonDao<Firm> {
 
     public int changeStatus(int firmId, Approve status) {
         Query query = entityManager.createQuery("update Firm c set c.status = :status WHERE c.id = :id");
-        return query.setParameter("status", Approve.APPROVED)
+        return query.setParameter("status", status)
                     .setParameter("id", firmId)
                     .executeUpdate();
     }
