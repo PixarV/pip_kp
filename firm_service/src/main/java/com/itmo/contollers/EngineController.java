@@ -24,9 +24,9 @@ public class EngineController {
         return engineService.findAllEngines();
     }
 
-    @PostMapping("/add")
-    Engine addEngine(@RequestBody Engine engine) {
-        engineService.addEngine(engine);
+    @PostMapping("/add/{firmId}")
+    Engine addEngine(@RequestBody Engine engine, @PathVariable int firmId) {
+        engineService.addEngine(engine, firmId);
         return engine;
     }
 
@@ -58,5 +58,10 @@ public class EngineController {
     @GetMapping("/getModels/{engineId}")
     List<Model> getModels(@PathVariable int engineId) {
         return engineService.getModels(engineId);
+    }
+
+    @GetMapping("/getEngineSn/{firmId}/{engineId}")
+    String getEngineSn(@PathVariable int firmId, @PathVariable int engineId) {
+        return engineService.getEngineSn(firmId, engineId);
     }
 }

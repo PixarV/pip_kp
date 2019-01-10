@@ -1,7 +1,11 @@
 package com.itmo.services;
 
 import com.itmo.dao.EngineDao;
+import com.itmo.dao.FirmDao;
+import com.itmo.dao.FirmEngineDao;
 import com.pip.entities.Engine;
+import com.pip.entities.Firm;
+import com.pip.entities.FirmEngine;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,13 +21,21 @@ import static lombok.AccessLevel.PRIVATE;
 public class EngineService {
 
     EngineDao engineDao;
+    FirmDao firmDao;
+    FirmEngineDao firmEngineDao;
 
     public List<Engine> findAllEngines() {
         return engineDao.findAllEntities();
     }
 
-    public void addEngine(Engine engine) {
+    public void addEngine(Engine engine, int firmId) {
         engineDao.saveEntity(engine);
+        Firm firm = firmDao.findEntityById(firmId);
+        FirmEngine firmEngine = FirmEngine.builder()
+                .engine(engine)
+                .firm(firm)
+                .build();
+        firmEngineDao.saveEntity(firmEngine);
     }
 
     public void deleteEngine(Engine engine) {
@@ -49,5 +61,9 @@ public class EngineService {
 
     public List<Model> getModels(int engineId) {
         return engineDao.getModels(engineId);
+    }
+
+    public String getEngineSn(int firmId, int engineId) {
+        return firmEngineDao.getEngineSn(firmId, engineId);
     }
 }
