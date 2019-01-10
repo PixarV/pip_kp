@@ -29,4 +29,24 @@ public class FirmController {
         firmService.addFirm(firm);
         return firm;
     }
+
+    @GetMapping("/get/{firmId}")
+    Firm getFirm(@PathVariable int firmId) {
+        return firmService.getFirmById(firmId);
+    }
+
+    @PutMapping("/update")
+    void updateFirm(@RequestBody Firm firm) {
+        firmService.updateFirm(firm);
+    }
+
+    @DeleteMapping("/delete")
+    void deleteFirm(@RequestBody Firm firm) {
+        firmService.deleteFirm(firm);
+    }
+
+    @DeleteMapping("/delete/{firmId}")
+    void deleteFirmById(@PathVariable int firmId) {
+        firmService.deleteFirmById(firmId);
+    }
 }
