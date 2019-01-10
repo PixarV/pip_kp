@@ -24,9 +24,9 @@ public class WeaponController {
         return weaponService.findAllWeapons();
     }
 
-    @PostMapping("/add")
-    Weapon addWeapon(@RequestBody Weapon weapon) {
-        weaponService.addWeapon(weapon);
+    @PostMapping("/add/{firmId}")
+    Weapon addWeapon(@RequestBody Weapon weapon, @PathVariable int firmId) {
+        weaponService.addWeapon(weapon, firmId);
         return weapon;
     }
 
@@ -58,5 +58,10 @@ public class WeaponController {
     @GetMapping("/getAmmunition/{weaponId}")
     List<Ammunition> getAmmunition(@PathVariable int weaponId) {
         return weaponService.getAmmunition(weaponId);
+    }
+
+    @GetMapping("/getWeaponSn/{firmId}/{weaponId}")
+    String getWeaponSn(@PathVariable int firmId, @PathVariable int weaponId) {
+        return weaponService.getWeaponSn(firmId, weaponId);
     }
 }

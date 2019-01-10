@@ -74,4 +74,14 @@ public class FirmController {
     void removeFirmFromFtoT(@PathVariable int firmId) {
         firmService.removeFirmFromFtoT(firmId);
     }
+
+    @DeleteMapping("/removeFirmWeapon/{firmId}/{weaponId}")
+    void removeFirmWeaponFromMtoM(@PathVariable int firmId, @PathVariable int weaponId) {
+        firmService.removeFirmWeaponFromMtoM(firmId, weaponId);
+    }
+
+    @DeleteMapping("/removeFirmWeapon/{firmId}")
+    void removeFirmFromFtoW(@PathVariable int firmId) {
+        firmService.removeFirmFromFtoW(firmId);
+    }
 }
