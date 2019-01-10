@@ -24,9 +24,9 @@ public class TowerController {
         return towerService.findAllTowers();
     }
 
-    @PostMapping("/add")
-    Tower addTower(@RequestBody Tower tower) {
-        towerService.addTower(tower);
+    @PostMapping("/add/{firmId}")
+    Tower addTower(@RequestBody Tower tower, @PathVariable int firmId) {
+        towerService.addTower(tower, firmId);
         return tower;
     }
 
@@ -58,5 +58,10 @@ public class TowerController {
     @GetMapping("/getChassis/{towerId}")
     List<Chassis> getChassis(@PathVariable int towerId) {
         return towerService.getChassis(towerId);
+    }
+
+    @GetMapping("/getTowerSn/{firmId}/{towerId}")
+    String getTowerSn(@PathVariable int firmId, @PathVariable int towerId) {
+        return towerService.getTowerSn(firmId, towerId);
     }
 }

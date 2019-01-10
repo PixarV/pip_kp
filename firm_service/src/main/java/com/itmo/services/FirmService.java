@@ -1,6 +1,7 @@
 package com.itmo.services;
 
 import com.itmo.dao.FirmEngineDao;
+import com.itmo.dao.FirmTowerDao;
 import com.pip.enums.Approve;
 import com.pip.entities.Firm;
 import com.itmo.dao.FirmDao;
@@ -22,6 +23,7 @@ public class FirmService {
 
     FirmDao firmDao;
     FirmEngineDao firmEngineDao;
+    FirmTowerDao firmTowerDao;
 
     public List<Firm> findAllFirms() {
         return firmDao.findAllEntities();
@@ -60,5 +62,13 @@ public class FirmService {
 
     public void removeFirmFromFtoE(int firmId) {
         firmEngineDao.removeFirmFromFtoE(firmId);
+    }
+
+    public void removeFirmTowerFromMtoM(int firmId, int towerId) {
+        firmTowerDao.removeFirmTower(firmId, towerId);
+    }
+
+    public void removeFirmFromFtoT(int firmId) {
+        firmTowerDao.removeFirmFromFtoT(firmId);
     }
 }

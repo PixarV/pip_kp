@@ -64,4 +64,14 @@ public class FirmController {
     void removeFirmFromFtoE(@PathVariable int firmId) {
         firmService.removeFirmFromFtoE(firmId);
     }
+
+    @DeleteMapping("/removeFirmTower/{firmId}/{towerId}")
+    void removeFirmTowerFromMtoM(@PathVariable int firmId, @PathVariable int towerId) {
+        firmService.removeFirmTowerFromMtoM(firmId, towerId);
+    }
+
+    @DeleteMapping("/removeFirmTower/{firmId}")
+    void removeFirmFromFtoT(@PathVariable int firmId) {
+        firmService.removeFirmFromFtoT(firmId);
+    }
 }
