@@ -55,4 +55,13 @@ public class FirmController {
         firmService.changeStatus(firmId, status);
     }
 
+    @DeleteMapping("/removeFirmEngine/{firmId}/{engineId}")
+    void removeFirmEngineFromMtoM(@PathVariable int firmId, @PathVariable int engineId) {
+        firmService.removeFirmEngineFromMtoM(firmId, engineId);
+    }
+
+    @DeleteMapping("/removeFirmEngine/{firmId}")
+    void removeFirmFromFtoE(@PathVariable int firmId) {
+        firmService.removeFirmFromFtoE(firmId);
+    }
 }
