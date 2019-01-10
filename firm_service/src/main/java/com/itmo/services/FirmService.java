@@ -1,5 +1,6 @@
 package com.itmo.services;
 
+import com.pip.enums.Approve;
 import com.pip.entities.Firm;
 import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
@@ -39,4 +40,9 @@ public class FirmService {
 
     public void updateFirm(Firm firm) {
         firmDao.custom_update(firm);
-    }}
+    }
+
+    public void changeStatus(int firmId, Approve status) {
+        firmDao.changeStatus(firmId, status);
+    }
+}

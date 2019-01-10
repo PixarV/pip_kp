@@ -2,9 +2,9 @@ package com.itmo.contollers;
 
 import com.itmo.services.FirmService;
 import com.pip.entities.Firm;
+import com.pip.enums.Approve;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,4 +49,10 @@ public class FirmController {
     void deleteFirmById(@PathVariable int firmId) {
         firmService.deleteFirmById(firmId);
     }
+
+    @PutMapping("/changeStatus/{firmId}")
+    void changeStatusOfFirm(@PathVariable int firmId, @RequestParam Approve status) {
+        firmService.changeStatus(firmId, status);
+    }
+
 }
