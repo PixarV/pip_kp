@@ -71,7 +71,7 @@ CREATE TABLE chassis_tower (
 
 CREATE TABLE weapon (
   id SERIAL PRIMARY KEY ,
-  title VARCHAR(255) NOT UNIQUE NULL ,
+  title VARCHAR(255) UNIQUE NOT NULL ,
   callibr INTEGER NOT NULL CHECK (
     callibr > 0
   ),
@@ -99,12 +99,14 @@ CREATE TABLE ammunition_weapon (
 );
 
 CREATE TYPE firm_specialization AS ENUM ('TANK', 'ENGINE', 'BOTH');
+CREATE TYPE approve AS ENUM ('APPROVED', 'NOT_APPROVED');
 
 CREATE TABLE firm (
   id SERIAL PRIMARY KEY ,
   title VARCHAR(255) UNIQUE NOT NULL,
   specialization firm_specialization NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL
+  email VARCHAR(255) UNIQUE NOT NULL,
+  firm_status approve DEFAULT 'NOT_APPROVED'
 );
 
 CREATE TABLE firm_engine (
