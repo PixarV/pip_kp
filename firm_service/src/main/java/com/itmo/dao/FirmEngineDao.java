@@ -1,10 +1,13 @@
 package com.itmo.dao;
 
+import com.pip.entities.Engine;
+import com.pip.entities.Firm;
 import com.pip.entities.FirmEngine;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -34,5 +37,11 @@ public class FirmEngineDao extends CommonDao<FirmEngine> {
         return (String) query.setParameter(1, firmId)
                 .setParameter(2, engineId)
                 .getSingleResult();
+    }
+
+    public List<Engine> getAllEngines(Firm firm) {
+        Query query = entityManager.createQuery("select engine from FirmEngine t where t.firm=:firm");
+        query.setParameter("firm", firm);
+        return query.getResultList();
     }
 }

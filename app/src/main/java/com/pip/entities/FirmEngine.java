@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
@@ -32,6 +33,7 @@ public class FirmEngine implements Serializable {
             CascadeType.REFRESH
     })
     @JoinColumn(name = "id_firm", referencedColumnName = "id")
+    @JsonIgnoreProperties("engines")
     Firm firm;
 
     @ManyToOne(cascade = {
@@ -39,5 +41,6 @@ public class FirmEngine implements Serializable {
             CascadeType.REFRESH
     })
     @JoinColumn(name = "id_engine", referencedColumnName = "id")
+    @JsonIgnoreProperties("firms")
     Engine engine;
 }
