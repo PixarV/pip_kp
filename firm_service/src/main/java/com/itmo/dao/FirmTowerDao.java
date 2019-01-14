@@ -39,7 +39,9 @@ public class FirmTowerDao extends CommonDao<FirmTower> {
                 .getSingleResult();
     }
 
-    public List<Tower> getAllTowers(Firm firmId) {
-        return null;
+    public List<Tower> getAllTowers(Firm firm) {
+        Query query = entityManager.createQuery("select tower from FirmTower t where t.firm=:firm");
+        query.setParameter("firm", firm);
+        return query.getResultList();
     }
 }
