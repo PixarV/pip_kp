@@ -1,7 +1,10 @@
 package com.itmo.contollers;
 
 import com.itmo.services.FirmService;
+import com.pip.entities.Engine;
 import com.pip.entities.Firm;
+import com.pip.entities.Tower;
+import com.pip.entities.Weapon;
 import com.pip.enums.Approve;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -83,5 +86,20 @@ public class FirmController {
     @DeleteMapping("/removeFirmWeapon/{firmId}")
     void removeFirmFromFtoW(@PathVariable int firmId) {
         firmService.removeFirmFromFtoW(firmId);
+    }
+
+    @GetMapping("/getAllEngines/{firmId}")
+    List<Engine> getAllEngines(@PathVariable int firmId) {
+        return firmService.getAllEngines(firmId);
+    }
+
+    @GetMapping("/getAllTowers/{firmId}")
+    List<Tower> getAllTowers(@PathVariable int firmId) {
+        return firmService.getAllTowers(firmId);
+    }
+
+    @GetMapping("/getAllWeapons/{firmId}")
+    List<Weapon> getAllWeapons(@PathVariable int firmId) {
+        return firmService.getAllWeapons(firmId);
     }
 }

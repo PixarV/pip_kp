@@ -3,6 +3,9 @@ package com.itmo.services;
 import com.itmo.dao.FirmEngineDao;
 import com.itmo.dao.FirmTowerDao;
 import com.itmo.dao.FirmWeaponDao;
+import com.pip.entities.Engine;
+import com.pip.entities.Tower;
+import com.pip.entities.Weapon;
 import com.pip.enums.Approve;
 import com.pip.entities.Firm;
 import com.itmo.dao.FirmDao;
@@ -80,5 +83,20 @@ public class FirmService {
 
     public void removeFirmFromFtoW(int firmId) {
         firmWeaponDao.removeFirmFromFtoW(firmId);
+    }
+
+    public List<Engine> getAllEngines(int firmId) {
+        Firm firm = firmDao.findEntityById(firmId);
+        return firmEngineDao.getAllEngines(firm);
+    }
+
+    public List<Tower> getAllTowers(int firmId) {
+        Firm firm = firmDao.findEntityById(firmId);
+        return firmTowerDao.getAllTowers(firm);
+    }
+
+    public List<Weapon> getAllWeapons(int firmId) {
+        Firm firm = firmDao.findEntityById(firmId);
+        return firmWeaponDao.getAllWeapons(firm);
     }
 }

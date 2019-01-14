@@ -1,10 +1,13 @@
 package com.itmo.dao;
 
+import com.pip.entities.Firm;
 import com.pip.entities.FirmTower;
+import com.pip.entities.Tower;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -34,5 +37,9 @@ public class FirmTowerDao extends CommonDao<FirmTower> {
         return (String) query.setParameter(1, firmId)
                 .setParameter(2, towerId)
                 .getSingleResult();
+    }
+
+    public List<Tower> getAllTowers(Firm firmId) {
+        return null;
     }
 }
