@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.EngineService;
 import com.pip.entities.Engine;
+import com.pip.entities.Firm;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -63,5 +64,10 @@ public class EngineController {
     @GetMapping("/getEngineSn/{firmId}/{engineId}")
     String getEngineSn(@PathVariable int firmId, @PathVariable int engineId) {
         return engineService.getEngineSn(firmId, engineId);
+    }
+
+    @GetMapping("/getFirms/{engineId}")
+    List<Firm> getFirms(@PathVariable int engineId) {
+        return engineService.getFirms(engineId);
     }
 }

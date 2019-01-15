@@ -1,6 +1,7 @@
 package com.itmo.dao;
 
 import com.pip.entities.Ammunition;
+import com.pip.entities.Firm;
 import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import org.springframework.stereotype.Repository;
@@ -52,6 +53,13 @@ public class WeaponDao extends CommonDao<Weapon> {
         Query query = entityManager.createQuery("select a from Tower a left join a.weapons t where t.id=:id");
         query.setParameter("id", weaponId);
         return query.getResultList();
+    }
+
+    public List<Firm> getFirms(Weapon weapon) {
+        Query query = entityManager.createQuery("select a from Firm a left join a.weapon t where t.weapon=:weapon");
+        query.setParameter("weapon", weapon);
+        return query.getResultList();
+
     }
 }
 

@@ -2,6 +2,7 @@ package com.itmo.dao;
 
 import com.pip.entities.Engine;
 import com.pip.entities.Engine;
+import com.pip.entities.Firm;
 import com.pip.entities.Model;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,12 @@ public class EngineDao extends CommonDao<Engine> {
     public List<Model> getModels(int engineId) {
         Query query = entityManager.createQuery("select a from Model a left join a.engines t where t.id=:id");
         query.setParameter("id", engineId);
+        return query.getResultList();
+    }
+
+    public List<Firm> getFirms(Engine engine) {
+        Query query = entityManager.createQuery("select a from Firm a left join a.engines t where t.engine=:engine");
+        query.setParameter("engine", engine);
         return query.getResultList();
     }
 }

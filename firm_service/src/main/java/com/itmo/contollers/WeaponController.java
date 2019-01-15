@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.WeaponService;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Firm;
 import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
@@ -74,5 +75,10 @@ public class WeaponController {
     @GetMapping("/getWeaponSn/{firmId}/{weaponId}")
     String getWeaponSn(@PathVariable int firmId, @PathVariable int weaponId) {
         return weaponService.getWeaponSn(firmId, weaponId);
+    }
+
+    @GetMapping("/getFirms/{weaponId}")
+    List<Firm> getFirms(@PathVariable int weaponId) {
+        return weaponService.getFirms(weaponId);
     }
 }
