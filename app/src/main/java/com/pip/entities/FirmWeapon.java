@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +38,7 @@ public class FirmWeapon implements Serializable {
             CascadeType.REFRESH
     })
     @JoinColumn(name = "id_firm", referencedColumnName = "id")
-    @JsonIgnoreProperties("weapons")
+    @JsonIgnore
     Firm firm;
 
     @ManyToOne(cascade = {
@@ -45,6 +46,6 @@ public class FirmWeapon implements Serializable {
             CascadeType.REFRESH
     })
     @JoinColumn(name = "id_weapon", referencedColumnName = "id")
-    @JsonIgnoreProperties("firms")
+    @JsonIgnore
     Weapon weapon;
 }
