@@ -1,6 +1,7 @@
 package com.itmo.dao;
 
 import com.pip.entities.Ammunition;
+import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,13 +32,24 @@ public class WeaponDao extends CommonDao<Weapon> {
         return query.setParameter("id", id).executeUpdate();
     }
 
-    public int removeWeaponFromMtoM(int weaponId) {
+    public int removeWeaponFromMtoMAW(int weaponId) {
         Query query = entityManager.createNativeQuery("DELETE FROM ammunition_weapon WHERE id_weapon=?");
         return query.setParameter(1, weaponId).executeUpdate();
     }
 
     public List<Ammunition> getAmmunition(int weaponId) {
         Query query = entityManager.createQuery("select a from Ammunition a left join a.weapons t where t.id=:id");
+        query.setParameter("id", weaponId);
+        return query.getResultList();
+    }
+
+    public int removeWeaponFromMtoMTW(int weaponId) {
+        Query query = entityManager.createNativeQuery("DELETE FROM tower_weapon WHERE id_weapon=?");
+        return query.setParameter(1, weaponId).executeUpdate();
+    }
+
+    public List<Tower> getTowers(int weaponId) {
+        Query query = entityManager.createQuery("select a from Tower a left join a.weapons t where t.id=:id");
         query.setParameter("id", weaponId);
         return query.getResultList();
     }

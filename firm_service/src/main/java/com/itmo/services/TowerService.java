@@ -3,10 +3,7 @@ package com.itmo.services;
 import com.itmo.dao.FirmDao;
 import com.itmo.dao.FirmTowerDao;
 import com.itmo.dao.TowerDao;
-import com.pip.entities.Chassis;
-import com.pip.entities.Firm;
-import com.pip.entities.FirmTower;
-import com.pip.entities.Tower;
+import com.pip.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -61,11 +58,12 @@ public class TowerService {
 
     public void updateTower(Tower tower) {
         towerDao.custom_update(tower);
-        towerDao.removeTowerFromMtoM(tower.getId());
+        towerDao.removeTowerFromMtoMCT(tower.getId());
+        towerDao.removeTowerFromMtoMTW(tower.getId());
     }
 
-    public void removeModelFromMtoM(int towerId) {
-        towerDao.removeTowerFromMtoM(towerId);
+    public void removeTowerFromMtoMCT(int towerId) {
+        towerDao.removeTowerFromMtoMCT(towerId);
     }
 
     public List<Chassis> getChassis(int towerId) {
@@ -74,5 +72,17 @@ public class TowerService {
 
     public String getTowerSn(int firmId, int towerId) {
         return firmTowerDao.getTowerSn(firmId, towerId);
+    }
+
+    public void addWeapon(Tower tower, int weaponId) {
+        towerDao.addWeapon(tower.getId(), weaponId);
+    }
+
+    public void removeTowerFromMtoMTW(int towerId) {
+        towerDao.removeTowerFromMtoMTW(towerId);
+    }
+
+    public List<Weapon> getWeapons(int towerId) {
+        return towerDao.getWeapons(towerId);
     }
 }
