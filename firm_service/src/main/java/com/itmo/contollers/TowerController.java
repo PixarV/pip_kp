@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.TowerService;
 import com.pip.entities.Chassis;
+import com.pip.entities.Firm;
 import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
@@ -68,7 +69,7 @@ public class TowerController {
 
     @PutMapping("/addWeapon/{weaponId}")
     void addWeaponToTower(@RequestBody Tower tower,
-                           @PathVariable int weaponId) {
+                          @PathVariable int weaponId) {
         towerService.addWeapon(tower, weaponId);
     }
 
@@ -80,4 +81,10 @@ public class TowerController {
     @GetMapping("/getWeapons/{towerId}")
     List<Weapon> getWeapons(@PathVariable int towerId) {
         return towerService.getWeapons(towerId);
-    }}
+    }
+
+    @GetMapping("/getFirms/{towerId}")
+    List<Firm> getFirms(@PathVariable int towerId) {
+        return towerService.getFirms(towerId);
+    }
+}

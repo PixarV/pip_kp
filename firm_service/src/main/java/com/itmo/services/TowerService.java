@@ -85,4 +85,9 @@ public class TowerService {
     public List<Weapon> getWeapons(int towerId) {
         return towerDao.getWeapons(towerId);
     }
+
+    public List<Firm> getFirms(int towerId) {
+        Tower tower = towerDao.findEntityById(towerId);
+        return towerDao.getFirms(tower);
+    }
 }

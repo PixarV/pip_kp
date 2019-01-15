@@ -78,4 +78,9 @@ public class EngineService {
     public String getEngineSn(int firmId, int engineId) {
         return firmEngineDao.getEngineSn(firmId, engineId);
     }
+
+    public List<Firm> getFirms(int engineId) {
+        Engine engine = engineDao.findEntityById(engineId);
+        return engineDao.getFirms(engine);
+    }
 }

@@ -81,4 +81,9 @@ public class WeaponService {
     public String getWeaponSn(int firmId, int weaponId) {
         return firmWeaponDao.getWeaponSn(firmId, weaponId);
     }
+
+    public List<Firm> getFirms(int weaponId) {
+        Weapon weapon = weaponDao.findEntityById(weaponId);
+        return weaponDao.getFirms(weapon);
+    }
 }
