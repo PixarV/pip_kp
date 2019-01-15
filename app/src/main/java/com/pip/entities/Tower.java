@@ -66,7 +66,7 @@ public class Tower implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "tower")
-    @JsonIgnoreProperties("towers")
+    @JsonIgnoreProperties("tower")
     Set<FirmTower> firms = new HashSet<>();
 
     public void addFirm(Firm firm) {
