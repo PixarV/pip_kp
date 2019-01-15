@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.WeaponService;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -51,13 +52,23 @@ public class WeaponController {
     }
 
     @PutMapping("/removeAmmunitionWeapon/{weaponId}")
-    void removeAmmunitionFromMtoM(@PathVariable int weaponId) {
-        weaponService.removeModelFromMtoM(weaponId);
+    void removeWeaponFromMtoMAW(@PathVariable int weaponId) {
+        weaponService.removeWeaponFromMtoMAW(weaponId);
     }
 
     @GetMapping("/getAmmunition/{weaponId}")
     List<Ammunition> getAmmunition(@PathVariable int weaponId) {
         return weaponService.getAmmunition(weaponId);
+    }
+
+    @PutMapping("/removeTowerWeapon/{weaponId}")
+    void removeWeaponFromMtoM(@PathVariable int weaponId) {
+        weaponService.removeWeaponFromMtoMTW(weaponId);
+    }
+
+    @GetMapping("/getTowers/{weaponId}")
+    List<Tower> getTowers(@PathVariable int weaponId) {
+        return weaponService.getTowers(weaponId);
     }
 
     @GetMapping("/getWeaponSn/{firmId}/{weaponId}")

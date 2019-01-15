@@ -3,10 +3,7 @@ package com.itmo.services;
 import com.itmo.dao.FirmDao;
 import com.itmo.dao.FirmWeaponDao;
 import com.itmo.dao.WeaponDao;
-import com.pip.entities.Ammunition;
-import com.pip.entities.Firm;
-import com.pip.entities.FirmWeapon;
-import com.pip.entities.Weapon;
+import com.pip.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -61,15 +58,24 @@ public class WeaponService {
 
     public void updateWeapon(Weapon weapon) {
         weaponDao.custom_update(weapon);
-        weaponDao.removeWeaponFromMtoM(weapon.getId());
+        weaponDao.removeWeaponFromMtoMAW(weapon.getId());
+        weaponDao.removeWeaponFromMtoMTW(weapon.getId());
     }
 
-    public void removeModelFromMtoM(int weaponId) {
-        weaponDao.removeWeaponFromMtoM(weaponId);
+    public void removeWeaponFromMtoMAW(int weaponId) {
+        weaponDao.removeWeaponFromMtoMAW(weaponId);
     }
 
     public List<Ammunition> getAmmunition(int weaponId) {
         return weaponDao.getAmmunition(weaponId);
+    }
+
+    public void removeWeaponFromMtoMTW(int weaponId) {
+        weaponDao.removeWeaponFromMtoMTW(weaponId);
+    }
+
+    public List<Tower> getTowers(int weaponId) {
+        return weaponDao.getTowers(weaponId);
     }
 
     public String getWeaponSn(int firmId, int weaponId) {

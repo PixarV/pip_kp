@@ -3,6 +3,7 @@ package com.itmo.contollers;
 import com.itmo.services.TowerService;
 import com.pip.entities.Chassis;
 import com.pip.entities.Tower;
+import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +52,8 @@ public class TowerController {
     }
 
     @PutMapping("/removeChassisTower/{towerId}")
-    void removeTowerFromMtoM(@PathVariable int towerId) {
-        towerService.removeModelFromMtoM(towerId);
+    void removeTowerFromMtoMCT(@PathVariable int towerId) {
+        towerService.removeTowerFromMtoMCT(towerId);
     }
 
     @GetMapping("/getChassis/{towerId}")
@@ -64,4 +65,19 @@ public class TowerController {
     String getTowerSn(@PathVariable int firmId, @PathVariable int towerId) {
         return towerService.getTowerSn(firmId, towerId);
     }
-}
+
+    @PutMapping("/addWeapon/{weaponId}")
+    void addWeaponToTower(@RequestBody Tower tower,
+                           @PathVariable int weaponId) {
+        towerService.addWeapon(tower, weaponId);
+    }
+
+    @PutMapping("/removeTowerWeapon/{towerId}")
+    void removeTowerFromMtoM(@PathVariable int towerId) {
+        towerService.removeTowerFromMtoMTW(towerId);
+    }
+
+    @GetMapping("/getWeapons/{towerId}")
+    List<Weapon> getWeapons(@PathVariable int towerId) {
+        return towerService.getWeapons(towerId);
+    }}
