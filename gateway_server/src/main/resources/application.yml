@@ -1,0 +1,14 @@
+zuul:
+  routes:
+    firm1:
+      path: /firms/**
+      serviceId: firm
+      strip-prefix: false
+    firm2:
+      path: /engines/**
+      serviceId: firm
+      strip-prefix: false
+    tank1:
+      path: /amun.jsf
+      serviceId: tank
+      strip-prefix: false
