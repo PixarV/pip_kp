@@ -30,7 +30,7 @@ public class FirmService {
     FirmTowerDao firmTowerDao;
     FirmWeaponDao firmWeaponDao;
 
-    public List<Firm> findAllFirms() {
+    public List<Firm> getAllFirms() {
         return firmDao.findAllEntities();
     }
 
