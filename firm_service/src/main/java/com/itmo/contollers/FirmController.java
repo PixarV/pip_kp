@@ -22,9 +22,9 @@ public class FirmController {
 
     FirmService firmService;
 
-    @GetMapping("/findAll")
-    List<Firm> findAllFirms() {
-        return firmService.findAllFirms();
+    @GetMapping("/getAll")
+    List<Firm> getAllFirms() {
+        return firmService.getAllFirms();
     }
 
     @PostMapping("/reg")
