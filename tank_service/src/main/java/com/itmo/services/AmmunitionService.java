@@ -33,7 +33,7 @@ public class AmmunitionService {
         } catch (Exception e) {
             FacesContext
                     .getCurrentInstance()
-                    .addMessage("addForm:addButton", // id ratget form and target element
+                    .addMessage("addAmunForm:addAmunButton", // id ratget form and target element
                             new FacesMessage("Error :(", e.getMessage()));
         }
     }
@@ -54,7 +54,7 @@ public class AmmunitionService {
             else {
                 FacesContext
                         .getCurrentInstance()
-                        .addMessage("shortGetForm:shortGetButton", // id ratget form and target element
+                        .addMessage("shortAmunGetForm:shortAmunGetButton", // id ratget form and target element
                                 new FacesMessage("Error :(", "Can't find entry"));
             }
         }
