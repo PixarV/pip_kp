@@ -32,7 +32,7 @@ public class ChassisController {
 
     @GetMapping("/get/{chassisId}")
     Chassis getChassis(@PathVariable int chassisId) {
-        return chassisService.getChassisById(chassisId);
+        return chassisService.getChassisById(chassisId).get(0);
     }
 
     @PutMapping("/update")

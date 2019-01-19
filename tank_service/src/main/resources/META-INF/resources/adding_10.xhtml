@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:outputText value="Боеприпасы"/>
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addAmunForm">
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="addAmunButton" value="Add" action="#{ammunitionService.addAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="addForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addAmunButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateAmunForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{ammunition.id}"/>
+            <br/>
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="updateAmunButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="updateForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateAmunButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Remove</legend>
+        <h:form id="removeAmunForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{ammunition.id}"/>
+            <br/>
+            <h:outputText value="Breakage"/>
+            <h:inputText value="#{ammunition.breakage}"/>
+            <br/>
+            <h:outputText value="Callibr"/>
+            <h:inputText value="#{ammunition.callibr}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
+            <h:inputText value="#{ammunition.type}"/>
+            <br/>
+            <h:commandButton id="removeAmunButton" value="Remove" action="#{ammunitionService.deleteAmmunition(ammunition)}">
+                <f:ajax execute="@form" render="removeForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="removeAmunButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Short command</legend>
+        <fieldset>
+            <legend>Delete</legend>
+            <h:form id="shortAmunDelForm">
+                <h:outputText value="Id"/>
+                <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
+                <br/>
+                <h:commandButton id="shortAmunDelButton" value="Delete" action="#{ammunitionService.deleteAmmunitionById(delId.value)}">
+                    <f:ajax execute="@form" render="shortDelForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="shortAmunDelButton"/>
+            </h:form>
+        </fieldset>
+    </fieldset>
+
+    <h:outputText value="Шасси"/>
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addChasForm">
+            <h:outputText value="Model id"/>
+            <h:inputText value="#{chassis.model}"/>
+            <br/>
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{chassis.title}"/>
+            <br/>
+            <h:outputText value="Carring"/>
+            <h:inputText value="#{chassis.carring}"/>
+            <br/>
+            <h:outputText value="Turn speed"/>
+            <h:inputText value="#{chassis.turnSpeed}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{chassis.weight}"/>
+            <br/>
+            <h:commandButton id="addChasButton" value="Add" action="#{chassisService.addChassis(chassis)}">
+                <f:ajax execute="@form" render="addChasForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addChasButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateChasForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{chassis.id}"/>
+            <br/>
+            <h:outputText value="Model id"/>
+            <h:inputText value="#{chassis.model}"/>
+            <br/>
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{chassis.title}"/>
+            <br/>
+            <h:outputText value="Carring"/>
+            <h:inputText value="#{chassis.carring}"/>
+            <br/>
+            <h:outputText value="Turn speed"/>
+            <h:inputText value="#{chassis.turnSpeed}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{chassis.weight}"/>
+            <br/>
+            <h:commandButton id="updateChasButton" value="Update" action="#{chassisService.updateChassis(chassis)}">
+                <f:ajax execute="@form" render="updateChasForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateChasButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Remove</legend>
+        <h:form id="removeChasForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{chassis.id}"/>
+            <br/>
+            <h:outputText value="Model id"/>
+            <h:inputText value="#{chassis.model}"/>
+            <br/>
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{chassis.title}"/>
+            <br/>
+            <h:outputText value="Carring"/>
+            <h:inputText value="#{chassis.carring}"/>
+            <br/>
+            <h:outputText value="Turn speed"/>
+            <h:inputText value="#{chassis.turnSpeed}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{chassis.weight}"/>
+            <br/>
+            <h:commandButton id="removeChasButton" value="Remove" action="#{chassisService.deleteChassis(chassis)}">
+                <f:ajax execute="@form" render="removeChasForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="removeChasButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Short command</legend>
+        <fieldset>
+            <legend>Delete</legend>
+            <h:form id="shortChasDelForm">
+                <h:outputText value="Id"/>
+                <h:inputText binding="#{chasId}" converter="javax.faces.Integer"/>
+                <br/>
+                <h:commandButton id="shortChasDelButton" value="Delete" action="#{chassisService.deleteChassisById(chasId.value)}">
+                    <f:ajax execute="@form" render="shortDelForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="shortChasDelButton"/>
+            </h:form>
+        </fieldset>
+    </fieldset>
+
+
+    <h:outputText value="Модель"/>
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addModelForm">
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{model.title}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <h:inputText value="#{model.type}"/>
+            <br/>
+            <h:outputText value="Max forward speed"/>
+            <h:inputText value="#{model.maxSpeedForward}"/>
+            <br/>
+            <h:outputText value="Max backward speed"/>
+            <h:inputText value="#{model.maxSpeedBackward}"/>
+            <br/>
+            <h:outputText value="Armor"/>
+            <h:inputText value="#{model.armor}"/>
+            <br/>
+            <h:commandButton id="addModelButton" value="Add" action="#{modelService.addModel(model)}">
+                <f:ajax execute="@form" render="addModelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addModelButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateModelForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{model.id}"/>
+            <br/>
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{model.title}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <h:inputText value="#{model.type}"/>
+            <br/>
+            <h:outputText value="Max forward speed"/>
+            <h:inputText value="#{model.maxSpeedForward}"/>
+            <br/>
+            <h:outputText value="Max backward speed"/>
+            <h:inputText value="#{model.maxSpeedBackward}"/>
+            <br/>
+            <h:outputText value="Armor"/>
+            <h:inputText value="#{model.armor}"/>
+            <br/>
+            <h:commandButton id="updateModelButton" value="Update" action="#{modelService.updateModel(model)}">
+                <f:ajax execute="@form" render="updateModelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateChasButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Remove</legend>
+        <h:form id="removeModelForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{model.id}"/>
+            <br/>
+            <h:outputText value="Titile"/>
+            <h:inputText value="#{model.title}"/>
+            <br/>
+            <h:outputText value="Type"/>
+            <h:inputText value="#{model.type}"/>
+            <br/>
+            <h:outputText value="Max forward speed"/>
+            <h:inputText value="#{model.maxSpeedForward}"/>
+            <br/>
+            <h:outputText value="Max backward speed"/>
+            <h:inputText value="#{model.maxSpeedBackward}"/>
+            <br/>
+            <h:outputText value="Armor"/>
+            <h:inputText value="#{model.armor}"/>
+            <br/>
+            <h:commandButton id="removeModelButton" value="Remove" action="#{modelService.deleteModel(model)}">
+                <f:ajax execute="@form" render="removeModelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="removeChasButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Short command</legend>
+        <fieldset>
+            <legend>Delete</legend>
+            <h:form id="shortModelDelForm">
+                <h:outputText value="Id"/>
+                <h:inputText binding="#{modelId}" converter="javax.faces.Integer"/>
+                <br/>
+                <h:commandButton id="shortModelDelButton" value="Delete" action="#{modelService.deleteModelById(modelId.value)}">
+                    <f:ajax execute="@form" render="shortModelDelForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="shortModelDelButton"/>
+            </h:form>
+        </fieldset>
+    </fieldset>
+</h:body>
+</html>
