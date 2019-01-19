@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -23,7 +27,15 @@ public class ChassisService {
     }
 
     public void addChassis(Chassis chassis) {
-        chassisDao.saveEntity(chassis);
+        try {
+            Chassis tempChass = chassis.withId(0);
+            chassisDao.saveEntity(tempChass);
+        } catch (Exception e) {
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addChasForm:addChasButton", // id ratget form and target element
+                            new FacesMessage("Error :(", e.getMessage()));
+        }
     }
 
     public void deleteChassis(Chassis chassis) {
@@ -34,8 +46,19 @@ public class ChassisService {
         return chassisDao.removeChassisById(chassisId);
     }
 
-    public Chassis getChassisById(int chassisId) {
-        return chassisDao.findEntityById(chassisId);
+    public List<Chassis> getChassisById(int chassisId) {
+        if (chassisId != 0) {
+            Chassis tempChassis = chassisDao.findEntityById(chassisId);
+            if (tempChassis != null)
+                return Arrays.asList(tempChassis);
+            else {
+                FacesContext
+                        .getCurrentInstance()
+                        .addMessage("shortChasGetForm:shortChasGetButton", // id ratget form and target element
+                                new FacesMessage("Error :(", "Can't find entry"));
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void updateChassis(Chassis chassis) {

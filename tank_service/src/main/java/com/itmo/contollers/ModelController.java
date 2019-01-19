@@ -33,7 +33,7 @@ public class ModelController {
 
     @GetMapping("/get/{modelId}")
     Model getModel(@PathVariable int modelId) {
-        return modelService.getModelById(modelId);
+        return modelService.getModelById(modelId).get(0);
     }
 
     @PutMapping("/update")

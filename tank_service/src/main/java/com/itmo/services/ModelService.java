@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.util.*;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -23,7 +25,15 @@ public class ModelService {
     }
 
     public void addModel(Model model) {
-        modelDao.saveEntity(model);
+        try {
+            Model tempModel = model.withId(0);
+            modelDao.saveEntity(model);
+        } catch (Exception e) {
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addModelForm:addModelButton", // id ratget form and target element
+                            new FacesMessage("Error :(", e.getMessage()));
+        }
     }
 
     public void deleteModel(Model model) {
@@ -34,8 +44,19 @@ public class ModelService {
         return modelDao.removeModelById(modelId);
     }
 
-    public Model getModelById(int modelId) {
-        return modelDao.findEntityById(modelId);
+    public List<Model> getModelById(int modelId) {
+        if (modelId != 0) {
+            Model tempModel = modelDao.findEntityById(modelId);
+            if (tempModel != null)
+                return Arrays.asList(tempModel);
+            else {
+                FacesContext
+                        .getCurrentInstance()
+                        .addMessage("shortModelGetForm:shortModelGetButton", // id ratget form and target element
+                                new FacesMessage("Error :(", "Can't find entry"));
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void updateModel(Model model) {
