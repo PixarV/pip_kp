@@ -27,7 +27,7 @@ public class ModelService {
     public void addModel(Model model) {
         try {
             Model tempModel = model.withId(0);
-            modelDao.saveEntity(model);
+            modelDao.saveEntity(tempModel);
         } catch (Exception e) {
             FacesContext
                     .getCurrentInstance()
