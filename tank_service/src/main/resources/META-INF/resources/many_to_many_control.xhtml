@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <fieldset>
+        <legend>Add engine to model</legend>
+        <h:form id="addModEngForm">
+            <h:outputText value="Module id"/>
+            <h:inputText binding="#{modelAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:outputText value="Engine id"/>
+            <h:inputText binding="#{engineAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="addModEngButton" value="Add" action="#{modelService.addEngine(modelAddId.value, engineAddId.value)}">
+                <f:ajax execute="@form" render="addModEngForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addModEngButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Add Weapon to amun</legend>
+        <h:form id="addWeapAmForm">
+            <h:outputText value="Module id"/>
+            <h:inputText binding="#{amunAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:outputText value="Engine id"/>
+            <h:inputText binding="#{weapAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="addWeapAmButton" value="Add" action="#{ammunitionService.addWeapon(amunAddId.value, weapAddId.value)}">
+                <f:ajax execute="@form" render="addWeapAmForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addWeapAmButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Add Tower to chassis</legend>
+        <h:form id="addTowChasForm">
+            <h:outputText value="Module id"/>
+            <h:inputText binding="#{chassAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:outputText value="Engine id"/>
+            <h:inputText binding="#{towerAddId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="addTowChasButton" value="Add" action="#{chassisService.addTower(chassAddId.value, towerAddId.value)}">
+                <f:ajax execute="@form" render="addTowChasForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addTowChasButton"/>
+        </h:form>
+    </fieldset>
+</h:body>
+</html>
