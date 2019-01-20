@@ -66,5 +66,28 @@
             </h:column>
         </h:dataTable>
     </fieldset>
+    <fieldset>
+        <h:outputText value="Amun" />
+        <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
+                     styleClass="article-table"
+                     rules="all" id="result-table">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.type}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Callibr <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.callibr}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Breakage <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.breakage}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
 </h:body>
 </html>

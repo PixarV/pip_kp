@@ -97,7 +97,7 @@
         <legend>Add</legend>
         <h:form id="addChasForm">
             <h:outputText value="Model id"/>
-            <h:inputText value="#{chassis.model}"/>
+            <h:inputText binding="#{modellId}" converter="javax.faces.Integer"/>
             <br/>
             <h:outputText value="Titile"/>
             <h:inputText value="#{chassis.title}"/>
@@ -111,7 +111,7 @@
             <h:outputText value="Weight"/>
             <h:inputText value="#{chassis.weight}"/>
             <br/>
-            <h:commandButton id="addChasButton" value="Add" action="#{chassisService.addChassis(chassis)}">
+            <h:commandButton id="addChasButton" value="Add" action="#{chassisService.addChassis(chassis, modellId.value)}">
                 <f:ajax execute="@form" render="addChasForm" />
             </h:commandButton>
             <br/>
@@ -125,7 +125,7 @@
             <h:inputText value="#{chassis.id}"/>
             <br/>
             <h:outputText value="Model id"/>
-            <h:inputText value="#{chassis.model}"/>
+            <h:inputText binding="#{updModellId}" converter="javax.faces.Integer"/>
             <br/>
             <h:outputText value="Titile"/>
             <h:inputText value="#{chassis.title}"/>
@@ -139,7 +139,7 @@
             <h:outputText value="Weight"/>
             <h:inputText value="#{chassis.weight}"/>
             <br/>
-            <h:commandButton id="updateChasButton" value="Update" action="#{chassisService.updateChassis(chassis)}">
+            <h:commandButton id="updateChasButton" value="Update" action="#{chassisService.updateChassis(chassis, updModellId)}">
                 <f:ajax execute="@form" render="updateChasForm" />
             </h:commandButton>
             <br/>
@@ -153,7 +153,7 @@
             <h:inputText value="#{chassis.id}"/>
             <br/>
             <h:outputText value="Model id"/>
-            <h:inputText value="#{chassis.model}"/>
+            <h:inputText binding="#{remModellId}" converter="javax.faces.Integer"/>
             <br/>
             <h:outputText value="Titile"/>
             <h:inputText value="#{chassis.title}"/>
@@ -167,7 +167,7 @@
             <h:outputText value="Weight"/>
             <h:inputText value="#{chassis.weight}"/>
             <br/>
-            <h:commandButton id="removeChasButton" value="Remove" action="#{chassisService.deleteChassis(chassis)}">
+            <h:commandButton id="removeChasButton" value="Remove" action="#{chassisService.deleteChassis(chassis, remModellId)}">
                 <f:ajax execute="@form" render="removeChasForm" />
             </h:commandButton>
             <br/>

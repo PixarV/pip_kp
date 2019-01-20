@@ -26,7 +26,7 @@ public class ChassisController {
 
     @PostMapping("/add")
     Chassis addChassis(@RequestBody Chassis chassis) {
-        chassisService.addChassis(chassis);
+        chassisService.addChassis(chassis, chassis.getModel().getId());
         return chassis;
     }
 
@@ -37,12 +37,12 @@ public class ChassisController {
 
     @PutMapping("/update")
     void updateChassis(@RequestBody Chassis chassis) {
-       chassisService.updateChassis(chassis);
+       chassisService.updateChassis(chassis, chassis.getModel().getId());
     }
 
     @DeleteMapping("/delete")
     void deleteChassis(@RequestBody Chassis chassis) {
-        chassisService.deleteChassis(chassis);
+        chassisService.deleteChassis(chassis, chassis.getModel().getId());
     }
 
     @DeleteMapping("/delete/{chassisId}")

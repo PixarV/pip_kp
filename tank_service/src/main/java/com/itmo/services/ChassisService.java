@@ -23,17 +23,17 @@ import static lombok.AccessLevel.PRIVATE;
 public class ChassisService {
 
     ChassisDao chassisDao;
-    ModelDao modelDao;
 
     public List<Chassis> findAllChassiss() {
         return chassisDao.findAllEntities();
     }
 
-    public void addChassis(Chassis chassis) {
+    public void addChassis(Chassis chassis, int modelId) {
         try {
+            Model model = new Model();
+            model.setId(modelId);
+            chassis.setModel(model);
             Chassis tempChass = chassis.withId(0);
-            Model model = modelDao.findEntityById(tempChass.getModel().getId());
-            tempChass.setModel(model);
             chassisDao.saveEntity(tempChass);
         } catch (Exception e) {
             FacesContext
@@ -43,7 +43,10 @@ public class ChassisService {
         }
     }
 
-    public void deleteChassis(Chassis chassis) {
+    public void deleteChassis(Chassis chassis, int modelId) {
+        Model model = new Model();
+        model.setId(modelId);
+        chassis.setModel(model);
         chassisDao.removeEntity(chassis);
     }
 
@@ -66,7 +69,10 @@ public class ChassisService {
         return new ArrayList<>();
     }
 
-    public void updateChassis(Chassis chassis) {
+    public void updateChassis(Chassis chassis, int modelId) {
+        Model model = new Model();
+        model.setId(modelId);
+        chassis.setModel(model);
         chassisDao.custom_update(chassis);
         chassisDao.removeChassisFromMtoM(chassis.getId());
     }
