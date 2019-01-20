@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <fieldset>
+        <h:outputText value="Chassis" />
+        <h:dataTable value="#{chassisService.findAllChassiss()}" var="chassis"
+                     styleClass="article-table"
+                     rules="all" id="result-table-chassis">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{chassis.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id_model <span class="sort-symbol">⮃</span></f:facet>
+                #{chassis.id_model}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
+                #{chassis.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
+                #{chassis.turn_speed}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{chassis.weight}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
+    <fieldset>
+        <h:outputText value="Models" />
+        <h:dataTable value="#{modelService.findAllModels()}" var="model"
+                     styleClass="article-table"
+                     rules="all" id="result-table-models">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{model.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
+                #{model.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
+                #{model.type}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
+                #{model.maxSpeedForward}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{model.maxSpeedBackward}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{model.armor}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
+</h:body>
+</html>

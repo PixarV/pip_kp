@@ -1,7 +1,9 @@
 package com.itmo.services;
 
 import com.itmo.dao.ChassisDao;
+import com.itmo.dao.ModelDao;
 import com.pip.entities.Chassis;
+import com.pip.entities.Model;
 import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,6 +23,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class ChassisService {
 
     ChassisDao chassisDao;
+    ModelDao modelDao;
 
     public List<Chassis> findAllChassiss() {
         return chassisDao.findAllEntities();
@@ -29,6 +32,8 @@ public class ChassisService {
     public void addChassis(Chassis chassis) {
         try {
             Chassis tempChass = chassis.withId(0);
+            Model model = modelDao.findEntityById(tempChass.getModel().getId());
+            tempChass.setModel(model);
             chassisDao.saveEntity(tempChass);
         } catch (Exception e) {
             FacesContext
