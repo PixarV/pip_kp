@@ -2,6 +2,7 @@ package com.itmo.dao;
 
 import com.pip.enums.Approve;
 import com.pip.entities.Firm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,5 +36,10 @@ public class FirmDao extends CommonDao<Firm> {
         return query.setParameter("status", status)
                     .setParameter("id", firmId)
                     .executeUpdate();
+    }
+
+    public Firm getFirmByEmail(String email) {
+        Query query = entityManager.createQuery("FROM Firm m WHERE m.email = :email");
+        return (Firm) query.setParameter("email", email).getSingleResult();
     }
 }
