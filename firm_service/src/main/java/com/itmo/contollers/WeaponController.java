@@ -28,7 +28,7 @@ public class WeaponController {
 
     @PostMapping("/add/{firmId}")
     Weapon addWeapon(@RequestBody Weapon weapon, @PathVariable int firmId) {
-        weaponService.addWeapon(weapon, firmId);
+        weaponService.addWeapon(weapon);
         return weapon;
     }
 

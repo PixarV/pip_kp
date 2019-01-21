@@ -90,16 +90,16 @@ public class FirmController {
 
     @GetMapping("/getAllEngines/{firmId}")
     List<Engine> getAllEngines(@PathVariable int firmId) {
-        return firmService.getAllEngines(firmId);
+        return firmService.getAllEngines();
     }
 
     @GetMapping("/getAllTowers/{firmId}")
     List<Tower> getAllTowers(@PathVariable int firmId) {
-        return firmService.getAllTowers(firmId);
+        return firmService.getAllTowers();
     }
 
     @GetMapping("/getAllWeapons/{firmId}")
     List<Weapon> getAllWeapons(@PathVariable int firmId) {
-        return firmService.getAllWeapons(firmId);
+        return firmService.getAllWeapons();
     }
 }

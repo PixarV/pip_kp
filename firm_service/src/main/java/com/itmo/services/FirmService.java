@@ -12,6 +12,7 @@ import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -62,6 +63,10 @@ public class FirmService implements UserDetailsService {
         firmDao.custom_update(firm);
     }
 
+    public void approveFirm(int firmId) {
+        changeStatus(firmId, APPROVED);
+    }
+
     public void changeStatus(int firmId, Approve status) {
         firmDao.changeStatus(firmId, status);
     }
@@ -90,18 +95,18 @@ public class FirmService implements UserDetailsService {
         firmWeaponDao.removeFirmFromFtoW(firmId);
     }
 
-    public List<Engine> getAllEngines(int firmId) {
-        Firm firm = firmDao.findEntityById(firmId);
+    public List<Engine> getAllEngines() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return firmEngineDao.getAllEngines(firm);
     }
 
-    public List<Tower> getAllTowers(int firmId) {
-        Firm firm = firmDao.findEntityById(firmId);
+    public List<Tower> getAllTowers() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return firmTowerDao.getAllTowers(firm);
     }
 
-    public List<Weapon> getAllWeapons(int firmId) {
-        Firm firm = firmDao.findEntityById(firmId);
+    public List<Weapon> getAllWeapons() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return firmWeaponDao.getAllWeapons(firm);
     }
 

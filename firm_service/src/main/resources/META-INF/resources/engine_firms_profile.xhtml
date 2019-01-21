@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:outputText value="Двигатель"/>
+    <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
+                 styleClass="article-table"
+                 rules="all" id="result-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{eng.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{eng.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Fuel</f:facet>
+            #{eng.fuel}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Power</f:facet>
+            #{eng.power}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Weight</f:facet>
+            #{eng.weight}
+        </h:column>
+    </h:dataTable>
+
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addEngForm">
+            <h:outputText value="Title"/>
+            <h:inputText value="#{engine.title}"/>
+            <br/>
+            <h:outputText value="Fuel"/>
+            <h:inputText value="#{engine.fuel}"/>
+            <br/>
+            <h:outputText value="Power"/>
+            <h:inputText value="#{engine.power}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{engine.weight}"/>
+            <br/>
+            <h:commandButton id="addEngButton" value="Add" action="#{engineService.addEngine(engine)}">
+                <f:ajax execute="@form" render="addForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addEngButton"/>
+        </h:form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateEngForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{engine.id}"/>
+            <br/>
+            <h:outputText value="Title"/>
+            <h:inputText value="#{engine.title}"/>
+            <br/>
+            <h:outputText value="Fuel"/>
+            <h:inputText value="#{engine.fuel}"/>
+            <br/>
+            <h:outputText value="Power"/>
+            <h:inputText value="#{engine.power}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{engine.weight}"/>
+            <br/>
+            <h:commandButton id="updateEngButton" value="Update" action="#{engineService.updateEngine(engine)}">
+                <f:ajax execute="@form" render="updateEngForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateEngButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Delete</legend>
+        <h:form id="shortEndDelForm">
+            <h:outputText value="Id"/>
+            <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="shortEndDelButton" value="Delete" action="#{engineService.deleteEngineById(delId.value)}">
+                <f:ajax execute="@form" render="shortEndDelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="shortEndDelButton"/>
+        </h:form>
+    </fieldset>
+
+</h:body>
+</html>

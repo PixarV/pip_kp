@@ -28,7 +28,7 @@ public class TowerController {
 
     @PostMapping("/add/{firmId}")
     Tower addTower(@RequestBody Tower tower, @PathVariable int firmId) {
-        towerService.addTower(tower, firmId);
+        towerService.addTower(tower);
         return tower;
     }
 

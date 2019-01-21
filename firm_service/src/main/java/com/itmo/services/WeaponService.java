@@ -6,6 +6,7 @@ import com.itmo.dao.WeaponDao;
 import com.pip.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class WeaponService {
         return weaponDao.findAllEntities();
     }
 
-    public void addWeapon(Weapon weapon, int firmId) {
-        Firm firm = firmDao.findEntityById(firmId);
+    public void addWeapon(Weapon weapon) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (firm.getSpecialization() == ENGINE) {
             throw new IllegalStateException("Specialization of firm is incorrect");
         }
