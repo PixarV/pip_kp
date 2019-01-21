@@ -8,6 +8,10 @@ zuul:
       path: /engines/**
       serviceId: firm
       strip-prefix: false
+    firm3:
+      path: /hello.xhtml
+      serviceId: firm
+      strip-prefix: false
     tank1:
       path: /amun.jsf
       serviceId: tank

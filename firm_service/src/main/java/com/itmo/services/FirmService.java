@@ -11,8 +11,13 @@ import com.pip.entities.Firm;
 import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +28,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Service
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-public class FirmService {
+public class FirmService implements UserDetailsService {
 
     FirmDao firmDao;
     FirmEngineDao firmEngineDao;
@@ -98,5 +103,11 @@ public class FirmService {
     public List<Weapon> getAllWeapons(int firmId) {
         Firm firm = firmDao.findEntityById(firmId);
         return firmWeaponDao.getAllWeapons(firm);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("hey" + username);
+        return firmDao.getFirmByEmail(username);
     }
 }
