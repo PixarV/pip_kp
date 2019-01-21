@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:outputText value="Двигатель"/>
+    <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
+                 styleClass="article-table"
+                 rules="all" id="result-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{eng.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{eng.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Fuel</f:facet>
+            #{eng.fuel}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Power</f:facet>
+            #{eng.power}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Weight</f:facet>
+            #{eng.weight}
+        </h:column>
+    </h:dataTable>
+
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addEngForm">
+            <h:outputText value="Title"/>
+            <h:inputText value="#{engine.title}"/>
+            <br/>
+            <h:outputText value="Fuel"/>
+            <h:inputText value="#{engine.fuel}"/>
+            <br/>
+            <h:outputText value="Power"/>
+            <h:inputText value="#{engine.power}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{engine.weight}"/>
+            <br/>
+            <h:commandButton id="addEngButton" value="Add" action="#{engineService.addEngine(engine)}">
+                <f:ajax execute="@form" render="addForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addEngButton"/>
+        </h:form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="updateEngForm">
+            <h:outputText value="Id"/>
+            <h:inputText value="#{engine.id}"/>
+            <br/>
+            <h:outputText value="Title"/>
+            <h:inputText value="#{engine.title}"/>
+            <br/>
+            <h:outputText value="Fuel"/>
+            <h:inputText value="#{engine.fuel}"/>
+            <br/>
+            <h:outputText value="Power"/>
+            <h:inputText value="#{engine.power}"/>
+            <br/>
+            <h:outputText value="Weight"/>
+            <h:inputText value="#{engine.weight}"/>
+            <br/>
+            <h:commandButton id="updateEngButton" value="Update" action="#{engineService.updateEngine(engine)}">
+                <f:ajax execute="@form" render="updateEngForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="updateEngButton"/>
+        </h:form>
+    </fieldset>
+    <fieldset>
+        <legend>Delete</legend>
+        <h:form id="shortEndDelForm">
+            <h:outputText value="Id"/>
+            <h:inputText binding="#{delEngId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="shortEndDelButton" value="Delete" action="#{engineService.deleteEngineById(delId.value)}">
+                <f:ajax execute="@form" render="shortEndDelForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="shortEndDelButton"/>
+        </h:form>
+    </fieldset>
+
+
+    <h:outputText value="Башни"/>
+    <h:dataTable value="#{firmService.getAllTowers()}" var="tow"
+                 styleClass="article-table"
+                 rules="all" id="result-table-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{tow.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{tow.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Armor</f:facet>
+            #{tow.armor}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Turn speed</f:facet>
+            #{tow.turnSpeed}
+        </h:column>
+        <h:column>
+            <f:facet name="header">View radius</f:facet>
+            #{tow.viewRadius}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Weight</f:facet>
+            #{tow.weight}
+        </h:column>
+    </h:dataTable>
+
+    <h:outputText value="Weapons"/>
+    <h:dataTable value="#{firmService.getAllWeapons()}" var="weap"
+                 styleClass="article-table"
+                 rules="all" id="result-weap-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{weap.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{weap.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Calliber</f:facet>
+            #{weap.callibr}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Weight</f:facet>
+            #{weap.weight}
+        </h:column>
+    </h:dataTable>
+
+    <fieldset>
+        <legend>Tower</legend>
+        <fieldset>
+            <legend>Add</legend>
+            <h:form id="addTowForm">
+                <h:outputText value="Title"/>
+                <h:inputText value="#{tower.title}"/>
+                <br/>
+                <h:outputText value="Armor"/>
+                <h:inputText value="#{tower.armor}"/>
+                <br/>
+                <h:outputText value="Turn speed"/>
+                <h:inputText value="#{tower.turnSpeed}"/>
+                <br/>
+                <h:outputText value="View radius"/>
+                <h:inputText value="#{tower.viewRadius}"/>
+                <br/>
+                <h:outputText value="Weight"/>
+                <h:inputText value="#{tower.weight}"/>
+                <br/>
+                <h:commandButton id="addTowButton" value="Add" action="#{towerService.addTower(tower)}">
+                    <f:ajax execute="@form" render="addTowForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addTowButton"/>
+            </h:form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateTowForm">
+                <h:outputText value="Id"/>
+                <h:inputText value="#{tower.id}"/>
+                <br/>
+                <h:outputText value="Title"/>
+                <h:inputText value="#{tower.title}"/>
+                <br/>
+                <h:outputText value="Armor"/>
+                <h:inputText value="#{tower.armor}"/>
+                <br/>
+                <h:outputText value="Turn speed"/>
+                <h:inputText value="#{tower.turnSpeed}"/>
+                <br/>
+                <h:outputText value="View radius"/>
+                <h:inputText value="#{tower.viewRadius}"/>
+                <br/>
+                <h:outputText value="Weight"/>
+                <h:inputText value="#{tower.weight}"/>
+                <br/>
+                <h:commandButton id="updateTowButton" value="Update" action="#{towerService.updateTower(tower)}">
+                    <f:ajax execute="@form" render="updateTowForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="updateTowButton"/>
+            </h:form>
+        </fieldset>
+        <fieldset>
+            <legend>Delete</legend>
+            <!--ЭТО ЗАЛУПА НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!-->
+            <!--NINADA SYDA }|{AT' !!!!!!!!!!!!!!!!!!!!-->
+            <h:form id="shortTowDelForm">
+                <h:outputText value="Id"/>
+                <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
+                <br/>
+                <h:commandButton id="shortTowDelButton" value="Delete" action="#{towerService.deleteTowerById(delId.value)}">
+                    <f:ajax execute="@form" render="shortTowDelForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="shortTowDelButton"/>
+            </h:form>
+        </fieldset>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Weapon</legend>
+        <fieldset>
+            <legend>Add</legend>
+            <h:form id="addWeapForm">
+                <h:outputText value="Title"/>
+                <h:inputText value="#{weapon.title}"/>
+                <br/>
+                <h:outputText value="Calliber"/>
+                <h:inputText value="#{weapon.callibr}"/>
+                <br/>
+                <h:outputText value="Weight"/>
+                <h:inputText value="#{weapon.weight}"/>
+                <br/>
+                <h:commandButton id="addWeapButton" value="Add" action="#{weaponService.addWeapon(weapon)}">
+                    <f:ajax execute="@form" render="addTowForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addWeapButton"/>
+            </h:form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateWeapForm">
+                <h:outputText value="Id"/>
+                <h:inputText value="#{weapon.id}"/>
+                <br/>
+                <h:outputText value="Title"/>
+                <h:inputText value="#{weapon.title}"/>
+                <br/>
+                <h:outputText value="Calliber"/>
+                <h:inputText value="#{weapon.callibr}"/>
+                <br/>
+                <h:outputText value="Weight"/>
+                <h:inputText value="#{weapon.weight}"/>
+                <br/>
+                <h:commandButton id="updateWeapButton" value="Update" action="#{weaponService.updateWeapon(weapon)}">
+                    <f:ajax execute="@form" render="updateWeapForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="updateWeapButton"/>
+            </h:form>
+        </fieldset>
+        <fieldset>
+            <legend>Delete</legend>
+            <!--ЭТО ЗАЛУПА НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!-->
+            <!--NINADA SYDA }|{AT' !!!!!!!!!!!!!!!!!!!!-->
+            <h:form id="shortWeapDelForm">
+                <h:outputText value="Id"/>
+                <h:inputText binding="#{delWId}" converter="javax.faces.Integer"/>
+                <br/>
+                <h:commandButton id="shortWeapDelButton" value="Delete" action="#{weaponService.deleteWeaponById(delWId.value)}">
+                    <f:ajax execute="@form" render="shortWeapDelForm" />
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="shortWeapDelButton"/>
+            </h:form>
+        </fieldset>
+    </fieldset>
+
+</h:body>
+</html>
