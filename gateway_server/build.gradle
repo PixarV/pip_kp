@@ -3,6 +3,6 @@ dependencies {
     compile cloud["eurekaClient"]
     compile cloud["zuul"]
 
-    compile boot["starterSecurity"]
-    compile project(":firm_service")
+//    compile boot["starterSecurity"]
+//    compile project(":firm_service")
 }
