@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     FirmService firmService;
 
     @Bean
-    PasswordEncoder bCryptPasswordEncoder(){
+    PasswordEncoder noEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -29,23 +27,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(firmService)
-                .passwordEncoder(bCryptPasswordEncoder());
+                .passwordEncoder(noEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/", "/register", "index.html").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers( "/", "/register", "index.html").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/hello.xhtml")
-                .usernameParameter("j_idt4:username")
-                .passwordParameter("j_idt4:password")
-                .defaultSuccessUrl("/firms/getAll", true)
-                .permitAll()
+                .formLogin()
+                    .loginPage("/hello.xhtml")
+                    .usernameParameter("j_idt4:username")
+                    .passwordParameter("j_idt4:password")
+                    .defaultSuccessUrl("/firms/getAll", true)
+                    .permitAll()
                 .and()
-                .logout().permitAll()
+                .logout()
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
+                    .permitAll()
                 .and()
                 .csrf().disable();
     }
