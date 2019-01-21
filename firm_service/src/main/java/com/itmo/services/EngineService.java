@@ -11,6 +11,7 @@ import com.pip.enums.Approve;
 import com.pip.enums.FirmSpecializtion;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +33,9 @@ public class EngineService {
         return engineDao.findAllEntities();
     }
 
-    public void addEngine(Engine engine, int firmId) {
-        Firm firm = firmDao.findEntityById(firmId);
+    public void addEngine(Engine engine) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if (firm.getSpecialization() == TANK) {
             throw new IllegalStateException("Specialization of firm is incorrect");
         }
@@ -75,8 +77,9 @@ public class EngineService {
         return engineDao.getModels(engineId);
     }
 
-    public String getEngineSn(int firmId, int engineId) {
-        return firmEngineDao.getEngineSn(firmId, engineId);
+    public String getEngineSn(int engineId) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return firmEngineDao.getEngineSn(firm.getId(), engineId);
     }
 
     public List<Firm> getFirms(int engineId) {

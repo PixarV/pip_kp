@@ -6,7 +6,6 @@ import com.pip.entities.Firm;
 import com.pip.entities.Model;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +27,7 @@ public class EngineController {
 
     @PostMapping("/add")
     Engine addEngine(@RequestBody Engine engine) {
-        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        engineService.addEngine(engine, firm.getId());
+        engineService.addEngine(engine);
         return engine;
     }
 
@@ -63,9 +61,9 @@ public class EngineController {
         return engineService.getModels(engineId);
     }
 
-    @GetMapping("/getEngineSn/{firmId}/{engineId}")
-    String getEngineSn(@PathVariable int firmId, @PathVariable int engineId) {
-        return engineService.getEngineSn(firmId, engineId);
+    @GetMapping("/getEngineSn/{engineId}")
+    String getEngineSn(@PathVariable int engineId) {
+        return engineService.getEngineSn(engineId);
     }
 
     @GetMapping("/getFirms/{engineId}")
