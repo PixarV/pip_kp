@@ -2,6 +2,7 @@ package com.itmo.dao;
 
 import com.pip.entities.Human;
 import com.pip.enums.Approve;
+import com.pip.enums.UserRole;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,12 +42,19 @@ public class HumanDao extends CommonDao<Human> {
     public int changeStatus(int humanId, Approve status) {
         Query query = entityManager.createQuery("update Human c set c.status = :status WHERE c.id = :id");
         return query.setParameter("status", status)
-                    .setParameter("id", humanId)
-                    .executeUpdate();
+                .setParameter("id", humanId)
+                .executeUpdate();
     }
 
     public Human getHumanByEmail(String email) {
         Query query = entityManager.createQuery("FROM Human m WHERE m.email = :email");
         return (Human) query.setParameter("email", email).getSingleResult();
+    }
+
+    public int changeRole(int humanId, UserRole role) {
+        Query query = entityManager.createQuery("update Human c set c.role = :role WHERE c.id = :id");
+        return query.setParameter("role", role)
+                .setParameter("id", humanId)
+                .executeUpdate();
     }
 }

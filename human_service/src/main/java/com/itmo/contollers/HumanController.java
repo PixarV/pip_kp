@@ -3,6 +3,7 @@ package com.itmo.contollers;
 import com.itmo.services.HumanService;
 import com.pip.entities.Human;
 import com.pip.enums.Approve;
+import com.pip.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,10 @@ public class HumanController {
     @PutMapping("/changeStatus/{humanId}")
     void changeStatusOfHuman(@PathVariable int humanId, @RequestParam Approve status) {
         humanService.changeStatus(humanId, status);
+    }
+
+    @PutMapping("/changeRole/{humanId}")
+    void changeRoleOfHuman(@PathVariable int humanId, @RequestParam UserRole role) {
+        humanService.changeRole(humanId, role);
     }
 }
