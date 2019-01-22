@@ -62,9 +62,9 @@ public class TowerController {
         return towerService.getChassis(towerId);
     }
 
-    @GetMapping("/getTowerSn/{firmId}/{towerId}")
-    String getTowerSn(@PathVariable int firmId, @PathVariable int towerId) {
-        return towerService.getTowerSn(firmId, towerId);
+    @GetMapping("/getTowerSn/{towerId}")
+    String getTowerSn(@PathVariable int towerId) {
+        return towerService.getTowerSn(towerId);
     }
 
     @PutMapping("/addWeapon/{weaponId}")
