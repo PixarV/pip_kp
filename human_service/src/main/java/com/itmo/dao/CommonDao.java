@@ -20,7 +20,7 @@ public abstract class CommonDao<T> {
     final Class<T> type;
 
     @Autowired
-    EntityManager entityManager;
+    protected EntityManager entityManager;
 
     /**
      * Use save if you 100% sure that this entity is not in db.
@@ -63,5 +63,10 @@ public abstract class CommonDao<T> {
 
     public void removeEntity(T entity) {
        entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+    }
+
+    public T updateEntity(T entity) {
+        entityManager.refresh(entity);
+        return entityManager.merge(entity);
     }
 }
