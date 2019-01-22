@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/hello.xhtml")
                 .usernameParameter("j_idt4:username")
                 .passwordParameter("j_idt4:password")
-                .defaultSuccessUrl("/firms/getAll", true)
+                .defaultSuccessUrl("/firms_control.xhtml", true)
                 .permitAll()
                 .and()
                 .logout()
