@@ -3,6 +3,7 @@ package com.itmo.services;
 import com.itmo.dao.HumanDao;
 import com.pip.entities.Human;
 import com.pip.enums.Approve;
+import com.pip.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,5 +64,9 @@ public class HumanService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("hey" + username);
         return humanDao.getHumanByEmail(username);
+    }
+
+    public void changeRole(int humanId, UserRole role) {
+        humanDao.changeRole(humanId, role);
     }
 }
