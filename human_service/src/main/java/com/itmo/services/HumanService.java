@@ -6,6 +6,7 @@ import com.pip.enums.Approve;
 import com.pip.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -53,11 +54,12 @@ public class HumanService implements UserDetailsService {
     }
 
     public void approveHuman(int humanId) {
-        changeStatus(humanId, APPROVED);
+        changeStatus(APPROVED);
     }
 
-    public void changeStatus(int humanId, Approve status) {
-        humanDao.changeStatus(humanId, status);
+    public void changeStatus(Approve status) {
+        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        humanDao.changeStatus(human.getId(), status);
     }
 
     @Override
@@ -66,7 +68,8 @@ public class HumanService implements UserDetailsService {
         return humanDao.getHumanByEmail(username);
     }
 
-    public void changeRole(int humanId, UserRole role) {
-        humanDao.changeRole(humanId, role);
+    public void changeRole(UserRole role) {
+        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        humanDao.changeRole(human.getId(), role);
     }
 }

@@ -51,13 +51,13 @@ public class HumanController {
         humanService.deleteHumanById(humanId);
     }
 
-    @PutMapping("/changeStatus/{humanId}")
-    void changeStatusOfHuman(@PathVariable int humanId, @RequestParam Approve status) {
-        humanService.changeStatus(humanId, status);
+    @PutMapping("/changeStatus")
+    void changeStatusOfHuman(@RequestParam Approve status) {
+        humanService.changeStatus(status);
     }
 
-    @PutMapping("/changeRole/{humanId}")
-    void changeRoleOfHuman(@PathVariable int humanId, @RequestParam UserRole role) {
-        humanService.changeRole(humanId, role);
+    @PutMapping("/changeRole")
+    void changeRoleOfHuman(@RequestParam UserRole role) {
+        humanService.changeRole(role);
     }
 }
