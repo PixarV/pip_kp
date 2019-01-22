@@ -12,7 +12,43 @@ zuul:
       path: /hello.xhtml
       serviceId: firm
       strip-prefix: false
+    firm4:
+      path: /hello.xhtml
+      serviceId: firm
+      strip-prefix: false
+    firm4:
+      path: /engine_firms_profile.xhtml
+      serviceId: firm
+      strip-prefix: false
+    firm5:
+      path: /firms_control.xhtml
+      serviceId: firm
+      strip-prefix: false
+    firm6:
+      path: /weapon_firms_profile.xhtml
+      serviceId: firm
+      strip-prefix: false
+    firm7:
+      path: /universal_firms_profile.xhtml
+      serviceId: firm
+      strip-prefix: false
     tank1:
-      path: /amun.jsf
+      path: /amun.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank5:
+      path: /adding_tank_details.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank2:
+      path: /link_tank_detailsMtM.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank3:
+      path: /moderator_page.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank4:
+      path: /show_tank_avallable_details.xhtml
       serviceId: tank
       strip-prefix: false
