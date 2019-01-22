@@ -42,6 +42,7 @@ public class Firm implements Serializable, UserDetails {
     int id;
     String title;
     String email;
+    String password;
 
     @Type(type = "psql_enum")
     @Enumerated(EnumType.STRING)
@@ -143,7 +144,7 @@ public class Firm implements Serializable, UserDetails {
 
     @Override
     public String getPassword() {
-        return "123";
+        return password;
     }
 
     @Override
