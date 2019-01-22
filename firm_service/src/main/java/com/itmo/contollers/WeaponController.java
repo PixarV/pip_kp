@@ -72,9 +72,9 @@ public class WeaponController {
         return weaponService.getTowers(weaponId);
     }
 
-    @GetMapping("/getWeaponSn/{firmId}/{weaponId}")
-    String getWeaponSn(@PathVariable int firmId, @PathVariable int weaponId) {
-        return weaponService.getWeaponSn(firmId, weaponId);
+    @GetMapping("/getWeaponSn/{weaponId}")
+    String getWeaponSn(@PathVariable int weaponId) {
+        return weaponService.getWeaponSn(weaponId);
     }
 
     @GetMapping("/getFirms/{weaponId}")

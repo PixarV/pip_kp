@@ -71,8 +71,9 @@ public class TowerService {
         return towerDao.getChassis(towerId);
     }
 
-    public String getTowerSn(int firmId, int towerId) {
-        return firmTowerDao.getTowerSn(firmId, towerId);
+    public String getTowerSn(int towerId) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return firmTowerDao.getTowerSn(firm.getId(), towerId);
     }
 
     public void addWeapon(Tower tower, int weaponId) {

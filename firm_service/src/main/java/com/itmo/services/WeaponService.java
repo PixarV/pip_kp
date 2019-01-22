@@ -79,8 +79,9 @@ public class WeaponService {
         return weaponDao.getTowers(weaponId);
     }
 
-    public String getWeaponSn(int firmId, int weaponId) {
-        return firmWeaponDao.getWeaponSn(firmId, weaponId);
+    public String getWeaponSn(int weaponId) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return firmWeaponDao.getWeaponSn(firm.getId(), weaponId);
     }
 
     public List<Firm> getFirms(int weaponId) {
