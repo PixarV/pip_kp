@@ -106,6 +106,7 @@ CREATE TABLE firm (
   title VARCHAR(255) UNIQUE NOT NULL,
   specialization firm_specialization NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL DEFAULT '123',
   firm_status approve DEFAULT 'NOT_APPROVED'
 );
 
@@ -161,10 +162,16 @@ CREATE TABLE relation (
   stage INTEGER
 );
 
+CREATE TYPE role AS ENUM ('USER', 'MODERATOR');
+
 CREATE TABLE human (
   id SERIAL PRIMARY KEY ,
   id_tank INTEGER REFERENCES tank ON DELETE SET NULL ,
   name VARCHAR(255) NOT NULL ,
+  email VARCHAR(255) UNIQUE NOT NULL ,
+  password VARCHAR(255) NOT NULL DEFAULT '123',
+  user_role role DEFAULT 'USER',
+  human_status approve DEFAULT 'NOT_APPROVED',
   vacation_start TIMESTAMP,
   vacation_end TIMESTAMP CHECK (
     vacation_end > vacation_start

@@ -22,3 +22,5 @@ drop table firm CASCADE;
 drop table specialization CASCADE;
 drop table human CASCADE;
 drop table relation CASCADE;
+drop type approve;
+drop type role;
