@@ -1,24 +1,15 @@
 package com.itmo.services;
 
-import com.itmo.dao.FirmEngineDao;
-import com.itmo.dao.FirmTowerDao;
-import com.itmo.dao.FirmWeaponDao;
-import com.pip.entities.Engine;
-import com.pip.entities.Tower;
-import com.pip.entities.Weapon;
+import com.itmo.dao.HumanDao;
+import com.pip.entities.Human;
 import com.pip.enums.Approve;
-import com.pip.entities.Firm;
-import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,90 +20,48 @@ import static lombok.AccessLevel.PRIVATE;
 @Service
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-public class FirmService implements UserDetailsService {
+public class HumanService implements UserDetailsService {
 
-    FirmDao firmDao;
-    FirmEngineDao firmEngineDao;
-    FirmTowerDao firmTowerDao;
-    FirmWeaponDao firmWeaponDao;
+    HumanDao humanDao;
 
-    public List<Firm> getAllFirms() {
-        return firmDao.findAllEntities();
+    public List<Human> getAllHumans() {
+        return humanDao.findAllEntities();
     }
 
-    public void addFirm(Firm firm) {
-        if (Objects.isNull(firm.getStatus()) || firm.getStatus() == APPROVED)
-            firm.setStatus(NOT_APPROVED);
+    public void addHuman(Human human) {
+        if (Objects.isNull(human.getStatus()) || human.getStatus() == APPROVED)
+            human.setStatus(NOT_APPROVED);
 
-        firmDao.saveEntity(firm);
+        humanDao.saveEntity(human);
     }
 
-    public void deleteFirm(Firm firm) {
-        firmDao.removeEntity(firm);
+    public void deleteHuman(Human human) {
+        humanDao.removeEntity(human);
     }
 
-    public int deleteFirmById(int firmId) {
-        return firmDao.removeFirmById(firmId);
+    public int deleteHumanById(int humanId) {
+        return humanDao.removeHumanById(humanId);
     }
 
-    public Firm getFirmById(int firmId) {
-        return firmDao.findEntityById(firmId);
+    public Human getHumanById(int humanId) {
+        return humanDao.findEntityById(humanId);
     }
 
-    public void updateFirm(Firm firm) {
-        firmDao.custom_update(firm);
+    public void updateHuman(Human human) {
+        humanDao.custom_update(human);
     }
 
-    public void approveFirm(int firmId) {
-        changeStatus(firmId, APPROVED);
+    public void approveHuman(int humanId) {
+        changeStatus(humanId, APPROVED);
     }
 
-    public void changeStatus(int firmId, Approve status) {
-        firmDao.changeStatus(firmId, status);
-    }
-
-    public void removeFirmEngineFromMtoM(int firmId, int engineId) {
-        firmEngineDao.removeFirmEngine(firmId, engineId);
-    }
-
-    public void removeFirmFromFtoE(int firmId) {
-        firmEngineDao.removeFirmFromFtoE(firmId);
-    }
-
-    public void removeFirmTowerFromMtoM(int firmId, int towerId) {
-        firmTowerDao.removeFirmTower(firmId, towerId);
-    }
-
-    public void removeFirmFromFtoT(int firmId) {
-        firmTowerDao.removeFirmFromFtoT(firmId);
-    }
-
-    public void removeFirmWeaponFromMtoM(int firmId, int weaponId) {
-        firmWeaponDao.removeFirmWeapon(firmId, weaponId);
-    }
-
-    public void removeFirmFromFtoW(int firmId) {
-        firmWeaponDao.removeFirmFromFtoW(firmId);
-    }
-
-    public List<Engine> getAllEngines() {
-        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return firmEngineDao.getAllEngines(firm);
-    }
-
-    public List<Tower> getAllTowers() {
-        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return firmTowerDao.getAllTowers(firm);
-    }
-
-    public List<Weapon> getAllWeapons() {
-        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return firmWeaponDao.getAllWeapons(firm);
+    public void changeStatus(int humanId, Approve status) {
+        humanDao.changeStatus(humanId, status);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("hey" + username);
-        return firmDao.getFirmByEmail(username);
+        return humanDao.getHumanByEmail(username);
     }
 }

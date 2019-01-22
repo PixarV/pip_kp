@@ -1,10 +1,7 @@
 package com.itmo.contollers;
 
-import com.itmo.services.FirmService;
-import com.pip.entities.Engine;
-import com.pip.entities.Firm;
-import com.pip.entities.Tower;
-import com.pip.entities.Weapon;
+import com.itmo.services.HumanService;
+import com.pip.entities.Human;
 import com.pip.enums.Approve;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,90 +13,45 @@ import static lombok.AccessLevel.PRIVATE;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/firms")
+@RequestMapping("/humans")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-public class FirmController {
+public class HumanController {
 
-    FirmService firmService;
+    HumanService humanService;
 
     @GetMapping("/getAll")
-    List<Firm> getAllFirms() {
-        return firmService.getAllFirms();
+    List<Human> getAllHumans() {
+        return humanService.getAllHumans();
     }
 
     @PostMapping("/reg")
-    Firm registrateFirm(@RequestBody Firm firm) {
-        firmService.addFirm(firm);
-        return firm;
+    Human registrateHuman(@RequestBody Human human) {
+        humanService.addHuman(human);
+        return human;
     }
 
-    @GetMapping("/get/{firmId}")
-    Firm getFirm(@PathVariable int firmId) {
-        return firmService.getFirmById(firmId);
+    @GetMapping("/get/{humanId}")
+    Human getHuman(@PathVariable int humanId) {
+        return humanService.getHumanById(humanId);
     }
 
     @PutMapping("/update")
-    void updateFirm(@RequestBody Firm firm) {
-        firmService.updateFirm(firm);
+    void updateHuman(@RequestBody Human human) {
+        humanService.updateHuman(human);
     }
 
     @DeleteMapping("/delete")
-    void deleteFirm(@RequestBody Firm firm) {
-        firmService.deleteFirm(firm);
+    void deleteHuman(@RequestBody Human human) {
+        humanService.deleteHuman(human);
     }
 
-    @DeleteMapping("/delete/{firmId}")
-    void deleteFirmById(@PathVariable int firmId) {
-        firmService.deleteFirmById(firmId);
+    @DeleteMapping("/delete/{humanId}")
+    void deleteHumanById(@PathVariable int humanId) {
+        humanService.deleteHumanById(humanId);
     }
 
-    @PutMapping("/changeStatus/{firmId}")
-    void changeStatusOfFirm(@PathVariable int firmId, @RequestParam Approve status) {
-        firmService.changeStatus(firmId, status);
-    }
-
-    @DeleteMapping("/removeFirmEngine/{firmId}/{engineId}")
-    void removeFirmEngineFromMtoM(@PathVariable int firmId, @PathVariable int engineId) {
-        firmService.removeFirmEngineFromMtoM(firmId, engineId);
-    }
-
-    @DeleteMapping("/removeFirmEngine/{firmId}")
-    void removeFirmFromFtoE(@PathVariable int firmId) {
-        firmService.removeFirmFromFtoE(firmId);
-    }
-
-    @DeleteMapping("/removeFirmTower/{firmId}/{towerId}")
-    void removeFirmTowerFromMtoM(@PathVariable int firmId, @PathVariable int towerId) {
-        firmService.removeFirmTowerFromMtoM(firmId, towerId);
-    }
-
-    @DeleteMapping("/removeFirmTower/{firmId}")
-    void removeFirmFromFtoT(@PathVariable int firmId) {
-        firmService.removeFirmFromFtoT(firmId);
-    }
-
-    @DeleteMapping("/removeFirmWeapon/{firmId}/{weaponId}")
-    void removeFirmWeaponFromMtoM(@PathVariable int firmId, @PathVariable int weaponId) {
-        firmService.removeFirmWeaponFromMtoM(firmId, weaponId);
-    }
-
-    @DeleteMapping("/removeFirmWeapon/{firmId}")
-    void removeFirmFromFtoW(@PathVariable int firmId) {
-        firmService.removeFirmFromFtoW(firmId);
-    }
-
-    @GetMapping("/getAllEngines/{firmId}")
-    List<Engine> getAllEngines(@PathVariable int firmId) {
-        return firmService.getAllEngines();
-    }
-
-    @GetMapping("/getAllTowers/{firmId}")
-    List<Tower> getAllTowers(@PathVariable int firmId) {
-        return firmService.getAllTowers();
-    }
-
-    @GetMapping("/getAllWeapons/{firmId}")
-    List<Weapon> getAllWeapons(@PathVariable int firmId) {
-        return firmService.getAllWeapons();
+    @PutMapping("/changeStatus/{humanId}")
+    void changeStatusOfHuman(@PathVariable int humanId, @RequestParam Approve status) {
+        humanService.changeStatus(humanId, status);
     }
 }
