@@ -8,8 +8,14 @@
 </h:head>
 
 <h:body>
+    <fieldset style="background-image: url(https://img.tsn.ua/cached/1546420838/tsn-8ef996fbeaebf7621936189b51062f05/thumbs/1340x530/e3/f5/ae64d2efa2732c6aca3c88a878a8f5e3.jpeg);
+                     background-repeat: no-repeat;
+                     height: 500px;
+                     "/>
+    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
+    <br/>
     <h:outputText value="Боеприпасы"/>
-    <fieldset>
+    <fieldset style="background-color: red">
         <legend>Add</legend>
         <h:form id="addAmunForm">
             <h:outputText value="Breakage"/>
@@ -19,8 +25,12 @@
             <h:inputText value="#{ammunition.callibr}"/>
             <br/>
             <h:outputText value="Type"/>
-            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
+            <h:selectOneMenu value="#{ammunition.type}">
+                <f:selectItem itemValue="ARMOR_PIERCING" itemLabel="ARMOR_PIERCING"/>
+                <f:selectItem itemValue="SUBCALLIBER" itemLabel="SUBCALLIBER"/>
+                <f:selectItem itemValue="HIGH_EXPLOSIVE" itemLabel="HIGH_EXPLOSIVE"/>
+                <f:selectItem itemValue="CUMULATIVE" itemLabel="CUMULATIVE"/>
+            </h:selectOneMenu>
             <br/>
             <h:commandButton id="addAmunButton" value="Add" action="#{ammunitionService.addAmmunition(ammunition)}">
                 <f:ajax execute="@form" render="addForm" />
@@ -29,7 +39,7 @@
             <h:message class="error" for="addAmunButton"/>
         </h:form>
     </fieldset>
-    <fieldset>
+    <fieldset style="background-color: orange">
         <legend>Update</legend>
         <h:form id="updateAmunForm">
             <h:outputText value="Id"/>
@@ -43,7 +53,12 @@
             <br/>
             <h:outputText value="Type"/>
             <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
+            <h:selectOneMenu value="#{ammunition.type}">
+                <f:selectItem itemValue="ARMOR_PIERCING" itemLabel="ARMOR_PIERCING"/>
+                <f:selectItem itemValue="SUBCALLIBER" itemLabel="SUBCALLIBER"/>
+                <f:selectItem itemValue="HIGH_EXPLOSIVE" itemLabel="HIGH_EXPLOSIVE"/>
+                <f:selectItem itemValue="CUMULATIVE" itemLabel="CUMULATIVE"/>
+            </h:selectOneMenu>
             <br/>
             <h:commandButton id="updateAmunButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
                 <f:ajax execute="@form" render="updateForm" />
@@ -52,30 +67,7 @@
             <h:message class="error" for="updateAmunButton"/>
         </h:form>
     </fieldset>
-    <fieldset>
-        <legend>Remove</legend>
-        <h:form id="removeAmunForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{ammunition.id}"/>
-            <br/>
-            <h:outputText value="Breakage"/>
-            <h:inputText value="#{ammunition.breakage}"/>
-            <br/>
-            <h:outputText value="Callibr"/>
-            <h:inputText value="#{ammunition.callibr}"/>
-            <br/>
-            <h:outputText value="Type"/>
-            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
-            <br/>
-            <h:commandButton id="removeAmunButton" value="Remove" action="#{ammunitionService.deleteAmmunition(ammunition)}">
-                <f:ajax execute="@form" render="removeForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="removeAmunButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
+    <fieldset style="background-color: yellow">
         <legend>Short command</legend>
         <fieldset>
             <legend>Delete</legend>
@@ -93,7 +85,7 @@
     </fieldset>
 
     <h:outputText value="Шасси"/>
-    <fieldset>
+    <fieldset style="background-color: green">
         <legend>Add</legend>
         <h:form id="addChasForm">
             <h:outputText value="Model id"/>
@@ -118,7 +110,7 @@
             <h:message class="error" for="addChasButton"/>
         </h:form>
     </fieldset>
-    <fieldset>
+    <fieldset style="background-color: blue">
         <legend>Update</legend>
         <h:form id="updateChasForm">
             <h:outputText value="Id"/>
@@ -146,35 +138,7 @@
             <h:message class="error" for="updateChasButton"/>
         </h:form>
     </fieldset>
-    <fieldset>
-        <legend>Remove</legend>
-        <h:form id="removeChasForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{chassis.id}"/>
-            <br/>
-            <h:outputText value="Model id"/>
-            <h:inputText binding="#{remModellId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:outputText value="Titile"/>
-            <h:inputText value="#{chassis.title}"/>
-            <br/>
-            <h:outputText value="Carring"/>
-            <h:inputText value="#{chassis.carring}"/>
-            <br/>
-            <h:outputText value="Turn speed"/>
-            <h:inputText value="#{chassis.turnSpeed}"/>
-            <br/>
-            <h:outputText value="Weight"/>
-            <h:inputText value="#{chassis.weight}"/>
-            <br/>
-            <h:commandButton id="removeChasButton" value="Remove" action="#{chassisService.deleteChassis(chassis, remModellId)}">
-                <f:ajax execute="@form" render="removeChasForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="removeChasButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
+    <fieldset style="background-color: magenta">
         <legend>Short command</legend>
         <fieldset>
             <legend>Delete</legend>
@@ -191,7 +155,6 @@
         </fieldset>
     </fieldset>
 
-
     <h:outputText value="Модель"/>
     <fieldset>
         <legend>Add</legend>
@@ -200,7 +163,11 @@
             <h:inputText value="#{model.title}"/>
             <br/>
             <h:outputText value="Type"/>
-            <h:inputText value="#{model.type}"/>
+            <h:selectOneMenu value="#{model.type}">
+                <f:selectItem itemValue="H" itemLabel="H"/>
+                <f:selectItem itemValue="M" itemLabel="M"/>
+                <f:selectItem itemValue="L" itemLabel="L"/>
+            </h:selectOneMenu>
             <br/>
             <h:outputText value="Max forward speed"/>
             <h:inputText value="#{model.maxSpeedForward}"/>
@@ -228,7 +195,11 @@
             <h:inputText value="#{model.title}"/>
             <br/>
             <h:outputText value="Type"/>
-            <h:inputText value="#{model.type}"/>
+            <h:selectOneMenu value="#{model.type}">
+                <f:selectItem itemValue="H" itemLabel="H"/>
+                <f:selectItem itemValue="M" itemLabel="M"/>
+                <f:selectItem itemValue="L" itemLabel="L"/>
+            </h:selectOneMenu>
             <br/>
             <h:outputText value="Max forward speed"/>
             <h:inputText value="#{model.maxSpeedForward}"/>
@@ -247,34 +218,6 @@
         </h:form>
     </fieldset>
     <fieldset>
-        <legend>Remove</legend>
-        <h:form id="removeModelForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{model.id}"/>
-            <br/>
-            <h:outputText value="Titile"/>
-            <h:inputText value="#{model.title}"/>
-            <br/>
-            <h:outputText value="Type"/>
-            <h:inputText value="#{model.type}"/>
-            <br/>
-            <h:outputText value="Max forward speed"/>
-            <h:inputText value="#{model.maxSpeedForward}"/>
-            <br/>
-            <h:outputText value="Max backward speed"/>
-            <h:inputText value="#{model.maxSpeedBackward}"/>
-            <br/>
-            <h:outputText value="Armor"/>
-            <h:inputText value="#{model.armor}"/>
-            <br/>
-            <h:commandButton id="removeModelButton" value="Remove" action="#{modelService.deleteModel(model)}">
-                <f:ajax execute="@form" render="removeModelForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="removeChasButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
         <legend>Short command</legend>
         <fieldset>
             <legend>Delete</legend>
@@ -290,5 +233,9 @@
             </h:form>
         </fieldset>
     </fieldset>
+
+    <a href="https://rocketbank.ru/loves/igor-anokhin-frosty-fire">
+        <img src="https://i.pinimg.com/originals/1f/6f/7e/1f6f7e88fcc30ddf13132c4ee35d4d05.jpg" alt="HTML tutorial" style="width:300px;height: 600px;border:0;"/>
+    </a>
 </h:body>
 </html>
