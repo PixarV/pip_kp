@@ -8,6 +8,13 @@
 </h:head>
 
 <h:body>
+    <fieldset style="background-image: url(https://cs8.pikabu.ru/post_img/big/2017/02/01/8/1485951954231696714.jpg);
+                     background-repeat: no-repeat;
+                     height: 450px;
+                     "/>
+
+    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
+    <br/>
     <fieldset>
         <h:outputText value="Chassis" />
         <h:dataTable value="#{chassisService.findAllChassiss()}" var="chass"
