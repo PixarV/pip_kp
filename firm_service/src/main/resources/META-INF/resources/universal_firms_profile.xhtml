@@ -41,7 +41,10 @@
             <h:inputText value="#{engine.title}"/>
             <br/>
             <h:outputText value="Fuel"/>
-            <h:inputText value="#{engine.fuel}"/>
+            <h:selectOneMenu value="#{engine.fuel}">
+                <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
+                <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
+            </h:selectOneMenu>
             <br/>
             <h:outputText value="Power"/>
             <h:inputText value="#{engine.power}"/>
@@ -67,7 +70,10 @@
             <h:inputText value="#{engine.title}"/>
             <br/>
             <h:outputText value="Fuel"/>
-            <h:inputText value="#{engine.fuel}"/>
+            <h:selectOneMenu value="#{engine.fuel}">
+                <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
+                <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
+            </h:selectOneMenu>
             <br/>
             <h:outputText value="Power"/>
             <h:inputText value="#{engine.power}"/>
@@ -151,7 +157,7 @@
 
     <fieldset>
         <legend>Tower</legend>
-        <fieldset>
+        <fieldset style="background-color: red">
             <legend>Add</legend>
             <h:form id="addTowForm">
                 <h:outputText value="Title"/>
@@ -177,7 +183,7 @@
             </h:form>
         </fieldset>
 
-        <fieldset>
+        <fieldset style="background-color: orange">
             <legend>Update</legend>
             <h:form id="updateTowForm">
                 <h:outputText value="Id"/>
@@ -205,7 +211,7 @@
                 <h:message class="error" for="updateTowButton"/>
             </h:form>
         </fieldset>
-        <fieldset>
+        <fieldset style="background-color: yellow">
             <legend>Delete</legend>
             <!--ЭТО ЗАЛУПА НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!-->
             <!--NINADA SYDA }|{AT' !!!!!!!!!!!!!!!!!!!!-->
@@ -225,7 +231,7 @@
 
     <fieldset>
         <legend>Weapon</legend>
-        <fieldset>
+        <fieldset style="background-color: green">
             <legend>Add</legend>
             <h:form id="addWeapForm">
                 <h:outputText value="Title"/>
@@ -245,7 +251,7 @@
             </h:form>
         </fieldset>
 
-        <fieldset>
+        <fieldset style="background-color: blue">
             <legend>Update</legend>
             <h:form id="updateWeapForm">
                 <h:outputText value="Id"/>
@@ -267,7 +273,7 @@
                 <h:message class="error" for="updateWeapButton"/>
             </h:form>
         </fieldset>
-        <fieldset>
+        <fieldset style="background-color: magenta">
             <legend>Delete</legend>
             <!--ЭТО ЗАЛУПА НЕ РАБОТАЕТ!!!!!!!!!!!!!!!!!!!!-->
             <!--NINADA SYDA }|{AT' !!!!!!!!!!!!!!!!!!!!-->
