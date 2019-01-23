@@ -8,7 +8,7 @@
 </h:head>
 
 <h:body>
-    <h:dataTable value="#{humanService.getAllHumans}" var="hum"
+    <h:dataTable value="#{humanService.getAllHumans()}" var="hum"
                  styleClass="article-table"
                  rules="all" id="result-table">
         <h:column>
