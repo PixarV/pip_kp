@@ -94,6 +94,11 @@ public class HumanService implements UserDetailsService {
         humanDao.changeRole(human.getId(), role);
     }
 
+    public boolean isModerator() {
+        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return human.getRole() == UserRole.MODERATOR;
+    }
+
     public void customAddHuman(Human human, int tankId) {
         Tank tank = new Tank();
         tank.setId(tankId);
