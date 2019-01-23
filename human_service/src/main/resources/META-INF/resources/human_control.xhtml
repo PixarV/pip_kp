@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:dataTable value="#{humanService.getAllHumans}" var="hum"
+                 styleClass="article-table"
+                 rules="all" id="result-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{hum.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{hum.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Vacation start</f:facet>
+            #{hum.vacationStart}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Vacation end</f:facet>
+            #{hum.vacationEnd}
+        </h:column>
+    </h:dataTable>
+
+    <fieldset>
+        <legend>Add</legend>
+        <h:form id="addHumForm">
+            <h:outputText value="Name"/>
+            <h:inputText value="#{human.name}"/>
+            <br/>
+            <h:outputText value="Tank Id"/>
+            <h:inputText binding="#{tankId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:outputText value="Vacation start"/>
+            <h:inputText value="#{human.vacationStart}"/>
+            <br/>
+            <h:outputText value="Vacation end"/>
+            <h:inputText value="#{human.vacationEnd}"/>
+            <br/>
+            <h:commandButton id="addHumButton" value="Add" action="#{humanService.customAddHuman(human, tankId.value)}">
+                <f:ajax execute="@form" render="addHumForm" />
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addHumButton"/>
+        </h:form>
+    </fieldset>
+
+    <a href="http://localhost:8080/show_tank_avallable_details.xhtml">Back main page</a>
+
+    <img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%" alt="Вова Путин Великий"/>
+
+</h:body>
+</html>

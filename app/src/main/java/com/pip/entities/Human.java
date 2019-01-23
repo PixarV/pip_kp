@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import lombok.experimental.Wither;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -21,7 +23,9 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @Entity
+@Wither
 @Builder
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
