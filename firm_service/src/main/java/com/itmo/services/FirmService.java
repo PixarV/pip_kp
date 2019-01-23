@@ -49,7 +49,7 @@ public class FirmService implements UserDetailsService {
         firmDao.saveEntity(firm);
     }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    private void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
