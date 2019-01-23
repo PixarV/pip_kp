@@ -2,6 +2,7 @@ dependencies {
     compile boot["starterWeb"]
     compile boot["springBootPlugin"]
     compile boot["starterJetty"]
+    compile boot["starterMail"]
 
     compile cloud["starterConfig"]
     compile cloud["eurekaClient"]

@@ -8,6 +8,7 @@ dependencies {
     compile boot["starterJetty"]
     compile boot["starterJpa"]
     compile boot["starterSecurity"]
+    compile boot["starterMail"]
 
 
     compileOnly hibernate["em"]

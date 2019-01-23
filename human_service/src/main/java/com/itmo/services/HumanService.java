@@ -7,6 +7,8 @@ import com.pip.enums.Approve;
 import com.pip.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,15 +28,25 @@ import static lombok.AccessLevel.PRIVATE;
 public class HumanService implements UserDetailsService {
 
     HumanDao humanDao;
+    JavaMailSender emailSender;
 
     public List<Human> getAllHumans() {
         return humanDao.findAllEntities();
+    }
+
+    private void sendSimpleMessage(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
     }
 
     public void addHuman(Human human) {
         if (Objects.isNull(human.getStatus()) || human.getStatus() == APPROVED)
             human.setStatus(NOT_APPROVED);
 
+        sendSimpleMessage(human.getEmail(), "Registration", "you are registered");
         humanDao.saveEntity(human);
     }
 
