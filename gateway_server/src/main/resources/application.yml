@@ -12,8 +12,8 @@ zuul:
       path: /hello.xhtml
       serviceId: firm
       strip-prefix: false
-    firm4:
-      path: /hello.xhtml
+    firm7:
+      path: /firm/**
       serviceId: firm
       strip-prefix: false
     firm4:
@@ -50,6 +50,10 @@ zuul:
       strip-prefix: false
     tank4:
       path: /show_tank_avallable_details.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank6:
+      path: /tank/**
       serviceId: tank
       strip-prefix: false
     human1:

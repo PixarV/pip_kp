@@ -1,24 +1,24 @@
 package com.itmo.services;
 
+import com.itmo.dao.FirmDao;
 import com.itmo.dao.FirmEngineDao;
 import com.itmo.dao.FirmTowerDao;
 import com.itmo.dao.FirmWeaponDao;
 import com.pip.entities.Engine;
+import com.pip.entities.Firm;
 import com.pip.entities.Tower;
 import com.pip.entities.Weapon;
 import com.pip.enums.Approve;
-import com.pip.entities.Firm;
-import com.itmo.dao.FirmDao;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +35,7 @@ public class FirmService implements UserDetailsService {
     FirmEngineDao firmEngineDao;
     FirmTowerDao firmTowerDao;
     FirmWeaponDao firmWeaponDao;
+    JavaMailSender emailSender;
 
     public List<Firm> getAllFirms() {
         return firmDao.findAllEntities();
@@ -44,7 +45,16 @@ public class FirmService implements UserDetailsService {
         if (Objects.isNull(firm.getStatus()) || firm.getStatus() == APPROVED)
             firm.setStatus(NOT_APPROVED);
 
+        sendSimpleMessage(firm.getEmail(), "Registration", "you are registered");
         firmDao.saveEntity(firm);
+    }
+
+    public void sendSimpleMessage(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
     }
 
     public void deleteFirm(Firm firm) {
