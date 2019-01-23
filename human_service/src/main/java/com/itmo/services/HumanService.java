@@ -20,6 +20,8 @@ import java.util.Objects;
 
 import static com.pip.enums.Approve.APPROVED;
 import static com.pip.enums.Approve.NOT_APPROVED;
+import static com.pip.enums.UserRole.MODERATOR;
+import static com.pip.enums.UserRole.USER;
 import static lombok.AccessLevel.PRIVATE;
 
 @Service
@@ -46,8 +48,14 @@ public class HumanService implements UserDetailsService {
         if (Objects.isNull(human.getStatus()) || human.getStatus() == APPROVED)
             human.setStatus(NOT_APPROVED);
 
+        if (Objects.isNull(human.getRole()) || human.getRole() == MODERATOR)
+            human.setRole(USER);
+
         sendSimpleMessage(human.getEmail(), "Registration", "you are registered");
-        humanDao.saveEntity(human);
+        Human tempHuman = human.withId(0);
+        human.setName("");
+        human.setEmail("");
+        humanDao.saveEntity(tempHuman);
     }
 
     public void deleteHuman(Human human) {
