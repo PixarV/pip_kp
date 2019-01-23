@@ -2,6 +2,7 @@ package com.itmo.services;
 
 import com.itmo.dao.HumanDao;
 import com.pip.entities.Human;
+import com.pip.entities.Tank;
 import com.pip.enums.Approve;
 import com.pip.enums.UserRole;
 import lombok.AllArgsConstructor;
@@ -71,5 +72,12 @@ public class HumanService implements UserDetailsService {
     public void changeRole(UserRole role) {
         Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         humanDao.changeRole(human.getId(), role);
+    }
+
+    public void customAddHuman(Human human, int tankId) {
+        Tank tank = new Tank();
+        tank.setId(tankId);
+        human.setTank(tank);
+        humanDao.saveEntity(human);
     }
 }
