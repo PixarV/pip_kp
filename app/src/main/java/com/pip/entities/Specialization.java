@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -31,6 +32,7 @@ public class Specialization implements Serializable {
     @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "weapons")
-    Set<Tower> towers = new HashSet<>();
+    @ManyToMany(mappedBy = "specializations")
+    @JsonIgnoreProperties("specializations")
+    Set<Tank> tanks = new HashSet<>();
 }

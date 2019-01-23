@@ -1,5 +1,6 @@
 package com.pip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pip.enums.Approve;
 import com.pip.enums.UserRole;
 import lombok.*;
@@ -67,6 +68,7 @@ public class Human implements Serializable, UserDetails {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "human")
+    @JsonIgnoreProperties("human")
     Set<SpecializationHuman> specializations = new HashSet<>();
 
     public void addSpecialization(Specialization specialization) {
