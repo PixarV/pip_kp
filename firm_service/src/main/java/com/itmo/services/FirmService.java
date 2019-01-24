@@ -77,8 +77,20 @@ public class FirmService implements UserDetailsService {
         return firmDao.findEntityById(firmId);
     }
 
-    public void updateFirm(Firm firm) {
+    public void updateFirm(Firm tempFirm) {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!tempFirm.getTitle().equals("")) {
+            firm.setTitle(tempFirm.getTitle());
+        }
+        if (!tempFirm.getEmail().equals("")) {
+            firm.setEmail(tempFirm.getEmail());
+        }
+        if (!tempFirm.getPassword().equals("")) {
+            firm.setPassword(tempFirm.getPassword());
+        }
         firmDao.custom_update(firm);
+        tempFirm.setEmail("");
+        tempFirm.setTitle("");
     }
 
     public void approveFirm(int firmId) {

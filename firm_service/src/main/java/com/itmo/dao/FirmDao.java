@@ -18,11 +18,13 @@ public class FirmDao extends CommonDao<Firm> {
     public int custom_update(Firm firm) {
         Query query = entityManager.createQuery("update Firm c set c.specialization = :specialization, " +
                 "c.title = :title, " +
-                "c.email = :email " +
+                "c.email = :email, " +
+                "c.password = :password " +
                 "WHERE c.id = :id");
         return query.setParameter("specialization", firm.getSpecialization())
                 .setParameter("title", firm.getTitle())
                 .setParameter("email", firm.getEmail())
+                .setParameter("password", firm.getPassword())
                 .setParameter("id", firm.getId()).executeUpdate();
     }
 
