@@ -6,6 +6,7 @@ import com.itmo.dao.FirmTowerDao;
 import com.itmo.dao.FirmWeaponDao;
 import com.pip.entities.*;
 import com.pip.enums.Approve;
+import com.pip.enums.FirmSpecializtion;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,6 +38,11 @@ public class FirmService implements UserDetailsService {
 
     public List<Firm> getAllFirms() {
         return firmDao.findAllEntities();
+    }
+
+    public List<Firm> getFirm() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return Collections.singletonList(firmDao.findEntityById(firm.getId()));
     }
 
     public void addFirm(Firm firm) {
@@ -132,4 +139,17 @@ public class FirmService implements UserDetailsService {
         System.out.println("hey" + username);
         return firmDao.getFirmByEmail(username);
     }
+
+    public boolean isEng() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        FirmSpecializtion spec = firm.getSpecialization();
+        return spec == FirmSpecializtion.ENGINE || spec == FirmSpecializtion.BOTH;
+    }
+
+    public boolean isTank() {
+        Firm firm = (Firm) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        FirmSpecializtion spec = firm.getSpecialization();
+        return spec == FirmSpecializtion.TANK || spec == FirmSpecializtion.BOTH;
+    }
 }
+
