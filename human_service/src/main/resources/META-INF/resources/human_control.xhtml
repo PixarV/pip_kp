@@ -20,42 +20,52 @@
             #{hum.name}
         </h:column>
         <h:column>
-            <f:facet name="header">Vacation start</f:facet>
-            #{hum.vacationStart}
+            <f:facet name="header">Email</f:facet>
+            #{hum.email}
         </h:column>
         <h:column>
-            <f:facet name="header">Vacation end</f:facet>
-            #{hum.vacationEnd}
+            <f:facet name="header">Role</f:facet>
+            #{hum.role}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{hum.status}
         </h:column>
     </h:dataTable>
 
     <fieldset>
-        <legend>Add</legend>
-        <h:form id="addHumForm">
-            <h:outputText value="Name"/>
-            <h:inputText value="#{human.name}"/>
+        <legend>Change human approve</legend>
+        <h:form id="approveForm">
+            <h:outputText value="Human id"/>
+            <h:inputText binding="#{humanId}" converter="javax.faces.Integer"/>
             <br/>
-            <h:outputText value="Tank Id"/>
-            <h:inputText binding="#{tankId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:outputText value="Vacation start"/>
-            <h:inputText value="#{human.vacationStart}"/>
-            <br/>
-            <h:outputText value="Vacation end"/>
-            <h:inputText value="#{human.vacationEnd}"/>
-            <br/>
-            <h:commandButton id="addHumButton" value="Add" action="#{humanService.customAddHuman(human, tankId.value)}">
-                <f:ajax execute="@form" render="addHumForm" />
+            <h:commandButton id="approveButton" value="Change approve" action="#{humanService.changeStatus(humanId.value)}">
+                <f:ajax execute="@form" render="approveForm"/>
             </h:commandButton>
             <br/>
-            <h:message class="error" for="addHumButton"/>
+            <h:message class="error" for="approveButton"/>
+        </h:form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Change human approve</legend>
+        <h:form id="roleForm">
+            <h:outputText value="Human id"/>
+            <h:inputText binding="#{humanId}" converter="javax.faces.Integer"/>
+            <br/>
+            <h:commandButton id="roleButton" value="Change role" action="#{humanService.changeRole(humanId.value)}">
+                <f:ajax execute="@form" render="roleForm"/>
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="roleButton"/>
         </h:form>
     </fieldset>
     <a href="http://archlinux:8085/logout">Logout</a>
-
-    <a href="http://localhost:8080/show_tank_avallable_details.xhtml">Back main page</a>
-    <h:outputLink value="http://localhost:8080/show_tank_avallable_details.xhtml" rendered="#{humanService.moderator}">MODERATOR PAGE</h:outputLink>
-    <img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%" alt="Вова Путин Великий"/>
+    <br/>
+    <a href="http://archlinux:8085/human_profile.xhtml">Back to profile</a>
+    <br/>
+    <h:outputLink value="http://localhost:8080/moderator_page.xhtml" rendered="#{humanService.moderator}">MODERATOR PAGE</h:outputLink>
+    <!--<img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%" alt="Вова Путин Великий"/>-->
 
 </h:body>
 </html>

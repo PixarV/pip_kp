@@ -77,9 +77,15 @@ public class HumanService implements UserDetailsService {
 
     public void updateHuman(Human tempHuman) {
         Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!tempHuman.getName().equals("")) { human.setName(tempHuman.getName()); }
-        if(!tempHuman.getEmail().equals("")) { human.setEmail(tempHuman.getEmail()); }
-        if(!tempHuman.getPassword().equals("")) { human.setPassword(tempHuman.getPassword()); }
+        if (!tempHuman.getName().equals("")) {
+            human.setName(tempHuman.getName());
+        }
+        if (!tempHuman.getEmail().equals("")) {
+            human.setEmail(tempHuman.getEmail());
+        }
+        if (!tempHuman.getPassword().equals("")) {
+            human.setPassword(tempHuman.getPassword());
+        }
 //        if(!tempHuman.getVacationnd().equals("")) { human.setEmail(tempHuman.getEmail()); }
 //        if(!tempHuman.getVacationEnd().equals("")) { human.setEmail(tempHuman.getEmail()); }
         humanDao.custom_update(human);
@@ -88,12 +94,17 @@ public class HumanService implements UserDetailsService {
     }
 
     public void approveHuman(int humanId) {
-        changeStatus(APPROVED);
+        changeStatus(humanId, APPROVED);
     }
 
-    public void changeStatus(Approve status) {
-        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        humanDao.changeStatus(human.getId(), status);
+    public void changeStatus(int humanId, Approve status) {
+        humanDao.changeStatus(humanId, status);
+    }
+
+    public void changeStatus(int humanId) {
+        Human human = humanDao.findEntityById(humanId);
+        Approve status = (human.getStatus() == APPROVED) ? NOT_APPROVED : APPROVED;
+        humanDao.changeStatus(humanId, status);
     }
 
     @Override
@@ -105,6 +116,12 @@ public class HumanService implements UserDetailsService {
     public void changeRole(UserRole role) {
         Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         humanDao.changeRole(human.getId(), role);
+    }
+
+    public void changeRole(int humanId) {
+        Human human = humanDao.findEntityById(humanId);
+        UserRole status = (human.getRole() == USER) ? MODERATOR : USER;
+        humanDao.changeRole(human.getId(), status);
     }
 
     public boolean isModerator() {
