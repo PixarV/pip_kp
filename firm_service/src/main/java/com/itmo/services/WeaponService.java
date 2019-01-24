@@ -43,6 +43,9 @@ public class WeaponService {
                 .firm(firm)
                 .build();
         firmWeaponDao.saveEntity(firmWeapon);
+        weapon.setCallibr(0);
+        weapon.setTitle("");
+        weapon.setWeight(0);
     }
 
     public void deleteWeapon(Weapon weapon) {
@@ -61,6 +64,9 @@ public class WeaponService {
         weaponDao.custom_update(weapon);
         weaponDao.removeWeaponFromMtoMAW(weapon.getId());
         weaponDao.removeWeaponFromMtoMTW(weapon.getId());
+        weapon.setCallibr(0);
+        weapon.setTitle("");
+        weapon.setWeight(0);
     }
 
     public void removeWeaponFromMtoMAW(int weaponId) {

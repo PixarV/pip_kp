@@ -43,6 +43,11 @@ public class TowerService {
                 .firm(firm)
                 .build();
         firmTowerDao.saveEntity(firmTower);
+        tower.setArmor("");
+        tower.setTitle("");
+        tower.setTurnSpeed(0);
+        tower.setViewRadius(0);
+        tower.setWeight(0);
     }
 
     public void deleteTower(Tower tower) {
@@ -61,6 +66,11 @@ public class TowerService {
         towerDao.custom_update(tower);
         towerDao.removeTowerFromMtoMCT(tower.getId());
         towerDao.removeTowerFromMtoMTW(tower.getId());
+        tower.setArmor("");
+        tower.setTitle("");
+        tower.setTurnSpeed(0);
+        tower.setViewRadius(0);
+        tower.setWeight(0);
     }
 
     public void removeTowerFromMtoMCT(int towerId) {
