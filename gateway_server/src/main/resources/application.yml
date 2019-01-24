@@ -52,6 +52,14 @@ zuul:
       path: /show_tank_avallable_details.xhtml
       serviceId: tank
       strip-prefix: false
+    tank6:
+      path: /tanks_manipulations.xhtml
+      serviceId: tank
+      strip-prefix: false
+    tank7:
+      path: /start.xhtml
+      serviceId: tank
+      strip-prefix: false
     human1:
       path: /human_control.xhtml
       serviceId: human
