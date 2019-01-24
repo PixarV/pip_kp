@@ -50,6 +50,10 @@ public class EngineService {
                 .firm(firm)
                 .build();
         firmEngineDao.saveEntity(firmEngine);
+        engine.setPower(0);
+        engine.setWeight(0);
+        engine.setTitle("");
+
     }
 
     public void deleteEngine(Engine engine) {
@@ -67,6 +71,9 @@ public class EngineService {
     public void updateEngine(Engine engine) {
         engineDao.custom_update(engine);
         engineDao.removeEngineFromMtoM(engine.getId());
+        engine.setPower(0);
+        engine.setWeight(0);
+        engine.setTitle("");
     }
 
     public void removeModelFromMtoM(int engineId) {
