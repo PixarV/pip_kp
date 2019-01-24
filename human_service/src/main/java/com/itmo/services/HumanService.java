@@ -15,6 +15,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.time.temporal.TemporalAmount;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,8 +70,9 @@ public class HumanService implements UserDetailsService {
         return humanDao.removeHumanById(humanId);
     }
 
-    public Human getHumanById(int humanId) {
-        return humanDao.findEntityById(humanId);
+    public List<Human> getHuman() {
+        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return Collections.singletonList(humanDao.findEntityById(human.getId()));
     }
 
     public void updateHuman(Human human) {
@@ -104,5 +109,9 @@ public class HumanService implements UserDetailsService {
         tank.setId(tankId);
         human.setTank(tank);
         humanDao.saveEntity(human);
+    }
+
+    public Human getHumanById(int humanId) {
+        return humanDao.findEntityById(humanId);
     }
 }
