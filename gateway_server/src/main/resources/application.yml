@@ -68,3 +68,7 @@ zuul:
       path: /humans/**
       serviceId: human
       strip-prefix: false
+    human5:
+      path: /human_profile.xhtml
+      serviceId: human
+      strip-prefix: false
