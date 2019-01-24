@@ -18,7 +18,7 @@ zuul:
       strip-prefix: false
     firm5:
       path: /firms_control.xhtml
-      serviceId: firm
+      serviceId: human
       strip-prefix: false
     firm6:
       path: /weapon_firms_profile.xhtml
