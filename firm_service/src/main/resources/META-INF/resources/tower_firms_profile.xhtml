@@ -8,7 +8,13 @@
 </h:head>
 
 <h:body>
-    <h:outputText value="Двигатель"/>
+    <a href="http://archlinux:8083/logout">Logout</a>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/firm_profile.xhtml"
+                  rendered="#{firmService.eng}">Back to profile</h:outputLink>
+    <br/>
+
+    <h:outputText value="Tower"/>
     <h:dataTable value="#{firmService.getAllTowers()}" var="tow"
                  styleClass="article-table"
                  rules="all" id="result-table">
@@ -45,7 +51,7 @@
             <h:inputText value="#{tower.title}"/>
             <br/>
             <h:outputText value="Armor"/>
-            <h:inputHidden value="#{tower.armor}"/>
+            <h:inputText value="#{tower.armor}"/>
             <br/>
             <h:outputText value="Turn speed"/>
             <h:inputText value="#{tower.turnSpeed}"/>

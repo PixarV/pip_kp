@@ -8,7 +8,13 @@
 </h:head>
 
 <h:body>
-    <h:outputText value="Двигатель"/>
+    <a href="http://archlinux:8083/logout">Logout</a>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/firm_profile.xhtml"
+                  rendered="#{firmService.eng}">Back to profile</h:outputLink>
+    <br/>
+
+    <h:outputText value="Engine"/>
     <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
                  styleClass="article-table"
                  rules="all" id="result-table">

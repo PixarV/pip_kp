@@ -8,6 +8,12 @@
 </h:head>
 
 <h:body>
+    <a href="http://archlinux:8083/logout">Logout</a>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/firm_profile.xhtml"
+                  rendered="#{firmService.eng}">Back to profile</h:outputLink>
+    <br/>
+
     <h:outputText value="Башни"/>
     <h:dataTable value="#{firmService.getAllTowers()}" var="tow"
                  styleClass="article-table"
@@ -83,7 +89,7 @@
                 <h:inputText value="#{tower.weight}"/>
                 <br/>
                 <h:commandButton id="addTowButton" value="Add" action="#{towerService.addTower(tower)}">
-                    <f:ajax execute="@form" render="addTowForm" />
+                    <f:ajax execute="@form" render="addTowForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="addTowButton"/>
@@ -112,7 +118,7 @@
                 <h:inputText value="#{tower.weight}"/>
                 <br/>
                 <h:commandButton id="updateTowButton" value="Update" action="#{towerService.updateTower(tower)}">
-                    <f:ajax execute="@form" render="updateTowForm" />
+                    <f:ajax execute="@form" render="updateTowForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="updateTowButton"/>
@@ -126,8 +132,9 @@
                 <h:outputText value="Id"/>
                 <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
                 <br/>
-                <h:commandButton id="shortTowDelButton" value="Delete" action="#{towerService.deleteTowerById(delId.value)}">
-                    <f:ajax execute="@form" render="shortTowDelForm" />
+                <h:commandButton id="shortTowDelButton" value="Delete"
+                                 action="#{towerService.deleteTowerById(delId.value)}">
+                    <f:ajax execute="@form" render="shortTowDelForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="shortTowDelButton"/>
@@ -152,7 +159,7 @@
                 <h:inputText value="#{weapon.weight}"/>
                 <br/>
                 <h:commandButton id="addWeapButton" value="Add" action="#{weaponService.addWeapon(weapon)}">
-                    <f:ajax execute="@form" render="addTowForm" />
+                    <f:ajax execute="@form" render="addTowForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="addWeapButton"/>
@@ -175,7 +182,7 @@
                 <h:inputText value="#{weapon.weight}"/>
                 <br/>
                 <h:commandButton id="updateWeapButton" value="Update" action="#{weaponService.updateWeapon(weapon)}">
-                    <f:ajax execute="@form" render="updateWeapForm" />
+                    <f:ajax execute="@form" render="updateWeapForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="updateWeapButton"/>
@@ -189,8 +196,9 @@
                 <h:outputText value="Id"/>
                 <h:inputText binding="#{delWId}" converter="javax.faces.Integer"/>
                 <br/>
-                <h:commandButton id="shortWeapDelButton" value="Delete" action="#{weaponService.deleteWeaponById(delWId.value)}">
-                    <f:ajax execute="@form" render="shortWeapDelForm" />
+                <h:commandButton id="shortWeapDelButton" value="Delete"
+                                 action="#{weaponService.deleteWeaponById(delWId.value)}">
+                    <f:ajax execute="@form" render="shortWeapDelForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="shortWeapDelButton"/>
