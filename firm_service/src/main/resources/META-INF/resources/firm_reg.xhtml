@@ -9,24 +9,27 @@
 
 <h:body>
     <fieldset>
-        <legend>Registration</legend>
+        <legend>Registration frim</legend>
         <h:form id="addHumForm">
-            <h:outputText value="Name"/>
-            <h:inputText value="#{human.name}"/>
+            <h:outputText value="Title"/>
+            <h:inputText value="#{firm.title}"/>
+            <br/>
+            <h:outputText value="Specialization"/>
+            <h:inputText value="#{firm.specialization}"/>
             <br/>
             <h:outputText value="Email"/>
-            <h:inputText value="#{human.email}"/>
+            <h:inputText value="#{firm.email}"/>
             <br/>
             <h:outputText value="Password"/>
-            <h:inputSecret value="#{human.password}"/>
+            <h:inputSecret value="#{firm.password}"/>
             <br/>
-            <h:commandButton id="addHumButton" value="Registrate" action="#{humanService.addHuman(human)}">
+            <h:commandButton id="addHumButton" value="Registrate" action="#{firmService.addFirm(firm)}">
                 <f:ajax execute="@form" render="addHumForm"/>
             </h:commandButton>
             <br/>
             <h:message class="error" for="addHumButton"/>
         </h:form>
     </fieldset>
-    <a href="http://localhost:8085/hello_human.xhtml">Authorisation</a>
+    <a href="http://archlinux:8083/hello.xhtml">Authorisation firm</a>
 </h:body>
 </html>

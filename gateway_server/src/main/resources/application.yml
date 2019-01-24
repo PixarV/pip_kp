@@ -28,6 +28,10 @@ zuul:
       path: /universal_firms_profile.xhtml
       serviceId: firm
       strip-prefix: false
+    firm8:
+      path: /firm_reg.xhtml
+      serviceId: firm
+      strip-prefix: false
     tank1:
       path: /amun.xhtml
       serviceId: tank
