@@ -36,24 +36,24 @@
         <legend>Update</legend>
         <h:form id="addHumForm">
             <h:outputText value="Name"/>
-            <h:inputText value="#{human.id}"/>
-            <br/>
-            <h:outputText value="Name"/>
             <h:inputText value="#{human.name}"/>
             <br/>
             <h:outputText value="Email"/>
             <h:inputText value="#{human.email}"/>
             <br/>
+            <h:outputText value="Password"/>
+            <h:inputSecret value="#{human.password}"/>
+            <br/>
             <!--<h:outputText value="Tank Id"/>-->
             <!--<h:inputText binding="#{tankId}" converter="javax.faces.Integer"/>-->
             <!--<br/>-->
-            <h:outputText value="Vacation start"/>
-            <h:inputText value="#{human.vacationStart}"/>
-            <br/>
-            <h:outputText value="Vacation end"/>
-            <h:inputText value="#{human.vacationEnd}"/>
-            <br/>
-            <h:commandButton id="addHumButton" value="Add" action="#{humanService.updateHuman(human)}">
+            <!--<h:outputText value="Vacation start"/>-->
+            <!--<h:inputText value="#{human.vacationStart}"/>-->
+            <!--<br/>-->
+            <!--<h:outputText value="Vacation end"/>-->
+            <!--<h:inputText value="#{human.vacationEnd}"/>-->
+            <!--<br/>-->
+            <h:commandButton id="addHumButton" value="Update" action="#{humanService.updateHuman(human)}">
                 <f:ajax execute="@form" render="addHumForm"/>
             </h:commandButton>
             <br/>
@@ -62,9 +62,11 @@
     </fieldset>
     <a href="http://archlinux:8085/logout">Logout</a>
     <br/>
-    <a href="http://localhost:8080/moderator_page.xhtml">Moderator main page</a>
+    <h:outputLink value="http://localhost:8080/moderator_page.xhtml"
+                  rendered="#{humanService.moderator}">MODERATOR PAGE</h:outputLink>
     <br/>
-    <a href="http://localhost:8085/human_control.xhtml">Human Control</a>
+    <h:outputLink value="http://archlinux:8085/human_control.xhtml"
+                  rendered="#{humanService.moderator}">Human page</h:outputLink>
 
     <img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%"
          alt="Вова Путин Великий"/>

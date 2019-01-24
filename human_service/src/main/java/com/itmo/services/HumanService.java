@@ -75,8 +75,16 @@ public class HumanService implements UserDetailsService {
         return Collections.singletonList(humanDao.findEntityById(human.getId()));
     }
 
-    public void updateHuman(Human human) {
+    public void updateHuman(Human tempHuman) {
+        Human human = (Human) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!tempHuman.getName().equals("")) { human.setName(tempHuman.getName()); }
+        if(!tempHuman.getEmail().equals("")) { human.setEmail(tempHuman.getEmail()); }
+        if(!tempHuman.getPassword().equals("")) { human.setPassword(tempHuman.getPassword()); }
+//        if(!tempHuman.getVacationnd().equals("")) { human.setEmail(tempHuman.getEmail()); }
+//        if(!tempHuman.getVacationEnd().equals("")) { human.setEmail(tempHuman.getEmail()); }
         humanDao.custom_update(human);
+        tempHuman.setEmail("");
+        tempHuman.setName("");
     }
 
     public void approveHuman(int humanId) {
