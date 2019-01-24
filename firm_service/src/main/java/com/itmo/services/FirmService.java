@@ -4,10 +4,7 @@ import com.itmo.dao.FirmDao;
 import com.itmo.dao.FirmEngineDao;
 import com.itmo.dao.FirmTowerDao;
 import com.itmo.dao.FirmWeaponDao;
-import com.pip.entities.Engine;
-import com.pip.entities.Firm;
-import com.pip.entities.Tower;
-import com.pip.entities.Weapon;
+import com.pip.entities.*;
 import com.pip.enums.Approve;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -46,7 +43,11 @@ public class FirmService implements UserDetailsService {
             firm.setStatus(NOT_APPROVED);
 
         sendSimpleMessage(firm.getEmail(), "Registration", "you are registered");
-        firmDao.saveEntity(firm);
+        Firm tempFirm = firm.withId(0);
+        firm.setTitle("");
+        firm.setEmail("");
+        firm.setSpecialization(null);
+        firmDao.saveEntity(tempFirm);
     }
 
     private void sendSimpleMessage(String to, String subject, String text) {
