@@ -82,6 +82,12 @@ public class FirmService implements UserDetailsService {
         firmDao.changeStatus(firmId, status);
     }
 
+    public void changeStatus(int firmId) {
+        Firm firm = firmDao.findEntityById(firmId);
+        Approve status = (firm.getStatus() == APPROVED) ? NOT_APPROVED : APPROVED;
+        firmDao.changeStatus(firmId, status);
+    }
+
     public void removeFirmEngineFromMtoM(int firmId, int engineId) {
         firmEngineDao.removeFirmEngine(firmId, engineId);
     }
