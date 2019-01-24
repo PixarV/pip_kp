@@ -37,9 +37,9 @@
         <legend>Change human approve</legend>
         <h:form id="approveForm">
             <h:outputText value="Human id"/>
-            <h:inputText binding="#{humanId}" converter="javax.faces.Integer"/>
+            <h:inputText binding="#{humnId}" converter="javax.faces.Integer"/>
             <br/>
-            <h:commandButton id="approveButton" value="Change approve" action="#{humanService.changeStatus(humanId.value)}">
+            <h:commandButton id="approveButton" value="Change approve" action="#{humanService.changeStatus(humnId.value)}">
                 <f:ajax execute="@form" render="approveForm"/>
             </h:commandButton>
             <br/>
@@ -48,7 +48,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>Change human approve</legend>
+        <legend>Change human role</legend>
         <h:form id="roleForm">
             <h:outputText value="Human id"/>
             <h:inputText binding="#{humanId}" converter="javax.faces.Integer"/>
