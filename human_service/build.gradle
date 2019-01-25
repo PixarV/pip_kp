@@ -10,4 +10,9 @@ dependencies {
     compile project(':app')
     compile project(':firm_service')
     compile "org.joinfaces:jsf-spring-boot-starter:4.0.1"
+    compile "org.joinfaces:bootsfaces-spring-boot-starter:4.0.2"
+//    compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.18'
+//    compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.18'
+//    compile group: 'org.primefaces', name: 'primefaces', version: '6.2'
+
 }
