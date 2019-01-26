@@ -5,67 +5,86 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <h:dataTable value="#{humanService.getAllHumans()}" var="hum"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{hum.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            #{hum.name}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Email</f:facet>
-            #{hum.email}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Role</f:facet>
-            #{hum.role}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Status</f:facet>
-            #{hum.status}
-        </h:column>
-    </h:dataTable>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <h:outputLink value="/tank_service/moderator_page.xhtml" rendered="#{humanService.moderator}"
+                      styleClass="button header_link">Moderator</h:outputLink>
+        <a href="/human_service/human_profile.xhtml" class="button header_link">Profile</a>
+    </header>
 
-    <fieldset>
-        <legend>Change human approve</legend>
-        <h:form id="approveForm">
-            <h:outputText value="Human id"/>
-            <h:inputText binding="#{humnId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="approveButton" value="Change approve" action="#{humanService.changeStatus(humnId.value)}">
-                <f:ajax execute="@form" render="approveForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="approveButton"/>
-        </h:form>
-    </fieldset>
+    <div class="center">
+        <fieldset>
+            <legend>Users list</legend>
+            <div class="center">
+                <h:dataTable value="#{humanService.getAllHumans()}" var="hum"
+                             styleClass="article-table common_table"
+                             rules="all" id="result-table" style="width: 1100px">
+                    <h:column>
+                        <f:facet name="header">#</f:facet>
+                        #{hum.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{hum.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{hum.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Role</f:facet>
+                        #{hum.role}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                        #{hum.status}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </fieldset>
+    </div>
 
-    <fieldset>
-        <legend>Change human role</legend>
-        <h:form id="roleForm">
-            <h:outputText value="Human id"/>
-            <h:inputText binding="#{humanId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="roleButton" value="Change role" action="#{humanService.changeRole(humanId.value)}">
-                <f:ajax execute="@form" render="roleForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="roleButton"/>
-        </h:form>
-    </fieldset>
-    <a href="http://archlinux:8085/logout">Logout</a>
-    <br/>
-    <a href="http://archlinux:8085/human_profile.xhtml">Back to profile</a>
-    <br/>
-    <h:outputLink value="http://localhost:8080/moderator_page.xhtml" rendered="#{humanService.moderator}">MODERATOR PAGE</h:outputLink>
-    <!--<img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%" alt="Вова Путин Великий"/>-->
+    <div class="center">
+        <fieldset>
+            <legend>Change human approve</legend>
+            <h:form id="approveForm" styleClass="reg_form black_bg" style="height: 150px">
+                <h:outputLabel value="Human id: " for="approve_id"/>
+                <h:inputText binding="#{humnId}" id="approve_id" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/human_service/human_control.xhtml" id="update_approve" class="common_link">Update info</a>
+                <h:commandButton id="approveButton" styleClass="common_button" value="Change approve"
+                                 action="#{humanService.changeStatus(humnId.value)}">
+                    <f:ajax execute="@form" render="approveForm"/>
+                </h:commandButton>
+                <h:message class="error" for="approveButton"/>
+            </h:form>
+        </fieldset>
 
+        <fieldset>
+            <legend>Change human role</legend>
+            <h:form id="roleForm" styleClass="reg_form black_bg" style="height: 150px">
+                <h:outputLabel value="Human id" for="role_id"/>
+                <h:inputText binding="#{humanId}" id="role_id" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/human_service/human_control.xhtml" id="update_role" class="common_link">Update info</a>
+                <h:commandButton id="roleButton" value="Change role" styleClass="common_button" action="#{humanService.changeRole(humanId.value)}">
+                    <f:ajax execute="@form" render="roleForm"/>
+                </h:commandButton>
+                <h:message class="error" for="roleButton"/>
+            </h:form>
+        </fieldset>
+    </div>
 </h:body>
 </html>

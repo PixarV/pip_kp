@@ -31,7 +31,7 @@
                              styleClass="article-table common_table"
                              rules="all" id="result-table">
                     <h:column>
-                        <f:facet name="header">Id</f:facet>
+                        <f:facet name="header">#</f:facet>
                         #{hum.id}
                     </h:column>
                     <h:column>
@@ -70,7 +70,7 @@
                     <br/>
                     <br/>
                     <h:outputLabel value="Password: " for="password"/>
-                    <h:inputText id="password" value="#{human.password}"/>
+                    <h:inputSecret id="password" value="#{human.password}"/>
                     <br/>
                     <br/>
                     <br/>

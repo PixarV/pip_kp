@@ -43,10 +43,10 @@ legend {
 }
 
 .common_button {
-    background-color: #555555;; /* Green */
+    background-color: #555555 !important; /* Green */
     text-transform: uppercase;
     border: none;
-    color: black;
+    color: white;
     padding: 10px 32px;
     text-align: center;
     text-decoration: none;
@@ -55,7 +55,7 @@ legend {
 }
 
 .common_button:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50 !important; /* Green */
     color: white;
 }
 
