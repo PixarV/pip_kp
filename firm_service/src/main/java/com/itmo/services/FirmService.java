@@ -51,10 +51,10 @@ public class FirmService implements UserDetailsService {
 
         sendSimpleMessage(firm.getEmail(), "Registration", "you are registered");
         Firm tempFirm = firm.withId(0);
+        firmDao.saveEntity(tempFirm);
         firm.setTitle("");
         firm.setEmail("");
         firm.setSpecialization(null);
-        firmDao.saveEntity(tempFirm);
     }
 
     private void sendSimpleMessage(String to, String subject, String text) {

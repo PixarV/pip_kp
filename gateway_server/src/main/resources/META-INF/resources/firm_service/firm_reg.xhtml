@@ -5,31 +5,56 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
-    <fieldset>
-        <legend>Registration frim</legend>
-        <h:form id="addHumForm">
-            <h:outputText value="Title"/>
-            <h:inputText value="#{firm.title}"/>
-            <br/>
-            <h:outputText value="Specialization"/>
-            <h:inputText value="#{firm.specialization}"/>
-            <br/>
-            <h:outputText value="Email"/>
-            <h:inputText value="#{firm.email}"/>
-            <br/>
-            <h:outputText value="Password"/>
-            <h:inputSecret value="#{firm.password}"/>
-            <br/>
-            <h:commandButton id="addHumButton" value="Registrate" action="#{firmService.addFirm(firm)}">
-                <f:ajax execute="@form" render="addHumForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addHumButton"/>
-        </h:form>
-    </fieldset>
-    <a href="http://archlinux:8083/hello.xhtml">Authorisation firm</a>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/firm_service/hello_firm.xhtml" class="button header_link">Auth</a>
+    </header>
+
+    <div class="center">
+        <fieldset>
+            <legend>Registration frim</legend>
+            <h:form id="addHumForm" styleClass="reg_form black_bg" style="height: 380px;">
+                <h:outputLabel value="Title: " for="text1"/>
+                <h:inputText value="#{firm.title}" id="text1"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Specialization: " for="text2"/>
+                <h:selectOneMenu value="#{firm.specialization}" id="text2">
+                    <f:selectItem itemValue="ENGINE" itemLabel="ENGINE"/>
+                    <f:selectItem itemValue="TANK" itemLabel="TANK"/>
+                    <f:selectItem itemValue="BOTH" itemLabel="BOTH"/>
+                </h:selectOneMenu>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Email: " for="text3"/>
+                <h:inputText value="#{firm.email}" id="text3"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Password: " for="text4"/>
+                <h:inputSecret value="#{firm.password}" id="text4"/>
+                <br/>
+                <br/>
+                <br/>
+
+                <a href="/firm_service/hello_firm.xhtml" id="go_to_auth" class="common_link">go to auth</a>
+                <h:commandButton id="addHumButton" styleClass="common_button" value="Registrate"
+                                 action="#{firmService.addFirm(firm)}">
+                    <f:ajax execute="@form" render="addHumForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addHumButton"/>
+            </h:form>
+        </fieldset>
+    </div>
 </h:body>
 </html>

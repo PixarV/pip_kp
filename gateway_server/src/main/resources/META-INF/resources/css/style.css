@@ -25,6 +25,9 @@ body {
     float: right;
 }
 
+.reg_form select {
+    float: right;
+}
 .reg_form label {
     float: left;
     padding-bottom: 20px;

@@ -5,21 +5,36 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
-    <h:form>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/firm_service/firm_reg.xhtml" class="button header_link">Reg</a>
+    </header>
 
-        <h2>КРАСИВАЯ СТРАНИЦА!!!!!!</h2>
-        <h2>Please login your firm</h2>
+    <div class="center">
+        <fieldset>
+            <legend>Authorisation</legend>
+            <h:form styleClass="reg_form black_bg" style="height: 230px">
+                <h:outputLabel value="Email: " for="username"/>
+                <h:inputText id="username"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Password: " for="password"/>
+                <h:inputSecret id="password"/>
+                <br/>
+                <br/>
+                <br/>
 
-        <h:inputText id="username" placeholder="User name"/>
-        <br/>
-        <h:inputSecret id="password" placeholder="Password"/>
-
-        <h:commandButton value="Login" ajax="false"/>
-        <a href="http://localhost:8080/firm_reg.xhtml">Registration</a>
-
-    </h:form>
+                <h:commandButton value="Login" styleClass="common_button" ajax="false"/>
+            </h:form>
+        </fieldset>
+    </div>
 </h:body>
 </html>
