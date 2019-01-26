@@ -1,0 +1,240 @@
+body {
+	background-image: url(/images/IMG_2537.jpg);
+	font-family: 'Open Sans', sans-serif;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+}
+
+/*Таблицв*/
+
+.container {
+	min-width: 1100px;	
+}
+
+.col-md-9 {
+	/*border-right: 1px solid blue;*/
+	padding-right: 40px;
+}
+
+/*Якори*/
+
+.anchor-header {
+	text-align: center;
+	/*line-height: 2; межстрочный интервал*/
+
+}
+
+.anchor-item {
+	/*padding-top: 10px;*/
+	line-height: 2;	
+}
+
+/*Выпадающее оглавление*/
+
+.nonactive {
+	display: none;
+	font-size: 16px;
+	line-height: 2; /*межстрочный интервал*/
+}
+
+/*Статья*/
+
+.article-header {
+	padding-bottom: 3px;
+	text-align: center;
+/*	font-size: 22px;*/
+	/*font-weight: bold;*/
+}
+
+.article-text {
+	font-size: 16px;
+	line-height: 2; /*межстрочный интервал*/
+	text-align: justify; /*выравнивание по ширине*/
+}
+
+p{
+    text-indent: 2em;  /*em - высота шрифта текущего элемента - красная строка*/
+}
+
+
+.article-definition {
+	font-style: italic;
+}
+
+
+.article-formula {
+	text-align: center;
+}
+
+/*Номер формулы*/
+.number {
+	float: right;
+	/*font-size: 16px;*/
+}
+
+.example, .proof {
+	font-size: 15px;
+}
+
+.evaluation-text {
+	font-size: 18px;
+	/*color: #337ab7;*/
+}
+
+
+h4 {
+	line-height: 1.5
+}
+
+#id_admin { /*админка для статей*/
+	display: none;
+}
+
+/*Комментарии*/
+
+.comment-header {
+	font-size: 20px;
+	margin: 10px;
+}
+
+hr {
+	margin-top: 0px;
+	border-top: 1px solid blue;
+}
+
+#open_comments, #close_comments { 
+	text-align: center;
+	font-size: 18px;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.add-comment-form, .comments {
+	margin: 10px;
+	text-align: center;
+}
+
+.example-text {
+	display: none;
+	text-align: center;
+}
+
+.proof-text {
+	display: none;
+	/*text-align: center;*/
+}
+
+
+
+
+/*.comment-date, .comment-time {
+	text-align: center;
+	margin-bottom: 5px;
+}*/
+
+
+.comment-text {
+	margin: 10px;
+	display: inline-block;	
+	width: 605px;
+	font-size: 16px;
+}
+
+.comment-alert, .evaluation-alert, .admin-alert {
+	text-align: center;
+	border: 1px solid blue;
+	border-radius: 4px;
+	color: #337ab7;
+	font-size: 18px;
+	margin-top: 10px;
+	display: none;
+}
+
+.admin-alert {
+	border: none;
+}
+
+.no-comments {
+	font-size: 16px;
+	margin: 10px;
+}
+
+.comment-added, .comment-empty, .no-comments { /*Комментарий отправлен!*/
+	display: none;
+}
+
+
+.output-comment { /*Текст выводимого комментария*/
+	display: inline; 
+	padding: 0; 
+	font-size: 16px;
+	/*width: 605px;*/
+
+}
+
+.comments, #close_comments {
+	display: none;
+}
+
+.comment {
+	margin: 10px;
+}
+
+.delete-img {
+	width: 15px; 
+	height: 15px; 
+	/*float: right;*/
+}
+
+.comment-info {
+	/*width: 150px;*/
+	text-align: left;
+	padding-left: 89px;
+	font-size: 18px;
+	color: #337ab7;
+
+
+}
+
+.user-type { /*[user]*/
+	margin-right: 25px; 
+	margin-left: 5px; 
+	font-size: 12px;
+}
+
+.no-article-alert {
+	font-size: 18px;
+	color: #337ab7;
+}
+
+#id_no_article {
+	display: none;	
+}
+
+#id_article, #id_comments {
+	display: none;
+}
+
+
+/*input {*/
+	/*padding-top: 10px;*/
+/*}*/
+
+.language {
+	width: 20px;
+	height: 20px;
+	border-radius: 0px;
+	border: none;
+	margin: 0px;
+}
+
+.navbar-default{
+    border:none;
+}
+
+
+
+
+

@@ -1,0 +1,99 @@
+html {
+  color: red;
+}
+
+/*body {*/
+	/*!*background: white;*!*/
+	/*font-family: 'Open Sans', sans-serif;*/
+	/*text-rendering: optimizeLegibility !important;*/
+	/*-webkit-font-smoothing: antialiased !important;*/
+	/*width: 100% !important;*/
+	/*height: 100% !important;*/
+    /*background-image: url(/images/IMG_2537.jpg);*/
+
+/*}*/
+/*.navbar {*/
+	/*font-size: 16px; */
+	/*border-radius: 0px;*/
+/*}*/
+
+/*.logo {*/
+	/*height: 50px;*/
+	/*width: 200px;*/
+	/*padding: 5px 0px;*/
+/*}*/
+
+/*!*Авторизация*!*/
+
+/*.autorize-href {*/
+	/*!*text-align: center;*!*/
+	/*!*padding: 0 6px;*!*/
+/*}*/
+
+/*.admin-text {*/
+	/*font-size: 16px;*/
+	/*color: #777;*/
+	/*padding: 15px;*/
+	/*display: none;*/
+/*}*/
+
+/*.search-result {*/
+	/*font-size: 16px;*/
+/*}*/
+
+/*.href-result {*/
+	/*text-decoration: none;*/
+	/*margin-top: 15px;*/
+	/*text-align: left;*/
+/*}*/
+
+
+/*hr {*/
+	/*margin-top: 0px;*/
+	/*border-top: 1px solid blue;*/
+/*}*/
+/*!*Язык *!*/
+
+/*.language {*/
+	/*width: 20px; */
+	/*height: 20px; */
+	/*border-radius: 0px;*/
+	/*border: none;*/
+	/*margin: 0px;*/
+/*}*/
+
+/*.language-name {*/
+	/*padding-left: 10px;*/
+/*}*/
+
+/*!*Ошибка авторизации, активации, регистрации*!*/
+
+/*.authorization-alert, .activation-alert, .reg-alert, .profile-alert, .new-nickname-alert, .new-email-alert, .new-password-alert {*/
+	/*display: none;*/
+	/*text-align: center;*/
+	/*border: 1px solid blue;*/
+	/*border-radius: 4px;*/
+	/*color: #337ab7;*/
+	/*margin-bottom: 5px;*/
+/*}*/
+
+/*!*Профиль - авторизация*!*/
+
+/*!* {*/
+	/*display: none;*/
+/*}*/
+/**!*/
+/*#id_profile, #id_authorization, #id_empty_search, #id_search_results { */
+	/*display: none;*/
+/*}*/
+
+/*footer {*/
+	/*height: 50px;*/
+	/*background-color: #f8f8f8;*/
+	/*border: 1px solid #e7e7e7;*/
+	/*margin-top: 20px;*/
+/*}*/
+
+/*.navbar-default{*/
+    /*border:none;*/
+/*}*/

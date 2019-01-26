@@ -5,10 +5,19 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-    <h:outputStylesheet library="css" name="mini-default.css"/>
+    <!--<h:outputStylesheet library="css" name="mini-default.css"/>-->
+    <h:outputStylesheet library="css" name="header.css"/>
+    <!--<h:outputStylesheet library="css" name="style.css"/>-->
+    <!--<h:outputStylesheet library="css" name="article.css"/>-->
 </h:head>
 
 <h:body>
+    <header>
+        <a href="#" class="logo">Logo</a>
+        <a href="#" class="button">Home</a>
+        <button>Download</button>
+    </header>
+
     <fieldset>
         <legend>Registration</legend>
         <h:form id="addHumForm">

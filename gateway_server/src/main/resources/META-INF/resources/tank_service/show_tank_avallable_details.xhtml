@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="mystyle.css"/>
+</h:head>
+
+<h:body>
+    <fieldset style="background-image: url(https://cs8.pikabu.ru/post_img/big/2017/02/01/8/1485951954231696714.jpg);
+                     background-repeat: no-repeat;
+                     height: 450px;
+                     "/>
+
+    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
+    <br/>
+    <fieldset>
+        <h:outputText value="Chassis" />
+        <h:dataTable value="#{chassisService.findAllChassiss()}" var="chass"
+                     styleClass="article-table"
+                     rules="all" id="result-table-chassis">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{chass.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id_model <span class="sort-symbol">⮃</span></f:facet>
+                #{chass.model.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
+                #{chass.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
+                #{chass.turnSpeed}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{chass.weight}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
+    <fieldset>
+        <h:outputText value="Models" />
+        <h:dataTable value="#{modelService.findAllModels()}" var="modl"
+                     styleClass="article-table"
+                     rules="all" id="result-table-models">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.type}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.maxSpeedForward}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.maxSpeedBackward}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
+                #{modl.armor}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
+    <fieldset>
+        <h:outputText value="Amun" />
+        <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
+                     styleClass="article-table"
+                     rules="all" id="result-table">
+            <h:column>
+                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.type}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Callibr <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.callibr}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Breakage <span class="sort-symbol">⮃</span></f:facet>
+                #{amun.breakage}
+            </h:column>
+        </h:dataTable>
+    </fieldset>
+</h:body>
+</html>

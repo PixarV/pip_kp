@@ -2,7 +2,10 @@ dependencies {
     compile cloud["starterConfig"]
     compile cloud["eurekaClient"]
     compile cloud["zuul"]
+    compile "org.joinfaces:jsf-spring-boot-starter:4.0.1"
 
-//    compile boot["starterSecurity"]
-//    compile project(":firm_service")
+    compile boot["starterSecurity"]
+    compile project(":human_service")
+    compile project(":tank_service")
+    compile project(":firm_service")
 }

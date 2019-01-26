@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:dataTable value="#{firmService.getFirm()}" var="fir"
+                 styleClass="article-table"
+                 rules="all" id="result-table">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{fir.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{fir.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{fir.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Specialization</f:facet>
+            #{fir.specialization}
+        </h:column>
+    </h:dataTable>
+
+    <fieldset>
+        <legend>Update</legend>
+        <h:form id="addHumForm">
+            <h:outputText value="Title"/>
+            <h:inputText value="#{firm.title}"/>
+            <br/>
+            <h:outputText value="Email"/>
+            <h:inputText value="#{firm.email}"/>
+            <br/>
+            <h:outputText value="Password"/>
+            <h:inputSecret value="#{firm.password}"/>
+            <br/>
+            <h:commandButton id="addHumButton" value="Update" action="#{firmService.updateFirm(firm)}">
+                <f:ajax execute="@form" render="addHumForm"/>
+            </h:commandButton>
+            <br/>
+            <h:message class="error" for="addHumButton"/>
+        </h:form>
+    </fieldset>
+    <a href="http://archlinux:8083/logout">Logout</a>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/engine_firms_profile.xhtml"
+                  rendered="#{firmService.eng}">Add Engines</h:outputLink>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/tower_firms_profile.xhtml"
+                  rendered="#{firmService.tank}">Add Towers</h:outputLink>
+    <br/>
+    <h:outputLink value="http://archlinux:8083/weapon_firms_profile.xhtml"
+                  rendered="#{firmService.tank}">Add Weapons</h:outputLink>
+
+    <img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%"
+         alt="Вова Путин Великий"/>
+
+</h:body>
+</html>
