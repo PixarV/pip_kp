@@ -59,7 +59,6 @@ legend {
     color: white;
 }
 
-
 .common_link {
     text-transform: uppercase;
     float: left;
@@ -67,4 +66,19 @@ legend {
     font-size: 18px;
     padding-left: 15px;
     padding-top: 10px;
+}
+
+.common_table {
+    width: 900px;
+}
+
+tr, th, td {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: lightgrey !important;
+    text-align: center !important;
+}
+
+th {
+    text-transform: uppercase;
+    font-weight: bold;
 }

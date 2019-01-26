@@ -5,74 +5,94 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <h:dataTable value="#{humanService.getHuman()}" var="hum"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{hum.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            #{hum.name}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Email</f:facet>
-            #{hum.email}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Role</f:facet>
-            #{hum.role}
-        </h:column>        <!--<h:column>-->
-        <!--<f:facet name="header">Vacation end</f:facet>-->
-        <!--#{hum.vacationEnd}-->
-        <!--</h:column>-->
-    </h:dataTable>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <h:outputLink value="/tank_service/moderator_page.xhtml" rendered="#{humanService.moderator}"
+                      styleClass="button header_link">Moderator</h:outputLink>
+        <h:outputLink value="/human_service/human_control.xhtml" rendered="#{humanService.moderator}"
+                      styleClass="button header_link">Human</h:outputLink>
+        <h:outputLink value="/human_service/firms_control.xhtml" rendered="#{humanService.moderator}"
+                      styleClass="button header_link">Firm</h:outputLink>
+    </header>
 
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="addHumForm">
-            <h:outputText value="Name"/>
-            <h:inputText value="#{human.name}"/>
-            <br/>
-            <h:outputText value="Email"/>
-            <h:inputText value="#{human.email}"/>
-            <br/>
-            <h:outputText value="Password"/>
-            <h:inputSecret value="#{human.password}"/>
-            <br/>
-            <!--<h:outputText value="Tank Id"/>-->
-            <!--<h:inputText binding="#{tankId}" converter="javax.faces.Integer"/>-->
-            <!--<br/>-->
-            <!--<h:outputText value="Vacation start"/>-->
-            <!--<h:inputText value="#{human.vacationStart}"/>-->
-            <!--<br/>-->
-            <!--<h:outputText value="Vacation end"/>-->
-            <!--<h:inputText value="#{human.vacationEnd}"/>-->
-            <!--<br/>-->
-            <h:commandButton id="addHumButton" value="Update" action="#{humanService.updateHuman(human)}">
-                <f:ajax execute="@form" render="addHumForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addHumButton"/>
-        </h:form>
-    </fieldset>
-    <a href="http://archlinux:8085/logout">Logout</a>
-    <br/>
-    <h:outputLink value="http://localhost:8080/moderator_page.xhtml"
-                  rendered="#{humanService.moderator}">MODERATOR PAGE</h:outputLink>
-    <br/>
-    <h:outputLink value="http://archlinux:8085/human_control.xhtml"
-                  rendered="#{humanService.moderator}">Human control page</h:outputLink>
-    <br/>
-    <h:outputLink value="http://archlinux:8085/firms_control.xhtml"
-                  rendered="#{humanService.moderator}">Firm control page</h:outputLink>
+    <div class="center">
+        <fieldset>
+            <legend>Current profile info</legend>
+            <div class="center">
+                <h:dataTable value="#{humanService.getHuman()}" var="hum"
+                             styleClass="article-table common_table"
+                             rules="all" id="result-table">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        #{hum.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{hum.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{hum.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Role</f:facet>
+                        #{hum.role}
+                    </h:column>        <!--<h:column>-->
+                    <!--<f:facet name="header">Vacation end</f:facet>-->
+                    <!--#{hum.vacationEnd}-->
+                    <!--</h:column>-->
+                </h:dataTable>
+            </div>
+        </fieldset>
+    </div>
 
-    <!--<img src="https://regnum.ru/uploads/pictures/news/2016/08/20/regnum_picture_14716804297436014_big.jpg" width="100%"-->
-         <!--alt="Вова Путин Великий"/>-->
-
+    <div class="center">
+        <fieldset>
+            <legend>Update profile</legend>
+            <div class="center">
+                <h:form id="addHumForm" styleClass="reg_form black_bg">
+                    <h:outputLabel value="Name: " for="name"/>
+                    <h:inputText id="name" value="#{human.name}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Email: " for="email"/>
+                    <h:inputText id="email" value="#{human.email}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Password: " for="password"/>
+                    <h:inputText id="password" value="#{human.password}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <!--<h:outputText value="Tank Id"/>-->
+                    <!--<h:inputText binding="#{tankId}" converter="javax.faces.Integer"/>-->
+                    <!--<br/>-->
+                    <!--<h:outputText value="Vacation start"/>-->
+                    <!--<h:inputText value="#{human.vacationStart}"/>-->
+                    <!--<br/>-->
+                    <!--<h:outputText value="Vacation end"/>-->
+                    <!--<h:inputText value="#{human.vacationEnd}"/>-->
+                    <!--<br/>-->
+                    <a href="/human_service/human_profile.xhtml " id="update_profile" class="common_link">Update info</a>
+                    <h:commandButton id="addHumButton" styleClass="common_button" value="Update"
+                                     action="#{humanService.updateHuman(human)}">
+                        <f:ajax execute="@form" render="addHumForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addHumButton"/>
+                </h:form>
+            </div>
+        </fieldset>
+    </div>
 </h:body>
 </html>
