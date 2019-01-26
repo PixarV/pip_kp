@@ -7,40 +7,55 @@ body {
     height: 100% !important;
 
 }
-#profile-user-img-upload {
-    display: none;
-}
+
 .center {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2px 0;
 }
-#menu {
-    background-color: #343b42 !important;
-}
-a.navbar-brand {
-    font-size: 20px;
-    color: rgba(255,255,255,0.7) !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-a.navbar-brand i.fa {
-    font-size: 18px;
-    color: #54d0dd;
-    vertical-align: top;
+
+.reg_form {
+    width: 400px;
+    /*height: 500px;*/
+    border: none;
 }
 
-.navbar-default .navbar-nav > li > a {
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-.navbar-default .navbar-nav > li > a:hover {
-    color: #54d0dd;
+.reg_form input {
+    float: right;
 }
 
-.navbar-default{
-    border:none;
+.reg_form label {
+    float: left;
+    padding-bottom: 20px;
+    color: lightgrey;
+    font-size: 25px;
 }
+
+.black_bg {
+    background: rgba(0, 0, 0, 0.7);
+    color: lightgrey;
+}
+
+legend {
+    color: lightgrey;
+    font-size: 25px;
+}
+
+.common_button {
+    background-color: #555555;; /* Green */
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.common_button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
