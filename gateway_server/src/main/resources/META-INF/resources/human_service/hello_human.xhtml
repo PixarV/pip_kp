@@ -5,20 +5,39 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
     <h:outputStylesheet library="css" name="mini-default.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
-    <h:form>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/human_reg.xhtml" class="button header_link">Reg</a>
+    </header>
 
-        <h2>Please login</h2>
+    <div class="center">
+        <fieldset class="center">
+            <legend>Authorisation</legend>
+            <div class="center">
+                <h:form styleClass="reg_form black_bg">
+                    <h:outputLabel value="Email: " for="username"/>
+                    <h:inputText id="username"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Password: " for="password"/>
+                    <h:inputSecret id="password"/>
+                    <br/>
+                    <br/>
+                    <br/>
 
-        <h:inputText id="username" placeholder="Email" />
-        <h:inputSecret id="password" placeholder="Password" />
+                    <h:commandButton value="Login" styleClass="common_button" ajax="false"/>
+                </h:form>
 
-        <h:commandButton value="Login" ajax="false" />
-        <a href="http://localhost:8080/human_reg.xhtml">Registration</a>
-
-    </h:form>
+            </div>
+        </fieldset>
+    </div>
 </h:body>
 </html>
