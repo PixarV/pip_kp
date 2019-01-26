@@ -57,9 +57,9 @@ public class HumanService implements UserDetailsService {
 
         sendSimpleMessage(human.getEmail(), "Registration", "you are registered");
         Human tempHuman = human.withId(0);
+        humanDao.saveEntity(tempHuman);
         human.setName("");
         human.setEmail("");
-        humanDao.saveEntity(tempHuman);
     }
 
     public void deleteHuman(Human human) {

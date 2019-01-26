@@ -5,38 +5,46 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-    <!--<h:outputStylesheet library="css" name="mini-default.css"/>-->
     <h:outputStylesheet library="css" name="header.css"/>
-    <!--<h:outputStylesheet library="css" name="style.css"/>-->
-    <!--<h:outputStylesheet library="css" name="article.css"/>-->
+    <h:outputStylesheet library="css" name="mini-default.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
-    <header>
-        <a href="#" class="logo">Logo</a>
-        <a href="#" class="button">Home</a>
-        <button>Download</button>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="#" class="button header_link">Home</a>
+        <a href="/human_service/hello_human.xhtml" class="button header_link">Auth</a>
     </header>
 
-    <fieldset>
-        <legend>Registration</legend>
-        <h:form id="addHumForm">
-            <h:outputText value="Name"/>
-            <h:inputText value="#{human.name}"/>
-            <br/>
-            <h:outputText value="Email"/>
-            <h:inputText value="#{human.email}"/>
-            <br/>
-            <h:outputText value="Password"/>
-            <h:inputSecret value="#{human.password}"/>
-            <br/>
-            <h:commandButton id="addHumButton" value="Registrate" action="#{humanService.addHuman(human)}">
-                <f:ajax execute="@form" render="addHumForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addHumButton"/>
-        </h:form>
-    </fieldset>
-    <a href="http://archlinux:8085/hello_human.xhtml">Authorisation</a>
+    <div class="center">
+        <fieldset class="center">
+            <legend>Registration</legend>
+            <div class="center">
+                <h:form id="addHumForm" styleClass="reg_form black_bg">
+                    <h:outputLabel value="Name: " for="text1"/>
+                    <h:inputText value="#{human.name}" id="text1"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Email:" for="text2"/>
+                    <h:inputText value="#{human.email}" id="text2"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Password:" for="text3"/>
+                    <h:inputSecret value="#{human.password}" id="text3"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:commandButton styleClass="common_button" id="addHumButton" value="Registrate" action="#{humanService.addHuman(human)}">
+                        <f:ajax execute="@form" render="addHumForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addHumButton"/>
+                </h:form>
+            </div>
+        </fieldset>
+    </div>
 </h:body>
 </html>
