@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+
     @Order(1)
     @Configuration
     public static class App1ConfigurationAdapter extends WebSecurityConfigurerAdapter {
@@ -110,6 +112,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                     .csrf().disable();
+        }
+    }
+
+    @Order(3)
+    @Configuration
+    public static class App3ConfigurationAdapter extends WebSecurityConfigurerAdapter {
+        public App3ConfigurationAdapter() {
+            super();
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    .antMatcher("/index.xhtml")
+                    .authorizeRequests()
+                    .antMatchers("/index.xhtml").permitAll();
         }
     }
 
