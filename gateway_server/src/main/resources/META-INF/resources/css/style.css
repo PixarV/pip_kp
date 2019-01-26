@@ -46,7 +46,7 @@ legend {
     background-color: #555555;; /* Green */
     text-transform: uppercase;
     border: none;
-    color: white;
+    color: black;
     padding: 10px 32px;
     text-align: center;
     text-decoration: none;
@@ -59,3 +59,12 @@ legend {
     color: white;
 }
 
+
+.common_link {
+    text-transform: uppercase;
+    float: left;
+    vertical-align: top;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-top: 10px;
+}

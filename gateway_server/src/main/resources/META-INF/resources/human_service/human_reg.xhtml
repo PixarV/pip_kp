@@ -13,7 +13,7 @@
 <h:body styleClass="back_image">
     <header id="menu">
         <a href="#" class="logo brand">Logo</a>
-        <a href="#" class="button header_link">Home</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
         <a href="/human_service/hello_human.xhtml" class="button header_link">Auth</a>
     </header>
 
@@ -37,7 +37,10 @@
                     <br/>
                     <br/>
                     <br/>
-                    <h:commandButton styleClass="common_button" id="addHumButton" value="Registrate" action="#{humanService.addHuman(human)}">
+
+                    <a href="/human_service/hello_human.xhtml" id="go_to_auth" class="common_link">go to auth</a>
+                    <h:commandButton styleClass="common_button" id="addHumButton" value="Registrate"
+                                     action="#{humanService.addHuman(human)}">
                         <f:ajax execute="@form" render="addHumForm"/>
                     </h:commandButton>
                     <br/>
