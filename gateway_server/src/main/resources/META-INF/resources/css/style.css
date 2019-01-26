@@ -56,7 +56,7 @@ legend {
 
 .common_button:hover {
     background-color: #4CAF50 !important; /* Green */
-    color: white;
+    /*color: white;*/
 }
 
 .common_link {
