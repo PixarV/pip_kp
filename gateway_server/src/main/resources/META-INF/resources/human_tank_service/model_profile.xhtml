@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
+</h:head>
+
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
+
+    <div class="center">
+        <fieldset>
+            <legend>Model list</legend>
+            <h:dataTable value="#{modelService.getAllModels()}" var="mode"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{mode.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{mode.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{mode.type}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Speed F</f:facet>
+                    #{mode.maxSpeedForward}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Speed B</f:facet>
+                    #{mode.maxSpeedBackward}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Armor</f:facet>
+                    #{mode.armor}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
+
+    <div class="center">
+        <div class="column">
+            <fieldset>
+                <legend>Add and Delete</legend>
+                <h:form id="addModelForm" styleClass="reg_form black_bg" style="height: 450px; width: 450px">
+                    <h:outputLabel value="Title: " for="name2"/>
+                    <h:inputText id="name2" value="#{model.title}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Type: " for="name1"/>
+                    <h:selectOneMenu id="name1" value="#{model.type}">
+                        <f:selectItem itemValue="H" itemLabel="H"/>
+                        <f:selectItem itemValue="M" itemLabel="M"/>
+                        <f:selectItem itemValue="L" itemLabel="L"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Max speed F: " for="name3"/>
+                    <h:inputText id="name3" value="#{model.maxSpeedForward}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Max speed B: " for="name4"/>
+                    <h:inputText id="name4" value="#{model.maxSpeedBackward}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Armor: " for="name5"/>
+                    <h:inputText id="name5" value="#{model.armor}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <a href="/human_tank_service/model_profile.xhtml" id="add_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="addModelButton" styleClass="common_button" value="Add"
+                                     action="#{modelService.addModel(model)}">
+                        <f:ajax execute="@form" render="addModelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addModelButton"/>
+                </h:form>
+                <h:form id="shortModelDelForm" styleClass="reg_form black_bg" style="width: 450px; height: 150px">
+                    <h:outputLabel value="Id: " for="name6"/>
+                    <h:inputText id="name6" binding="#{modelId}" converter="javax.faces.Integer"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/human_tank_service/model_profile.xhtml" id="del_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="shortModelDelButton" styleClass="common_button" value="Delete"
+                                     action="#{modelService.deleteModelById(modelId.value)}">
+                        <f:ajax execute="@form" render="shortModelDelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="shortModelDelButton"/>
+                </h:form>
+            </fieldset>
+        </div>
+
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateModelForm" styleClass="reg_form black_bg" style="width: 450px; height: 500px">
+                <h:outputLabel value="Id:" for="name12"/>
+                <h:inputText id="name12" value="#{model.id}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Title: " for="name11"/>
+                <h:inputText id="name11" value="#{model.title}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Type: " for="name7"/>
+                <h:selectOneMenu id="name7" value="#{model.type}">
+                    <f:selectItem itemValue="H" itemLabel="H"/>
+                    <f:selectItem itemValue="M" itemLabel="M"/>
+                    <f:selectItem itemValue="L" itemLabel="L"/>
+                </h:selectOneMenu>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Max speed F: " for="name8"/>
+                <h:inputText id="name8" value="#{model.maxSpeedForward}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Max speed B: " for="name9"/>
+                <h:inputText id="name9" value="#{model.maxSpeedBackward}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Armor: " for="name10"/>
+                <h:inputText id="name10" value="#{model.armor}"/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/human_tank_service/model_profile.xhtml" id="update_profile"
+                   class="common_link">Update info</a>
+                <h:commandButton id="updateModelButton" styleClass="common_button" value="Update"
+                                 action="#{modelService.updateModel(model)}">
+                    <f:ajax execute="@form" render="updateModelForm"/>
+                </h:commandButton>
+                <br/>
+            </h:form>
+        </fieldset>
+    </div>
+
+
+</h:body>
+</html>

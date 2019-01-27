@@ -20,7 +20,7 @@ public class ModelService {
 
     ModelDao modelDao;
 
-    public List<Model> findAllModels() {
+    public List<Model> getAllModels() {
         return modelDao.findAllEntities();
     }
 
@@ -59,9 +59,28 @@ public class ModelService {
         return new ArrayList<>();
     }
 
-    public void updateModel(Model model) {
+    public void updateModel(Model tempModel) {
+        Model model = modelDao.findEntityById(tempModel.getId());
+        if (!tempModel.getTitle().equals("")) {
+            model.setTitle(tempModel.getTitle());
+        }
+        if (!tempModel.getArmor().equals("")) {
+            model.setArmor(tempModel.getArmor());
+        }
+        if (tempModel.getMaxSpeedBackward() != 0) {
+            model.setMaxSpeedBackward(tempModel.getMaxSpeedBackward());
+        }
+        if (tempModel.getMaxSpeedForward() != 0) {
+            model.setMaxSpeedForward(tempModel.getMaxSpeedForward());
+        }
+
         modelDao.custom_update(model);
         modelDao.removeModelFromMtoM(model.getId());
+
+        tempModel.setArmor("");
+        tempModel.setMaxSpeedBackward(0);
+        tempModel.setMaxSpeedForward(0);
+        tempModel.setTitle("");
     }
 
     public void addEngine(Model model, int engineId) {

@@ -22,7 +22,7 @@ public class ModelController {
 
     @GetMapping("/getAll")
     List<Model> findAllModels() {
-        return modelService.findAllModels();
+        return modelService.getAllModels();
     }
 
     @PostMapping("/add")
