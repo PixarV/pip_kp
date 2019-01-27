@@ -60,7 +60,18 @@ public class WeaponService {
         return weaponDao.findEntityById(weaponId);
     }
 
-    public void updateWeapon(Weapon weapon) {
+    public void updateWeapon(Weapon tempWeapon) {
+        Weapon weapon = weaponDao.findEntityById(tempWeapon.getId());
+        if (!tempWeapon.getTitle().equals("")) {
+            weapon.setTitle(tempWeapon.getTitle());
+        }
+        if (tempWeapon.getCallibr() != 0) {
+            weapon.setCallibr(tempWeapon.getCallibr());
+        }
+        if (tempWeapon.getWeight() != 0) {
+            weapon.setWeight(tempWeapon.getWeight());
+        }
+
         weaponDao.custom_update(weapon);
         weaponDao.removeWeaponFromMtoMAW(weapon.getId());
         weaponDao.removeWeaponFromMtoMTW(weapon.getId());
