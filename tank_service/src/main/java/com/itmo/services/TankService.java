@@ -4,6 +4,9 @@ import com.itmo.dao.TankDao;
 import com.pip.entities.Tank;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.HibernateException;
+import org.postgresql.util.PSQLException;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 import javax.faces.application.FacesMessage;
@@ -29,11 +32,22 @@ public class TankService {
         try {
             Tank tempTank = tank.withId(0);
             tankDao.saveEntity(tempTank);
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addTankForm:addTankButton", // id ratget form and target element
+                            new FacesMessage("Success", "Success"));
+        } catch (JpaSystemException e) {
+            String errorMessage = e.getCause().getCause().getMessage();
+            String outputError = errorMessage.substring(0, errorMessage.indexOf("Where"));
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addTankForm:addTankButton", // id ratget form and target element
+                            new FacesMessage("Error :(", outputError));
         } catch (Exception e) {
             FacesContext
                     .getCurrentInstance()
                     .addMessage("addTankForm:addTankButton", // id ratget form and target element
-                            new FacesMessage("Error :(", e.getMessage()));
+                            new FacesMessage("на всякий :(", e.getMessage()));
         }
     }
 
