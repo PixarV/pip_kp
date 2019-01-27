@@ -5,108 +5,150 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <a href="http://archlinux:8083/logout">Logout</a>
-    <br/>
-    <h:outputLink value="http://archlinux:8083/firm_profile.xhtml"
-                  rendered="#{firmService.eng}">Back to profile</h:outputLink>
-    <br/>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/firm_service/logout" class="button header_link">Logout</a>
+        <a href="/firm_service/firm_profile.xhtml" class="button header_link">Profile</a>
+    </header>
 
-    <h:outputText value="Engine"/>
-    <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{eng.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Title</f:facet>
-            #{eng.title}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Fuel</f:facet>
-            #{eng.fuel}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Power</f:facet>
-            #{eng.power}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Weight</f:facet>
-            #{eng.weight}
-        </h:column>
-    </h:dataTable>
+    <div class="center">
+        <fieldset>
+            <legend>Current profile info</legend>
+            <h:outputText value="Engine"/>
+            <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{eng.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{eng.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fuel</f:facet>
+                    #{eng.fuel}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Power</f:facet>
+                    #{eng.power}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{eng.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 
-    <fieldset>
-        <legend>Add</legend>
-        <h:form id="addEngForm">
-            <h:outputText value="Title"/>
-            <h:inputText value="#{engine.title}"/>
-            <br/>
-            <h:outputText value="Fuel"/>
-            <h:selectOneMenu value="#{engine.fuel}">
-                <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
-                <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
-            </h:selectOneMenu>
-            <br/>
-            <h:outputText value="Power"/>
-            <h:inputText value="#{engine.power}"/>
-            <br/>
-            <h:outputText value="Weight"/>
-            <h:inputText value="#{engine.weight}"/>
-            <br/>
-            <h:commandButton id="addEngButton" value="Add" action="#{engineService.addEngine(engine)}">
-                <f:ajax execute="@form" render="addForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addEngButton"/>
-        </h:form>
-    </fieldset>
+    <div class="center">
+        <div style="  display: flex; flex-direction: column; align-items: flex-start;">
+            <fieldset>
+                <legend>Add and Delete</legend>
+                <h:form id="addEngForm" styleClass="reg_form black_bg" style="height: 380px">
+                    <h:outputLabel value="Title: " for="name"/>
+                    <h:inputText id="name" value="#{engine.title}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Fuel" for="fuel"/>
+                    <h:selectOneMenu id="fuel" value="#{engine.fuel}">
+                        <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
+                        <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Power: " for="power"/>
+                    <h:inputText id="power" value="#{engine.power}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Weight: " for="weight"/>
+                    <h:inputText id="weight" value="#{engine.weight}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/firm_service/engine_firms_profile.xhtml" id="add_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="addEngButton" styleClass="common_button" value="Add"
+                                     action="#{engineService.addEngine(engine)}">
+                        <f:ajax execute="@form" render="addForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addEngButton"/>
+                </h:form>
+                <h:form id="shortEndDelForm" styleClass="reg_form black_bg" style="height: 150px">
+                    <h:outputLabel value="Id" for="del"/>
+                    <h:inputText id="del" binding="#{delId}" converter="javax.faces.Integer" required="true"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/firm_service/engine_firms_profile.xhtml" id="delete_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="shortEndDelButton" styleClass="common_button" value="Delete"
+                                     action="#{engineService.deleteEngineById(delId.value)}">
+                        <f:ajax execute="@form" render="shortEndDelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="shortEndDelButton"/>
+                </h:form>
+            </fieldset>
+        </div>
 
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="updateEngForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{engine.id}"/>
-            <br/>
-            <h:outputText value="Title"/>
-            <h:inputText value="#{engine.title}"/>
-            <br/>
-            <h:outputText value="Fuel"/>
-            <h:selectOneMenu value="#{engine.fuel}">
-                <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
-                <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
-            </h:selectOneMenu>
-            <br/>
-            <h:outputText value="Power"/>
-            <h:inputText value="#{engine.power}"/>
-            <br/>
-            <h:outputText value="Weight"/>
-            <h:inputText value="#{engine.weight}"/>
-            <br/>
-            <h:commandButton id="updateEngButton" value="Update" action="#{engineService.updateEngine(engine)}">
-                <f:ajax execute="@form" render="updateEngForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="updateEngButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Delete</legend>
-        <h:form id="shortEndDelForm">
-            <h:outputText value="Id"/>
-            <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="shortEndDelButton" value="Delete" action="#{engineService.deleteEngineById(delId.value)}">
-                <f:ajax execute="@form" render="shortEndDelForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="shortEndDelButton"/>
-        </h:form>
-    </fieldset>
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateEngForm" styleClass="reg_form black_bg" style="height: 500px">
+                <h:outputLabel value="Id: " for="id"/>
+                <h:inputText id="id" value="#{engine.title}" required="true"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Title: " for="name1"/>
+                <h:inputText id="name1" value="#{engine.title}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Fuel" for="fuel1"/>
+                <h:selectOneMenu id="fuel1" value="#{engine.fuel}">
+                    <f:selectItem itemValue="BENZIN" itemLabel="BENZIN"/>
+                    <f:selectItem itemValue="DIZEL" itemLabel="DIZEL"/>
+                </h:selectOneMenu>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Power: " for="power1"/>
+                <h:inputText id="power1" value="#{engine.power}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Weight: " for="weight1"/>
+                <h:inputText id="weight1" value="#{engine.weight}"/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/firm_service/engine_firms_profile.xhtml" id="update_profile"
+                   class="common_link">Update info</a>
+                <h:commandButton id="updateEngButton" styleClass="common_button" value="Update"
+                                 action="#{engineService.updateEngine(engine)}">
+                    <f:ajax execute="@form" render="updateEngForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="updateEngButton"/>
+            </h:form>
+        </fieldset>
+
+    </div>
 
 </h:body>
 </html>

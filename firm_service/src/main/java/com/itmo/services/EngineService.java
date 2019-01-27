@@ -68,12 +68,22 @@ public class EngineService {
         return engineDao.findEntityById(engineId);
     }
 
-    public void updateEngine(Engine engine) {
+    public void updateEngine(Engine tempEngine) {
+        Engine engine = engineDao.findEntityById(tempEngine.getId());
+        if (!tempEngine.getTitle().equals("")) {
+            engine.setTitle(tempEngine.getTitle());
+        }
+        if (tempEngine.getPower() != 0) {
+            engine.setPower(tempEngine.getPower());
+        }
+        if (tempEngine.getWeight() != 0) {
+            engine.setWeight(tempEngine.getWeight());
+        }
         engineDao.custom_update(engine);
-        engineDao.removeEngineFromMtoM(engine.getId());
-        engine.setPower(0);
-        engine.setWeight(0);
-        engine.setTitle("");
+        engineDao.removeEngineFromMtoM(tempEngine.getId());
+        tempEngine.setPower(0);
+        tempEngine.setWeight(0);
+        tempEngine.setTitle("");
     }
 
     public void removeModelFromMtoM(int engineId) {
