@@ -69,12 +69,33 @@ public class ChassisService {
         return new ArrayList<>();
     }
 
-    public void updateChassis(Chassis chassis, int modelId) {
+    public void updateChassis(Chassis tempChassis, int modelId) {
+        Chassis chassis = chassisDao.findEntityById(tempChassis.getId());
         Model model = new Model();
         model.setId(modelId);
-        chassis.setModel(model);
+        if (modelId != 0) {
+            chassis.setModel(model);
+        }
+
+        if (!tempChassis.getTitle().equals("")) {
+            chassis.setTitle(tempChassis.getTitle());
+        }
+        if (tempChassis.getCarring() != 0) {
+            chassis.setCarring(tempChassis.getCarring());
+        }
+        if (tempChassis.getWeight() != 0) {
+            chassis.setWeight(tempChassis.getWeight());
+        }
+        if (tempChassis.getTurnSpeed() != 0) {
+            chassis.setTurnSpeed(tempChassis.getTurnSpeed());
+        }
         chassisDao.custom_update(chassis);
         chassisDao.removeChassisFromMtoM(chassis.getId());
+
+        tempChassis.setCarring(0);
+        tempChassis.setWeight(0);
+        tempChassis.setTurnSpeed(0);
+        tempChassis.setTitle("");
     }
 
     public void addTower(Chassis chassis, int towerId) {

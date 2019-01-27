@@ -20,7 +20,7 @@
 
     <div class="center">
         <fieldset>
-            <legend>Engine list</legend>
+            <legend>Amunition list</legend>
             <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
                          styleClass="article-table common_table"
                          rules="all" id="result-table">
@@ -81,7 +81,7 @@
                 </h:form>
                 <h:form id="shortDelForm" styleClass="reg_form black_bg" style="height: 150px">
                     <h:outputLabel value="Id: " for="name2"/>
-                    <h:inputText id="name2" binding="#{delId}" converter="javax.faces.Integer"/>
+                    <h:inputText id="name2" binding="#{delId}" converter="javax.faces.Integer" required="true"/>
                     <br/>
                     <br/>
                     <br/>
