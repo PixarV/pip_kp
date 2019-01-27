@@ -2,65 +2,272 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+>
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
-    <br/>
-    <fieldset>
-        <legend>Add engine to model</legend>
-        <h:form id="addModEngForm">
-            <h:outputText value="Module id"/>
-            <h:inputText binding="#{modelAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:outputText value="Engine id"/>
-            <h:inputText binding="#{engineAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="addModEngButton" value="Add" action="#{modelService.addEngine(modelAddId.value, engineAddId.value)}">
-                <f:ajax execute="@form" render="addModEngForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addModEngButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Add Weapon to amun</legend>
-        <h:form id="addWeapAmForm">
-            <h:outputText value="Module id"/>
-            <h:inputText binding="#{amunAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:outputText value="Engine id"/>
-            <h:inputText binding="#{weapAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="addWeapAmButton" value="Add" action="#{ammunitionService.addWeapon(amunAddId.value, weapAddId.value)}">
-                <f:ajax execute="@form" render="addWeapAmForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addWeapAmButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Add Tower to chassis</legend>
-        <h:form id="addTowChasForm">
-            <h:outputText value="Module id"/>
-            <h:inputText binding="#{chassAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:outputText value="Engine id"/>
-            <h:inputText binding="#{towerAddId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="addTowChasButton" value="Add" action="#{chassisService.addTower(chassAddId.value, towerAddId.value)}">
-                <f:ajax execute="@form" render="addTowChasForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addTowChasButton"/>
-        </h:form>
-    </fieldset>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
 
-    <fieldset style="height: 500px">
-        <img src="http://www.fmsasg.com/LinkAnalysis/link-analysis.jpg" width="100%"/>
-    </fieldset>
+
+    <div class="center">
+
+        <fieldset>
+            <legend>Model list</legend>
+            <h:dataTable value="#{modelService.getAllModels()}" var="mode"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table1">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{mode.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{mode.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{mode.type}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Speed F</f:facet>
+                    #{mode.maxSpeedForward}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Speed B</f:facet>
+                    #{mode.maxSpeedBackward}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Armor</f:facet>
+                    #{mode.armor}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+        <fieldset>
+            <legend>Engine list</legend>
+            <h:dataTable value="#{engineService.findAllEngines()}" var="eng"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{eng.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{eng.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fuel</f:facet>
+                    #{eng.fuel}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Power</f:facet>
+                    #{eng.power}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{eng.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+
+    </div>
+
+    <div class="center">
+        <fieldset>
+            <legend>Link engine and model</legend>
+            <h:form id="addModEngForm" styleClass="reg_form black_bg" style="height: 200px;">
+                <h:outputLabel value="Model id: " for="name"/>
+                <h:inputText id="name" binding="#{modelAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Engine id: " for="name1"/>
+                <h:inputText id="name1" binding="#{engineAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:commandButton id="addModEngButton" styleClass="common_button"
+                                 value="Add" action="#{modelService.addEngine(modelAddId.value, engineAddId.value)}">
+                    <f:ajax execute="@form" render="addModEngForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addModEngButton"/>
+            </h:form>
+        </fieldset>
+    </div>
+
+    <div class="center">
+
+        <fieldset>
+            <legend>Amunition list</legend>
+            <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table3">
+                <h:column>
+                    <f:facet name="header"># </f:facet>
+                    #{amun.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type </f:facet>
+                    #{amun.type}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Callibr </f:facet>
+                    #{amun.callibr}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Breakage</f:facet>
+                    #{amun.breakage}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+
+        <fieldset>
+            <legend>Weapon list</legend>
+            <h:dataTable value="#{weaponService.findAllWeapons()}" var="weap"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-weap-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{weap.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{weap.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Calliber</f:facet>
+                    #{weap.callibr}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{weap.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+
+    </div>
+
+    <div class="center">
+        <fieldset>
+            <legend>Link weapon and amunition</legend>
+            <h:form id="addWeapAmForm" styleClass="reg_form black_bg" style="width: 450px; height: 200px">
+                <h:outputLabel value="Ammunition id: " for="name"/>
+                <h:inputText binding="#{amunAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Weapon id: " for="name1"/>
+                <h:inputText binding="#{weapAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:commandButton id="addWeapAmButton" styleClass="common_button" value="Add"
+                                 action="#{ammunitionService.addWeapon(amunAddId.value, weapAddId.value)}">
+                    <f:ajax execute="@form" render="addWeapAmForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addWeapAmButton"/>
+            </h:form>
+        </fieldset>
+    </div>
+
+    <div class="center">
+
+        <fieldset>
+            <legend>Chassis list</legend>
+            <h:dataTable value="#{chassisService.findAllChassiss()}" var="amun"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table5">
+                <h:column>
+                    <f:facet name="header"># </f:facet>
+                    #{amun.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title </f:facet>
+                    #{amun.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Carrying</f:facet>
+                    #{amun.carring}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Turn Speed</f:facet>
+                    #{amun.turnSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{amun.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+        <fieldset>
+            <legend>Tower list</legend>
+            <h:dataTable value="#{towerService.findAllTowers()}" var="tow"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table6">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{tow.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{tow.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Armor</f:facet>
+                    #{tow.armor}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Turn speed</f:facet>
+                    #{tow.turnSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">View radius</f:facet>
+                    #{tow.viewRadius}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{tow.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+
+    </div>
+
+
+    <div class="center">
+        <fieldset>
+            <legend>Link tower and chassis</legend>
+            <h:form id="addTowChasForm" styleClass="reg_form black_bg" style="height: 200px">
+                <h:outputLabel value="Chassis id: " for="name5"/>
+                <h:inputText id="name5" binding="#{chassAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Tower id: " for="name6"/>
+                <h:inputText id="name6" binding="#{towerAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:commandButton id="addTowChasButton" styleClass="common_button" value="Add"
+                                 action="#{chassisService.addTower(chassAddId.value, towerAddId.value)}">
+                    <f:ajax execute="@form" render="addTowChasForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addTowChasButton"/>
+            </h:form>
+        </fieldset>
+    </div>
+
 </h:body>
 </html>

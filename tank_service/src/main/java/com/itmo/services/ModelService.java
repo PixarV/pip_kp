@@ -83,8 +83,8 @@ public class ModelService {
         tempModel.setTitle("");
     }
 
-    public void addEngine(Model model, int engineId) {
-        modelDao.addEngine(model.getId(), engineId);
+    public void addEngine(int modelId, int engineId) {
+        modelDao.addEngine(modelId, engineId);
     }
 
     public void removeModelFromMtoM(int modelId) {

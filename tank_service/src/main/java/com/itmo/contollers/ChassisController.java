@@ -53,7 +53,7 @@ public class ChassisController {
     @PutMapping("/addTower/{towerId}")
     void addTowerToChassis(@RequestBody Chassis chassis,
                            @PathVariable int towerId) {
-        chassisService.addTower(chassis, towerId);
+        chassisService.addTower(chassis.getId(), towerId);
     }
 
     @PutMapping("/removeChassisTower/{chassisId}")

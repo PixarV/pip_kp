@@ -98,8 +98,8 @@ public class ChassisService {
         tempChassis.setTitle("");
     }
 
-    public void addTower(Chassis chassis, int towerId) {
-        chassisDao.addTower(chassis.getId(), towerId);
+    public void addTower(int chassisId, int towerId) {
+        chassisDao.addTower(chassisId, towerId);
     }
 
     public void removeChassisFromMtoM(int chassisId) {

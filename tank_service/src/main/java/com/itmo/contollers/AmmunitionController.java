@@ -59,7 +59,7 @@ public class AmmunitionController {
     @PutMapping("/addWeapon/{weaponId}")
     void addWeaponToAmmunition(@RequestBody Ammunition ammunition,
                                @PathVariable int weaponId) {
-        ammunitionService.addWeapon(ammunition, weaponId);
+        ammunitionService.addWeapon(ammunition.getId(), weaponId);
     }
 
     @PutMapping("/removeAmmunitionWeapon/{ammunitionId}")

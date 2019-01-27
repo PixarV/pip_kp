@@ -78,8 +78,8 @@ public class AmmunitionService {
         tempAmmunition.setCallibr(0);
     }
 
-    public void addWeapon(Ammunition ammunition, int weaponId) {
-        ammunitionDao.addWeapon(ammunition.getId(), weaponId);
+    public void addWeapon(int ammunId, int weaponId) {
+        ammunitionDao.addWeapon(ammunId, weaponId);
     }
 
     public void removeAmmunitionFromMtoM(int ammunitionId) {
