@@ -20,8 +20,7 @@
 
     <div class="center">
         <fieldset>
-            <legend>Current profile info</legend>
-            <h:outputText value="Engine"/>
+            <legend>Engine list</legend>
             <h:dataTable value="#{firmService.getAllEngines()}" var="eng"
                          styleClass="article-table common_table"
                          rules="all" id="result-table">
@@ -50,7 +49,7 @@
     </div>
 
     <div class="center">
-        <div style="  display: flex; flex-direction: column; align-items: flex-start;">
+        <div class="column">
             <fieldset>
                 <legend>Add and Delete</legend>
                 <h:form id="addEngForm" styleClass="reg_form black_bg" style="height: 380px">

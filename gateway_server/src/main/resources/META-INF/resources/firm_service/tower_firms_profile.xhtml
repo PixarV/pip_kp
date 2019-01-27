@@ -5,113 +5,159 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <a href="http://archlinux:8083/logout">Logout</a>
-    <br/>
-    <h:outputLink value="http://archlinux:8083/firm_profile.xhtml"
-                  rendered="#{firmService.eng}">Back to profile</h:outputLink>
-    <br/>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/firm_service/logout" class="button header_link">Logout</a>
+        <a href="/firm_service/firm_profile.xhtml" class="button header_link">Profile</a>
+    </header>
 
-    <h:outputText value="Tower"/>
-    <h:dataTable value="#{firmService.getAllTowers()}" var="tow"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{tow.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Title</f:facet>
-            #{tow.title}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Armor</f:facet>
-            #{tow.armor}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Turn speed</f:facet>
-            #{tow.turnSpeed}
-        </h:column>
-        <h:column>
-            <f:facet name="header">View radius</f:facet>
-            #{tow.viewRadius}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Weight</f:facet>
-            #{tow.weight}
-        </h:column>
-    </h:dataTable>
+    <div class="center">
+        <fieldset>
+            <legend>Tower list</legend>
+            <h:dataTable value="#{firmService.getAllTowers()}" var="tow"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{tow.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{tow.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Armor</f:facet>
+                    #{tow.armor}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Turn speed</f:facet>
+                    #{tow.turnSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">View radius</f:facet>
+                    #{tow.viewRadius}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{tow.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 
-    <fieldset>
-        <legend>Add</legend>
-        <h:form id="addEngForm">
-            <h:outputText value="Title"/>
-            <h:inputText value="#{tower.title}"/>
-            <br/>
-            <h:outputText value="Armor"/>
-            <h:inputText value="#{tower.armor}"/>
-            <br/>
-            <h:outputText value="Turn speed"/>
-            <h:inputText value="#{tower.turnSpeed}"/>
-            <br/>
-            <h:outputText value="View radius"/>
-            <h:inputText value="#{tower.viewRadius}"/>
-            <br/>
-            <h:outputText value="Weight"/>
-            <h:inputText value="#{tower.weight}"/>
-            <br/>
-            <h:commandButton id="addEngButton" value="Add" action="#{towerService.addTower(tower)}">
-                <f:ajax execute="@form" render="addForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addEngButton"/>
-        </h:form>
-    </fieldset>
+    <div class="center">
+        <div class="column">
+            <fieldset>
+                <legend>Add and Delete</legend>
+                <h:form id="addEngForm" styleClass="reg_form black_bg" style="width: 450px; height: 450px">
+                    <h:outputLabel value="Title: " for="name"/>
+                    <h:inputText id="name" value="#{tower.title}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Armor: " for="name1"/>
+                    <h:inputText id="name1" value="#{tower.armor}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Turn speed: " for="name2"/>
+                    <h:inputText id="name2" value="#{tower.turnSpeed}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="View radius: " for="name3"/>
+                    <h:inputText id="name3" value="#{tower.viewRadius}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Weight: " for="name4"/>
+                    <h:inputText id="name4" value="#{tower.weight}"/>
+                    <br/>
+                    <br/>
+                    <br/>
 
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="updateEngForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{tower.id}"/>
-            <br/>
-            <h:outputText value="Title"/>
-            <h:inputText value="#{tower.title}"/>
-            <br/>
-            <h:outputText value="Armor"/>
-            <h:inputText value="#{tower.armor}"/>
-            <br/>
-            <h:outputText value="Turn speed"/>
-            <h:inputText value="#{tower.turnSpeed}"/>
-            <br/>
-            <h:outputText value="View radius"/>
-            <h:inputText value="#{tower.viewRadius}"/>
-            <br/>
-            <h:outputText value="Weight"/>
-            <h:inputText value="#{tower.weight}"/>
-            <br/>
-            <h:commandButton id="updateEngButton" value="Update" action="#{towerService.updateTower(tower)}">
-                <f:ajax execute="@form" render="updateEngForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="updateEngButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Delete</legend>
-        <h:form id="shortEndDelForm">
-            <h:outputText value="Id"/>
-            <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="shortEndDelButton" value="Delete"
-                             action="#{towerService.deleteTowerById(delId.value)}">
-                <f:ajax execute="@form" render="shortEndDelForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="shortEndDelButton"/>
-        </h:form>
-    </fieldset>
+                    <a href="/firm_service/tower_firms_profile.xhtml" id="add_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="addEngButton" styleClass="common_button" value="Add"
+                                     action="#{towerService.addTower(tower)}">
+                        <f:ajax execute="@form" render="addForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addEngButton"/>
+                </h:form>
+
+                <h:form id="shortEndDelForm" styleClass="reg_form black_bg" style="width: 450px; height: 150px;">
+                    <h:outputLabel value="Id: " for="name5"/>
+                    <h:inputText id="name5" binding="#{delId}" converter="javax.faces.Integer" required="true"/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <a href="/firm_service/tower_firms_profile.xhtml" id="del_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="shortEndDelButton" styleClass="common_button" value="Delete"
+                                     action="#{towerService.deleteTowerById(delId.value)}">
+                        <f:ajax execute="@form" render="shortEndDelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="shortEndDelButton"/>
+                </h:form>
+            </fieldset>
+        </div>
+
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateEngForm" styleClass="reg_form black_bg" style="width: 450px; height: 500px">
+                <h:outputLabel value="Id: " for="name12"/>
+                <h:inputText id="name12" value="#{tower.id}" required="true"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Title: " for="name7"/>
+                <h:inputText id="name7" value="#{tower.title}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Armor: " for="name8"/>
+                <h:inputText id="name8" value="#{tower.armor}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Turn speed: " for="name9"/>
+                <h:inputText id="name9" value="#{tower.turnSpeed}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="View radius: " for="name10"/>
+                <h:inputText id="name10" value="#{tower.viewRadius}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Weight: " for="name11"/>
+                <h:inputText id="name11" value="#{tower.weight}"/>
+                <br/>
+                <br/>
+                <br/>
+
+                <a href="/firm_service/tower_firms_profile.xhtml" id="update_profile"
+                   class="common_link">Update info</a>
+                <h:commandButton id="updateEngButton" styleClass="common_button" value="Update"
+                                 action="#{towerService.updateTower(tower)}">
+                    <f:ajax execute="@form" render="updateEngForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="updateEngButton"/>
+            </h:form>
+        </fieldset>
+    </div>
+
 
 </h:body>
 </html>

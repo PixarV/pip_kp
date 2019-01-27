@@ -62,7 +62,23 @@ public class TowerService {
         return towerDao.findEntityById(towerId);
     }
 
-    public void updateTower(Tower tower) {
+    public void updateTower(Tower tempTower) {
+        Tower tower = towerDao.findEntityById(tempTower.getId());
+        if (!tempTower.getArmor().equals("")) {
+            tower.setArmor(tempTower.getArmor());
+        }
+        if (!tempTower.getTitle().equals("")) {
+            tower.setTitle(tempTower.getTitle());
+        }
+        if (tempTower.getTurnSpeed() != 0) {
+            tower.setTurnSpeed(tempTower.getTurnSpeed());
+        }
+        if (tempTower.getViewRadius() != 0) {
+            tower.setViewRadius(tempTower.getViewRadius());
+        }
+        if (tempTower.getWeight() != 0) {
+            tower.setWeight(tempTower.getWeight());
+        }
         towerDao.custom_update(tower);
         towerDao.removeTowerFromMtoMCT(tower.getId());
         towerDao.removeTowerFromMtoMTW(tower.getId());

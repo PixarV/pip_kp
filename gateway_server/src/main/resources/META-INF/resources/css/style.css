@@ -28,6 +28,7 @@ body {
 .reg_form select {
     float: right;
 }
+
 .reg_form label {
     float: left;
     padding-bottom: 20px;
@@ -84,4 +85,10 @@ tr, th, td {
 th {
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
