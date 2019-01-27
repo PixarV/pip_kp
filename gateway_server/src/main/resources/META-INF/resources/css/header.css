@@ -10,7 +10,7 @@ body {
 }
 
 .back_image {
-    background-image: url("#{resource['img/IMG_2537.jpg']}");
+    background-image: url("#{resource['img/tank3.jpg']}");
 }
 
 #menu {

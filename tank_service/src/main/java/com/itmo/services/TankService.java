@@ -21,7 +21,7 @@ public class TankService {
 
     TankDao tankDao;
 
-    public List<Tank> findAllTanks() {
+    public List<Tank> getAllTanks() {
         return tankDao.findAllEntities();
     }
 

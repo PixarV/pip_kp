@@ -5,20 +5,72 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
-<h:body>
-    <!--<a href="/logout" style="font-size: 150%">Выход из этой идеально построенной системы</a>-->
-    <!--<br/>-->
-    <a href="show_tank_avallable_details.xhtml">Show all avaliable details</a>
-    <br/>
-    <a href="adding_tank_details.xhtml">Add tank components</a>
-    <br/>
-    <a href="link_tank_detailsMtM.xhtml">Add links between components</a>
-	<br/>
-    <a href="tanks_manipulations.xhtml">Create tank</a>
-    <br/>
-    <a href="http://archlinux:8085/human_profile.xhtml">Return to profile</a>
-    <!--<a href="http://localhost:8080/firms_control.xhtml">Тeкyщее состояние фирм</a>-->
-    <img src="https://i.ytimg.com/vi/0NUR12QM8ns/maxresdefault.jpg" width="100%" alt="Вова Путин Великий"/>
+
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_service/human_profile.xhtml" class="button header_link">Profile</a>
+    </header>
+
+    <div class="center">
+        <div class="button-group">
+            <a href="/tank_service/adding_tank_details.xhtml">
+                <button class="common_button">Components</button>
+            </a>
+            <a href="/tank_service/link_tank_detailsMtM.xhtml">
+                <button class="common_button">Links</button>
+            </a>
+            <a href="/tank_service/show_tank_avallable_details.xhtml">
+                <button class="common_button">Show all</button>
+            </a>
+            <a href="/tank_service/tanks_manipulations.xhtml">
+                <button class="common_button">Create a tank</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="center">
+        <fieldset>
+            <legend>Tank list</legend>
+            <h:dataTable value="#{tankService.getAllTanks()}" var="tan"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{tank.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{tank.idModel}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Chassis</f:facet>
+                    #{tank.idChassis}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Engine</f:facet>
+                    #{tank.snEngine}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tower</f:facet>
+                    #{tank.snTower}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weapon</f:facet>
+                    #{tank.snWeapon}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Team num</f:facet>
+                    #{tank.teamNumber}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 </h:body>
 </html>

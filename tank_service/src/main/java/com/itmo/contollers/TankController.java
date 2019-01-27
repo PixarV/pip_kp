@@ -20,7 +20,7 @@ public class TankController {
 
     @GetMapping("/getAll")
     List<Tank> findAllTanks() {
-        return tankService.findAllTanks();
+        return tankService.getAllTanks();
     }
 
     @PostMapping("/add")
