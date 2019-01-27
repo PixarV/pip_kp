@@ -5,152 +5,137 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <h:outputText id="greeting" value="Hello from #{myBean.from} it's #{myBean.date}" />
-    <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-            #{amun.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
-            #{amun.type}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Callibr <span class="sort-symbol">⮃</span></f:facet>
-            #{amun.callibr}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Breakage <span class="sort-symbol">⮃</span></f:facet>
-            #{amun.breakage}
-        </h:column>
-    </h:dataTable>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
 
-    <fieldset>
-        <legend>Add</legend>
-        <h:form id="addAmunForm">
-            <h:outputText value="Breakage"/>
-            <h:inputText value="#{ammunition.breakage}"/>
-            <br/>
-            <h:outputText value="Callibr"/>
-            <h:inputText value="#{ammunition.callibr}"/>
-            <br/>
-            <h:outputText value="Type"/>
-            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
-            <br/>
-            <h:commandButton id="addButton" value="Add" action="#{ammunitionService.addAmmunition(ammunition)}">
-                <f:ajax execute="@form" render="addForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addButton"/>
-        </h:form>
-    </fieldset>
-
-
-    <fieldset>
-        <legend>Short commands</legend>
+    <div class="center">
         <fieldset>
-            <legend>Get</legend>
-            <h:form id="shortAmunGetForm">
-                <h:outputText value="Id"/>
-                <h:inputText binding="#{id}" converter="javax.faces.Integer"/>
+            <legend>Engine list</legend>
+            <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">Id </f:facet>
+                    #{amun.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type </f:facet>
+                    #{amun.type}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Callibr </f:facet>
+                    #{amun.callibr}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Breakage</f:facet>
+                    #{amun.breakage}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
+    <div class="center">
+        <div class="column">
+            <fieldset>
+                <legend>Add and Delete</legend>
+                <h:form id="addAmunForm" styleClass="reg_form black_bg" style="height: 260px">
+                    <h:outputLabel value="Breakage: " for="name"/>
+                    <h:inputText id="name" value="#{ammunition.breakage}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Type" for="fuel"/>
+                    <h:selectOneMenu id="fuel" value="#{ammunition.type}">
+                        <f:selectItem itemValue="ARMOR_PIERCING" itemLabel="ARMOR_PIERCING"/>
+                        <f:selectItem itemValue="SUBCALLIBER" itemLabel="SUBCALLIBER"/>
+                        <f:selectItem itemValue="HIGH_EXPLOSIVE" itemLabel="HIGH_EXPLOSIVE"/>
+                        <f:selectItem itemValue="CUMULATIVE" itemLabel="CUMULATIVE"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Callibr: " for="power"/>
+                    <h:inputText id="power" value="#{ammunition.callibr}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <a href="/human_tank_service/amun_profile.xhtml" id="add_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="addButton" value="Add" styleClass="common_button"
+                                     action="#{ammunitionService.addAmmunition(ammunition)}">
+                        <f:ajax execute="@form" render="addForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addButton"/>
+                </h:form>
+                <h:form id="shortDelForm" styleClass="reg_form black_bg" style="height: 150px">
+                    <h:outputLabel value="Id: " for="name2"/>
+                    <h:inputText id="name2" binding="#{delId}" converter="javax.faces.Integer"/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <a href="/human_tank_service/amun_profile.xhtml" id="del_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="shortDelButton" styleClass="common_button" value="Delete"
+                                     action="#{ammunitionService.deleteAmmunitionById(delId.value)}">
+                        <f:ajax execute="@form" render="shortDelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="shortDelButton"/>
+                </h:form>
+            </fieldset>
+        </div>
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateForm" styleClass="reg_form black_bg" style="height: 350px">
+                <h:outputLabel value="Id: " for="name1"/>
+                <h:inputText id="name3" value="#{ammunition.id}" required="true"/>
                 <br/>
-                <h:commandButton id="shortGetButton" value="Get" action="#{ammunitionService.getAmmunitionById(id.value)}">
-                    <f:ajax execute="@form" render="shortGetForm" />
+                <br/>
+                <br/>
+                <h:outputLabel value="Breakage: " for="name1"/>
+                <h:inputText id="name1" value="#{ammunition.breakage}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Type" for="fuel1"/>
+                <h:selectOneMenu id="fuel1" value="#{ammunition.type}">
+                    <f:selectItem itemValue="ARMOR_PIERCING" itemLabel="ARMOR_PIERCING"/>
+                    <f:selectItem itemValue="SUBCALLIBER" itemLabel="SUBCALLIBER"/>
+                    <f:selectItem itemValue="HIGH_EXPLOSIVE" itemLabel="HIGH_EXPLOSIVE"/>
+                    <f:selectItem itemValue="CUMULATIVE" itemLabel="CUMULATIVE"/>
+                </h:selectOneMenu>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Callibr: " for="power1"/>
+                <h:inputText id="power1" value="#{ammunition.callibr}"/>
+                <br/>
+                <br/>
+                <br/>
+
+                <a href="/human_tank_service/amun_profile.xhtml" id="update_profile"
+                   class="common_link">Update info</a>
+                <h:commandButton id="updateButton" styleClass="common_button" value="Update"
+                                 action="#{ammunitionService.updateAmmunition(ammunition)}">
+                    <f:ajax execute="@form" render="updateForm"/>
                 </h:commandButton>
                 <br/>
-                <h:message class="error" for="shortGetButton"/>
-                <br/>
-                <h:dataTable value="#{ammunitionService.getAmmunitionById(id.value)}" var="amun"
-                             styleClass="article-table"
-                             rules="all">
-                    <h:column>
-                        <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-                        #{amun.id}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
-                        #{amun.type}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Callibr <span class="sort-symbol">⮃</span></f:facet>
-                        #{amun.callibr}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Breakage <span class="sort-symbol">⮃</span></f:facet>
-                        #{amun.breakage}
-                    </h:column>
-                </h:dataTable>
+                <h:message class="error" for="updateButton"/>
             </h:form>
         </fieldset>
-
-
-        <fieldset>
-            <legend>Delete</legend>
-            <h:form id="shortDelForm">
-            <h:outputText value="Id"/>
-            <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
-            <br/>
-            <h:commandButton id="shortDelButton" value="Delete" action="#{ammunitionService.deleteAmmunitionById(delId.value)}">
-                <f:ajax execute="@form" render="shortDelForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="shortDelButton"/>
-            </h:form>
-        </fieldset>
-    </fieldset>
-
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="updateForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{ammunition.id}"/>
-            <br/>
-            <h:outputText value="Breakage"/>
-            <h:inputText value="#{ammunition.breakage}"/>
-            <br/>
-            <h:outputText value="Callibr"/>
-            <h:inputText value="#{ammunition.callibr}"/>
-            <br/>
-            <h:outputText value="Type"/>
-            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
-            <br/>
-            <h:commandButton id="updateButton" value="Update" action="#{ammunitionService.updateAmmunition(ammunition)}">
-                <f:ajax execute="@form" render="updateForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="updateButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Remove</legend>
-        <h:form id="removeForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{ammunition.id}"/>
-            <br/>
-            <h:outputText value="Breakage"/>
-            <h:inputText value="#{ammunition.breakage}"/>
-            <br/>
-            <h:outputText value="Callibr"/>
-            <h:inputText value="#{ammunition.callibr}"/>
-            <br/>
-            <h:outputText value="Type"/>
-            <!--if type isn't in UPPER CASE, we have unexpected behaivor-->
-            <h:inputText value="#{ammunition.type}"/>
-            <br/>
-            <h:commandButton id="removeButton" value="Remove" action="#{ammunitionService.deleteAmmunition(ammunition)}">
-                <f:ajax execute="@form" render="removeForm" />
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="removeButton"/>
-        </h:form>
-
-    </fieldset>
+    </div>
 </h:body>
 </html>

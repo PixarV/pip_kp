@@ -61,9 +61,21 @@ public class AmmunitionService {
         return new ArrayList<>();
     }
 
-    public void updateAmmunition(Ammunition ammunition) {
+    public void updateAmmunition(Ammunition tempAmmunition) {
+        Ammunition ammunition = ammunitionDao.findEntityById(tempAmmunition.getId());
+
+        if (tempAmmunition.getBreakage() != 0) {
+            ammunition.setBreakage(tempAmmunition.getBreakage());
+        }
+        if (tempAmmunition.getCallibr() != 0) {
+            ammunition.setCallibr(tempAmmunition.getCallibr());
+        }
+
         ammunitionDao.custom_update(ammunition);
         ammunitionDao.removeAmmunitionFromMtoM(ammunition.getId());
+
+        tempAmmunition.setBreakage(0);
+        tempAmmunition.setCallibr(0);
     }
 
     public void addWeapon(Ammunition ammunition, int weaponId) {
