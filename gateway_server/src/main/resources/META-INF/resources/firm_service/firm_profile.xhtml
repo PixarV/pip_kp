@@ -5,59 +5,80 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <h:dataTable value="#{firmService.getFirm()}" var="fir"
-                 styleClass="article-table"
-                 rules="all" id="result-table">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{fir.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Title</f:facet>
-            #{fir.title}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Email</f:facet>
-            #{fir.email}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Specialization</f:facet>
-            #{fir.specialization}
-        </h:column>
-    </h:dataTable>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/firm_service/logout" class="button header_link">Logout</a>
+        <h:outputLink value="/firm_service/engine_firms_profile.xhtml" rendered="#{firmService.eng}"
+                      styleClass="button header_link">Engine</h:outputLink>
+        <h:outputLink value="/firm_service/tower_firms_profile.xhtml" rendered="#{firmService.tank}"
+                      styleClass="button header_link">Tower</h:outputLink>
+        <h:outputLink value="/firm_service/weapon_firms_profile.xhtml" rendered="#{firmService.tank}"
+                      styleClass="button header_link">Weapon</h:outputLink>
+    </header>
 
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="addHumForm">
-            <h:outputText value="Title"/>
-            <h:inputText value="#{firm.title}"/>
-            <br/>
-            <h:outputText value="Email"/>
-            <h:inputText value="#{firm.email}"/>
-            <br/>
-            <h:outputText value="Password"/>
-            <h:inputSecret value="#{firm.password}"/>
-            <br/>
-            <h:commandButton id="addHumButton" value="Update" action="#{firmService.updateFirm(firm)}">
-                <f:ajax execute="@form" render="addHumForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addHumButton"/>
-        </h:form>
-    </fieldset>
-    <a href="http://archlinux:8083/logout">Logout</a>
-    <br/>
-    <h:outputLink value="http://archlinux:8083/engine_firms_profile.xhtml"
-                  rendered="#{firmService.eng}">Add Engines</h:outputLink>
-    <br/>
-    <h:outputLink value="http://archlinux:8083/tower_firms_profile.xhtml"
-                  rendered="#{firmService.tank}">Add Towers</h:outputLink>
-    <br/>
-    <h:outputLink value="http://archlinux:8083/weapon_firms_profile.xhtml"
-                  rendered="#{firmService.tank}">Add Weapons</h:outputLink>
+    <div class="center">
+        <fieldset>
+            <legend>Current profile info</legend>
+            <div class="center">
+                <h:dataTable value="#{firmService.getFirm()}" var="fir"
+                             styleClass="article-table common_table"
+                             rules="all" id="result-table">
+                    <h:column>
+                        <f:facet name="header">#</f:facet>
+                        #{fir.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                        #{fir.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{fir.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Specialization</f:facet>
+                        #{fir.specialization}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </fieldset>
+    </div>
 
+    <div class="center">
+        <fieldset>
+            <legend>Update profile</legend>
+            <h:form id="addHumForm" styleClass="reg_form black_bg" style="height: 300px">
+                <h:outputLabel value="Title: " for="name"/>
+                <h:inputText id="name" value="#{firm.title}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Email: " for="email"/>
+                <h:inputText id="email" value="#{firm.email}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Password: " for="password"/>
+                <h:inputSecret id="password" value="#{firm.password}"/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/firm_service/firm_profile.xhtml" id="update_profile" class="common_link">Update info</a>
+                <h:commandButton id="addHumButton" styleClass="common_button" value="Update"
+                                 action="#{firmService.updateFirm(firm)}">
+                    <f:ajax execute="@form" render="addHumForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addHumButton"/>
+            </h:form>
+        </fieldset>
+    </div>
 </h:body>
 </html>
