@@ -118,4 +118,8 @@ public class TowerService {
         Tower tower = towerDao.findEntityById(towerId);
         return towerDao.getFirms(tower);
     }
+
+    public List<Monster> getAllTowerWeapon() {
+        return towerDao.getAllTowerWeapon();
+    }
 }

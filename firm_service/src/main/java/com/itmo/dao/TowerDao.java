@@ -1,13 +1,11 @@
 package com.itmo.dao;
 
-import com.pip.entities.Chassis;
-import com.pip.entities.Firm;
-import com.pip.entities.Tower;
-import com.pip.entities.Weapon;
+import com.pip.entities.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -69,6 +67,28 @@ public class TowerDao extends CommonDao<Tower> {
         Query query = entityManager.createQuery("select a from Firm a left join a.towers t where t.tower=:tower");
         query.setParameter("tower", tower);
         return query.getResultList();
+    }
+
+    public List<Monster> getAllTowerWeapon() {
+                Query query = entityManager.createNativeQuery("select id_tower, id_weapon, m.title as one, e.title as two from tower_weapon join tower as m on id_tower=m.id join weapon as e on id_weapon=e.id;");
+        List<Object[]> list = query.getResultList();
+
+        List<Monster> result = new ArrayList<>();
+        for (Object[] elem : list) {
+            int modelId = (Integer) elem[0];
+            int engineId = (Integer) elem[1];
+            String modelTitle = (String) elem[2];
+            String engineTitle = (String) elem[3];
+            Monster monster = Monster.builder()
+                    .towerId(modelId)
+                    .weaponId(engineId)
+                    .towerTitle(modelTitle)
+                    .weaponTitle(engineTitle)
+                    .build();
+            result.add(monster);
+        }
+
+        return result;
     }
 }
 
