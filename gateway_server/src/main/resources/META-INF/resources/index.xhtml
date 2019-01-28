@@ -10,15 +10,25 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<h:body>
+<h:body styleClass="back_image">
     <header id="menu">
         <a href="#" class="logo brand">Logo</a>
         <a href="/index.xhtml" class="button header_link">Home</a>
     </header>
 
-    <a href="/human_service/human_reg.xhtml">Human</a>
-    <br/>
-    <a href="/firm_service/firm_reg.xhtml">Firm</a>
+    <div class="center" style="vertical-align: middle">
+        <fieldset>
+            <legend>Choose your role</legend>
+            <div class="button-group">
+                <a href="/human_service/human_reg.xhtml">
+                    <button class="common_button">Human</button>
+                </a>
+                <a href="/firm_service/firm_reg.xhtml">
+                    <button class="common_button">Firm</button>
+                </a>
+            </div>
+        </fieldset>
+    </div>
 
 </h:body>
 </html>
