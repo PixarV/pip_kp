@@ -5,45 +5,56 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
-    <br/>
-    <h:outputText value="Танки"/>
-    <h:dataTable value="#{tankService.findAllTanks()}" var="tankk"
-                 styleClass="article-table"
-                 rules="all" id="result-table-chassis">
-        <h:column>
-            <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Id_model <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.idModel}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Id chassis <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.idChassis}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Sn engine <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.snEngine}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Sn tower <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.snTower}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Sn weapon <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.snWeapon}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Team number <span class="sort-symbol">⮃</span></f:facet>
-            #{tankk.teamNumber}
-        </h:column>
-    </h:dataTable>
-    <fieldset style="background-color: red">
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
+
+
+    <div class="center">
+        <h:dataTable value="#{tankService.getAllTanks()}" var="tankk"
+                     styleClass="article-table common_table"
+                     rules="all" id="result-table-chassis">
+            <h:column>
+                <f:facet name="header">Id </f:facet>
+                #{tankk.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id_model </f:facet>
+                #{tankk.idModel}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id chassis </f:facet>
+                #{tankk.idChassis}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sn engine </f:facet>
+                #{tankk.snEngine}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sn tower </f:facet>
+                #{tankk.snTower}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sn weapon </f:facet>
+                #{tankk.snWeapon}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Team number </f:facet>
+                #{tankk.teamNumber}
+            </h:column>
+        </h:dataTable>
+    </div>
+
+    <fieldset>
         <legend>Add</legend>
         <h:form id="addTankForm">
             <h:outputText value="Model id"/>
@@ -65,13 +76,13 @@
             <h:inputText value="#{tank.teamNumber}"/>
             <br/>
             <h:commandButton id="addTankButton" value="Add" action="#{tankService.addTank(tank)}">
-                <f:ajax execute="@form" render="addTankForm" />
+                <f:ajax execute="@form" render="addTankForm"/>
             </h:commandButton>
             <br/>
             <h:message class="error" for="addTankButton"/>
         </h:form>
     </fieldset>
-    <fieldset style="background-color: orange">
+    <fieldset>
         <legend>Update</legend>
         <h:form id="updateTankForm">
             <h:outputText value="Id"/>
@@ -96,13 +107,13 @@
             <h:inputText value="#{tank.teamNumber}"/>
             <br/>
             <h:commandButton id="updateTankButton" value="Update" action="#{tankService.updateTank(tank)}">
-                <f:ajax execute="@form" render="updateTankForm" />
+                <f:ajax execute="@form" render="updateTankForm"/>
             </h:commandButton>
             <br/>
             <h:message class="error" for="updateTankButton"/>
         </h:form>
     </fieldset>
-    <fieldset style="background-color: yellow">
+    <fieldset>
         <legend>Short command</legend>
         <fieldset>
             <legend>Delete</legend>
@@ -110,18 +121,14 @@
                 <h:outputText value="Id"/>
                 <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
                 <br/>
-                <h:commandButton id="shortTankDelButton" value="Delete" action="#{tankService.deleteTankById(delId.value)}">
-                    <f:ajax execute="@form" render="shortTankDelForm" />
+                <h:commandButton id="shortTankDelButton" value="Delete"
+                                 action="#{tankService.deleteTankById(delId.value)}">
+                    <f:ajax execute="@form" render="shortTankDelForm"/>
                 </h:commandButton>
                 <br/>
                 <h:message class="error" for="shortTankDelButton"/>
             </h:form>
         </fieldset>
     </fieldset>
-
-
-    <a href="https://rocketbank.ru/loves/igor-anokhin-frosty-fire">
-        <img src="https://i.pinimg.com/originals/1f/6f/7e/1f6f7e88fcc30ddf13132c4ee35d4d05.jpg" alt="HTML tutorial" style="width:300px;height: 600px;border:0;"/>
-    </a>
 </h:body>
 </html>
