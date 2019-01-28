@@ -20,8 +20,8 @@
 
     <div class="center">
         <fieldset>
-            <legend>Model and Engine</legend>
-            <h:dataTable value="#{modelService.getAllModelEngine()}" var="amun"
+            <legend>Firm and Engine</legend>
+            <h:dataTable value="#{firmService.getAllFirmEngine()}" var="amun"
                          styleClass="article-table common_table"
                          rules="all" id="result-table">
                 <h:column>
@@ -42,52 +42,50 @@
     </div>
 
 
-    <!--<div class="center">-->
-    <!--<fieldset>-->
-    <!--<legend>Chassis and Tower</legend>-->
-    <!--<h:dataTable value="#{chassisService.getAllChassisTower()}" var="amun1"-->
-    <!--styleClass="article-table common_table"-->
-    <!--rules="all" id="result-table1">-->
-    <!--<h:column>-->
-    <!--<f:facet name="header"># chassis</f:facet>-->
-    <!--#{amun1.chassisId}-->
-    <!--</h:column>-->
-    <!--<h:column>-->
-    <!--<f:facet name="header">Chassis title </f:facet>-->
-    <!--#{amun1.chassisTitle}-->
-    <!--</h:column>-->
-    <!--<h:column>-->
-    <!--<f:facet name="header"># tower </f:facet>-->
-    <!--#{amun1.towerId}-->
-    <!--</h:column>-->
-    <!--<h:column>-->
-    <!--<f:facet name="header">Tower title</f:facet>-->
-    <!--#{amun1.towerTitle}-->
-    <!--</h:column>-->
-    <!--</h:dataTable>-->
-    <!--</fieldset>-->
-    <!--</div>-->
+    <div class="center">
+        <fieldset>
+            <legend>Firm and Tower</legend>
+            <h:dataTable value="#{firmService.getAllFirmTower()}" var="amun1"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table1">
+                <h:column>
+                    <f:facet name="header">Firm title </f:facet>
+                    #{amun1.firmTitle}
+                </h:column>
 
-    <!--<div class="center">-->
-    <!--<fieldset>-->
-    <!--<legend>Amunition and weapon</legend>-->
-    <!--<h:dataTable value="#{ammunitionService.getAllAmunitionWeapon()}" var="amun2"-->
-    <!--styleClass="article-table common_table"-->
-    <!--rules="all" id="result-table2">-->
-    <!--<h:column>-->
-    <!--<f:facet name="header"># amunition</f:facet>-->
-    <!--#{amun2.amunitionId}-->
-    <!--</h:column>-->
-    <!--<h:column>-->
-    <!--<f:facet name="header"># weapon </f:facet>-->
-    <!--#{amun2.weaponId}-->
-    <!--</h:column>-->
-    <!--<h:column>-->
-    <!--<f:facet name="header">Weapon title</f:facet>-->
-    <!--#{amun2.weaponTitle}-->
-    <!--</h:column>-->
-    <!--</h:dataTable>-->
-    <!--</fieldset>-->
-    <!--</div>-->
+                <h:column>
+                    <f:facet name="header">Tower title</f:facet>
+                    #{amun1.towerTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># tower </f:facet>
+                    #{amun1.towerSn}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
+    <div class="center">
+        <fieldset>
+            <legend>Firm and Weapon</legend>
+            <h:dataTable value="#{firmService.getAllFirmWeapon()}" var="amun2"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table3">
+                <h:column>
+                    <f:facet name="header">Firm title </f:facet>
+                    #{amun2.firmTitle}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Weapon title</f:facet>
+                    #{amun2.weaponTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># weapon </f:facet>
+                    #{amun2.weaponSn}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 </h:body>
 </html>

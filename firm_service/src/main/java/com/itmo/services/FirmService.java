@@ -163,5 +163,17 @@ public class FirmService implements UserDetailsService {
         FirmSpecializtion spec = firm.getSpecialization();
         return spec == FirmSpecializtion.TANK || spec == FirmSpecializtion.BOTH;
     }
+
+    public List<Monster> getAllFirmEngine() {
+        return firmDao.getAllFirmEngine();
+    }
+
+    public List<Monster> getAllFirmWeapon() {
+        return firmDao.getAllFirmWeapon();
+    }
+
+    public List<Monster> getAllFirmTower() {
+        return firmDao.getAllFirmTower();
+    }
 }
 
