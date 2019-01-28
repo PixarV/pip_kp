@@ -6,6 +6,7 @@ import com.pip.entities.Model;
 import com.pip.entities.Monster;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 import javax.faces.application.FacesMessage;
@@ -29,11 +30,18 @@ public class ModelService {
         try {
             Model tempModel = model.withId(0);
             modelDao.saveEntity(tempModel);
+        } catch (JpaSystemException e) {
+            String errorMessage = e.getCause().getCause().getMessage();
+            String outputError = errorMessage.substring(0, errorMessage.indexOf("Where"));
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addModelForm:addModelButton", // id ratget form and target element
+                            new FacesMessage("Error :(", outputError));
         } catch (Exception e) {
             FacesContext
                     .getCurrentInstance()
                     .addMessage("addModelForm:addModelButton", // id ratget form and target element
-                            new FacesMessage("Error :(", e.getMessage()));
+                            new FacesMessage("на всякий :(", e.getMessage()));
         }
     }
 
@@ -85,7 +93,21 @@ public class ModelService {
     }
 
     public void addEngine(int modelId, int engineId) {
-        modelDao.addEngine(modelId, engineId);
+        try {
+            modelDao.addEngine(modelId, engineId);
+        } catch (JpaSystemException e) {
+            String errorMessage = e.getCause().getCause().getMessage();
+            String outputError = errorMessage.substring(0, errorMessage.indexOf("Where"));
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addModEngForm:addModEngButton", // id ratget form and target element
+                            new FacesMessage("Error :(", outputError));
+        } catch (Exception e) {
+            FacesContext
+                    .getCurrentInstance()
+                    .addMessage("addModEngForm:addModEngButton", // id ratget form and target element
+                            new FacesMessage("на всякий :(", e.getMessage()));
+        }
     }
 
     public void removeModelFromMtoM(int modelId) {
