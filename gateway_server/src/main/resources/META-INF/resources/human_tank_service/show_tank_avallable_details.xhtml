@@ -70,5 +70,27 @@
             </h:dataTable>
         </fieldset>
     </div>
+
+    <div class="center">
+        <fieldset>
+            <legend>Amunition and weapon</legend>
+            <h:dataTable value="#{ammunitionService.getAllAmunitionWeapon()}" var="amun2"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table2">
+                <h:column>
+                    <f:facet name="header"># amunition</f:facet>
+                    #{amun2.amunitionId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># weapon </f:facet>
+                    #{amun2.weaponId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weapon title</f:facet>
+                    #{amun2.weaponTitle}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 </h:body>
 </html>

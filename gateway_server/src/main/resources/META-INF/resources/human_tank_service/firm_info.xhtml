@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
+</h:head>
+
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
+
+    <div class="center">
+        <fieldset>
+            <legend>Model and Engine</legend>
+            <h:dataTable value="#{modelService.getAllModelEngine()}" var="amun"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header">Firm title </f:facet>
+                    #{amun.firmTitle}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Engine title</f:facet>
+                    #{amun.engineTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># engine </f:facet>
+                    #{amun.engineSn}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
+
+    <!--<div class="center">-->
+    <!--<fieldset>-->
+    <!--<legend>Chassis and Tower</legend>-->
+    <!--<h:dataTable value="#{chassisService.getAllChassisTower()}" var="amun1"-->
+    <!--styleClass="article-table common_table"-->
+    <!--rules="all" id="result-table1">-->
+    <!--<h:column>-->
+    <!--<f:facet name="header"># chassis</f:facet>-->
+    <!--#{amun1.chassisId}-->
+    <!--</h:column>-->
+    <!--<h:column>-->
+    <!--<f:facet name="header">Chassis title </f:facet>-->
+    <!--#{amun1.chassisTitle}-->
+    <!--</h:column>-->
+    <!--<h:column>-->
+    <!--<f:facet name="header"># tower </f:facet>-->
+    <!--#{amun1.towerId}-->
+    <!--</h:column>-->
+    <!--<h:column>-->
+    <!--<f:facet name="header">Tower title</f:facet>-->
+    <!--#{amun1.towerTitle}-->
+    <!--</h:column>-->
+    <!--</h:dataTable>-->
+    <!--</fieldset>-->
+    <!--</div>-->
+
+    <!--<div class="center">-->
+    <!--<fieldset>-->
+    <!--<legend>Amunition and weapon</legend>-->
+    <!--<h:dataTable value="#{ammunitionService.getAllAmunitionWeapon()}" var="amun2"-->
+    <!--styleClass="article-table common_table"-->
+    <!--rules="all" id="result-table2">-->
+    <!--<h:column>-->
+    <!--<f:facet name="header"># amunition</f:facet>-->
+    <!--#{amun2.amunitionId}-->
+    <!--</h:column>-->
+    <!--<h:column>-->
+    <!--<f:facet name="header"># weapon </f:facet>-->
+    <!--#{amun2.weaponId}-->
+    <!--</h:column>-->
+    <!--<h:column>-->
+    <!--<f:facet name="header">Weapon title</f:facet>-->
+    <!--#{amun2.weaponTitle}-->
+    <!--</h:column>-->
+    <!--</h:dataTable>-->
+    <!--</fieldset>-->
+    <!--</div>-->
+</h:body>
+</html>

@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.AmmunitionService;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Monster;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -72,6 +73,9 @@ public class AmmunitionController {
         return ammunitionService.getWeapons(ammunitionId);
     }
 
-//    @Ge
+    @GetMapping("/getAllAmunitionWeapon")
+    List<Monster> getAllAmunitionWeapon() {
+        return ammunitionService.getAllAmunitionWeapon();
+    }
 
 }

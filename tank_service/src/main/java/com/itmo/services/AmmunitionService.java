@@ -2,6 +2,7 @@ package com.itmo.services;
 
 import com.itmo.dao.AmmunitionDao;
 import com.pip.entities.Ammunition;
+import com.pip.entities.Monster;
 import com.pip.entities.Weapon;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -88,5 +89,9 @@ public class AmmunitionService {
 
     public List<Weapon> getWeapons(int ammunitionId) {
         return ammunitionDao.getWeapons(ammunitionId);
+    }
+
+    public List<Monster> getAllAmunitionWeapon() {
+        return ammunitionDao.getAllAmunitionWeapon();
     }
 }
