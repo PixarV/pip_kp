@@ -4,6 +4,7 @@ import com.itmo.dao.ChassisDao;
 import com.itmo.dao.ModelDao;
 import com.pip.entities.Chassis;
 import com.pip.entities.Model;
+import com.pip.entities.Monster;
 import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -108,5 +109,9 @@ public class ChassisService {
 
     public List<Tower> getTowers(int chassisId) {
         return chassisDao.getTowers(chassisId);
+    }
+
+    public List<Monster> getAllChassisTower() {
+        return chassisDao.getAllChassisTower();
     }
 }

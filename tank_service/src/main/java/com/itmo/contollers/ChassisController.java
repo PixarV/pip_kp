@@ -2,6 +2,7 @@ package com.itmo.contollers;
 
 import com.itmo.services.ChassisService;
 import com.pip.entities.Chassis;
+import com.pip.entities.Monster;
 import com.pip.entities.Tower;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -64,5 +65,10 @@ public class ChassisController {
     @GetMapping("/getTowers/{chassisId}")
     List<Tower> getTowers(@PathVariable int chassisId) {
         return chassisService.getTowers(chassisId);
+    }
+
+    @GetMapping("/getAllChassisTower")
+    List<Monster> getAllChassisTower() {
+        return chassisService.getAllChassisTower();
     }
 }

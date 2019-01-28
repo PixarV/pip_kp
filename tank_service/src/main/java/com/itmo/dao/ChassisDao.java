@@ -1,10 +1,12 @@
 package com.itmo.dao;
 
 import com.pip.entities.Chassis;
+import com.pip.entities.Monster;
 import com.pip.entities.Tower;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -48,6 +50,28 @@ public class ChassisDao extends CommonDao<Chassis> {
         Query query = entityManager.createQuery("select a from Tower a left join a.chassis t where t.id=:id");
         query.setParameter("id", chassisId);
         return query.getResultList();
+    }
+
+    public List<Monster> getAllChassisTower() {
+        Query query = entityManager.createNativeQuery("select id_chassis, id_tower, m.title as one, e.title as two from chassis_tower join chassis as m on id_chassis=m.id join tower as e on id_tower=e.id;");
+        List<Object[]> list = query.getResultList();
+
+        List<Monster> result = new ArrayList<>();
+        for (Object[] elem : list) {
+            int modelId = (Integer) elem[0];
+            int engineId = (Integer) elem[1];
+            String modelTitle = (String) elem[2];
+            String engineTitle = (String) elem[3];
+            Monster monster = Monster.builder()
+                    .chassisId(modelId)
+                    .towerId(engineId)
+                    .chassisTitle(modelTitle)
+                    .towerTitle(engineTitle)
+                    .build();
+            result.add(monster);
+        }
+
+        return result;
     }
 }
 

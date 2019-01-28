@@ -44,5 +44,31 @@
         </fieldset>
     </div>
 
+
+    <div class="center">
+        <fieldset>
+            <legend>Chassis and Tower</legend>
+            <h:dataTable value="#{chassisService.getAllChassisTower()}" var="amun1"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table1">
+                <h:column>
+                    <f:facet name="header"># chassis</f:facet>
+                    #{amun1.chassisId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Chassis title </f:facet>
+                    #{amun1.chassisTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># tower </f:facet>
+                    #{amun1.towerId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tower title</f:facet>
+                    #{amun1.towerTitle}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
 </h:body>
 </html>

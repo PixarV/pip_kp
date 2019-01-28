@@ -30,4 +30,9 @@ public class Monster {
     String ammunitionTitle;
     String weaponTitle;
 
+    // chassis and tower
+    int chassisId;
+    int towerId;
+    String chassisTitle;
+    String towerTitle;
 }

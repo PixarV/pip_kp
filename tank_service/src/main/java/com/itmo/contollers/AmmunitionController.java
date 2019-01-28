@@ -71,4 +71,7 @@ public class AmmunitionController {
     List<Weapon> getWeapons(@PathVariable int ammunitionId) {
         return ammunitionService.getWeapons(ammunitionId);
     }
+
+//    @Ge
+
 }
