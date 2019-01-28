@@ -102,8 +102,8 @@ public class TowerService {
         return firmTowerDao.getTowerSn(firm.getId(), towerId);
     }
 
-    public void addWeapon(Tower tower, int weaponId) {
-        towerDao.addWeapon(tower.getId(), weaponId);
+    public void addWeapon(int towerId, int weaponId) {
+        towerDao.addWeapon(towerId, weaponId);
     }
 
     public void removeTowerFromMtoMTW(int towerId) {

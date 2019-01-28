@@ -269,5 +269,88 @@
         </fieldset>
     </div>
 
+    <div class="center">
+
+
+        <fieldset>
+            <legend>Tower list</legend>
+            <h:dataTable value="#{towerService.findAllTowers()}" var="tow"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table2">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{tow.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{tow.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Armor</f:facet>
+                    #{tow.armor}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Turn speed</f:facet>
+                    #{tow.turnSpeed}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">View radius</f:facet>
+                    #{tow.viewRadius}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{tow.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+        <fieldset>
+            <legend>Weapon list</legend>
+            <h:dataTable value="#{weaponService.findAllWeapons()}" var="weap"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-weap-table1">
+                <h:column>
+                    <f:facet name="header">#</f:facet>
+                    #{weap.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{weap.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Calliber</f:facet>
+                    #{weap.callibr}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Weight</f:facet>
+                    #{weap.weight}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
+
+    <div class="center">
+        <fieldset>
+            <legend>Link tower and weapon</legend>
+            <h:form id="addTowWeapForm" styleClass="reg_form black_bg" style="width: 450px; height: 200px">
+                <h:outputLabel value="Tower id: " for="name11"/>
+                <h:inputText id="name11" binding="#{towerAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Weapon id: " for="name12"/>
+                <h:inputText id="name12" binding="#{weapAddId}" converter="javax.faces.Integer"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:commandButton id="addTowWeapButton" styleClass="common_button" value="Add"
+                                 action="#{towerService.addWeapon(towerAddId.value, weapAddId)}">
+                    <f:ajax execute="@form" render="addTowChasForm"/>
+                </h:commandButton>
+                <br/>
+                <h:message class="error" for="addTowChasButton"/>
+            </h:form>
+        </fieldset>
+    </div>
 </h:body>
 </html>

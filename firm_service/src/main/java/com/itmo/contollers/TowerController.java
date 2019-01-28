@@ -70,7 +70,7 @@ public class TowerController {
     @PutMapping("/addWeapon/{weaponId}")
     void addWeaponToTower(@RequestBody Tower tower,
                           @PathVariable int weaponId) {
-        towerService.addWeapon(tower, weaponId);
+        towerService.addWeapon(tower.getId(), weaponId);
     }
 
     @PutMapping("/removeTowerWeapon/{towerId}")
