@@ -49,34 +49,34 @@
             <legend>Tank list</legend>
             <h:dataTable value="#{tankService.getAllTanks()}" var="tan"
                          styleClass="article-table common_table"
-                         rules="all" id="result-table">
+                         rules="all" id="result-table" style="width: 1500px">
                 <h:column>
                     <f:facet name="header">#</f:facet>
-                    #{tank.id}
+                    #{tan.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Title</f:facet>
-                    #{tank.idModel}
+                    #{tan.idModel}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Chassis</f:facet>
-                    #{tank.idChassis}
+                    #{tan.idChassis}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Engine</f:facet>
-                    #{tank.snEngine}
+                    #{tan.snEngine}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Tower</f:facet>
-                    #{tank.snTower}
+                    #{tan.snTower}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Weapon</f:facet>
-                    #{tank.snWeapon}
+                    #{tan.snWeapon}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Team num</f:facet>
-                    #{tank.teamNumber}
+                    #{tan.teamNumber}
                 </h:column>
             </h:dataTable>
         </fieldset>

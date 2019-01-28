@@ -31,6 +31,9 @@ public class TankService {
     public void addTank(Tank tank) {
         try {
             Tank tempTank = tank.withId(0);
+            tempTank.setSnEngine(tank.getSnEngine().trim());
+            tempTank.setSnTower(tank.getSnTower().trim());
+            tempTank.setSnWeapon(tank.getSnWeapon().trim());
             tankDao.saveEntity(tempTank);
             FacesContext
                     .getCurrentInstance()

@@ -22,13 +22,13 @@
     <div class="center">
         <h:dataTable value="#{tankService.getAllTanks()}" var="tankk"
                      styleClass="article-table common_table"
-                     rules="all" id="result-table-chassis">
+                     rules="all" id="result-table-chassis" style="width: 1500px">
             <h:column>
-                <f:facet name="header">Id </f:facet>
+                <f:facet name="header"># </f:facet>
                 #{tankk.id}
             </h:column>
             <h:column>
-                <f:facet name="header">Id_model </f:facet>
+                <f:facet name="header">Id model </f:facet>
                 #{tankk.idModel}
             </h:column>
             <h:column>
@@ -54,81 +54,131 @@
         </h:dataTable>
     </div>
 
-    <fieldset>
-        <legend>Add</legend>
-        <h:form id="addTankForm">
-            <h:outputText value="Model id"/>
-            <h:inputText value="#{tank.idModel}"/>
-            <br/>
-            <h:outputText value="Chassis id"/>
-            <h:inputText value="#{tank.idChassis}"/>
-            <br/>
-            <h:outputText value="Engine sn"/>
-            <h:inputText value="#{tank.snEngine}"/>
-            <br/>
-            <h:outputText value="Tower sn"/>
-            <h:inputText value="#{tank.snTower}"/>
-            <br/>
-            <h:outputText value="Weapon sn"/>
-            <h:inputText value="#{tank.snWeapon}"/>
-            <br/>
-            <h:outputText value="Team number"/>
-            <h:inputText value="#{tank.teamNumber}"/>
-            <br/>
-            <h:commandButton id="addTankButton" value="Add" action="#{tankService.addTank(tank)}">
-                <f:ajax execute="@form" render="addTankForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="addTankButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Update</legend>
-        <h:form id="updateTankForm">
-            <h:outputText value="Id"/>
-            <h:inputText value="#{tank.id}"/>
-            <br/>
-            <h:outputText value="Model id"/>
-            <h:inputText value="#{tank.idModel}"/>
-            <br/>
-            <h:outputText value="Chassis id"/>
-            <h:inputText value="#{tank.idChassis}"/>
-            <br/>
-            <h:outputText value="Engine sn"/>
-            <h:inputText value="#{tank.snEngine}"/>
-            <br/>
-            <h:outputText value="Tower sn"/>
-            <h:inputText value="#{tank.snTower}"/>
-            <br/>
-            <h:outputText value="Weapon sn"/>
-            <h:inputText value="#{tank.snWeapon}"/>
-            <br/>
-            <h:outputText value="Team number"/>
-            <h:inputText value="#{tank.teamNumber}"/>
-            <br/>
-            <h:commandButton id="updateTankButton" value="Update" action="#{tankService.updateTank(tank)}">
-                <f:ajax execute="@form" render="updateTankForm"/>
-            </h:commandButton>
-            <br/>
-            <h:message class="error" for="updateTankButton"/>
-        </h:form>
-    </fieldset>
-    <fieldset>
-        <legend>Short command</legend>
+
+    <div class="center">
+        <h2>Instruction</h2>
+
         <fieldset>
-            <legend>Delete</legend>
-            <h:form id="shortTankDelForm">
-                <h:outputText value="Id"/>
-                <h:inputText binding="#{delId}" converter="javax.faces.Integer"/>
+            <ul>
+                <li>Check model and chassis -> check <a href="/human_tank_service/chassis_profile.xhtml">this</a></li>
+                <li>Check model and engine -> check <a href="/human_tank_service/show_tank_avallable_details.xhtml">this</a></li>
+                <li>Check tower and chassis -> check <a href="/human_tank_service/show_tank_avallable_details.xhtml">this</a></li>
+                <li>Check tower and weapon -> check <a href="/human_tank_service/firm_info.xhtml">this</a></li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <div class="center">
+        <div class="column">
+            <fieldset>
+                <legend>Add and Delete</legend>
+                <h:form id="addTankForm" styleClass="reg_form black_bg" style="width: 450px; height: 500px;">
+                    <h:outputLabel form="name1" value="Model id"/>
+                    <h:inputText id="name1" value="#{tank.idModel}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel form="name2" value="Chassis id"/>
+                    <h:inputText id="name2" value="#{tank.idChassis}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel form="name3" value="Engine sn"/>
+                    <h:inputText id="name3" value="#{tank.snEngine}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel form="name4" value="Tower sn"/>
+                    <h:inputText id="name4" value="#{tank.snTower}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel form="name5" value="Weapon sn"/>
+                    <h:inputText id="name5" value="#{tank.snWeapon}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel form="name6" value="Team number"/>
+                    <h:inputText id="name6" value="#{tank.teamNumber}"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/human_tank_service/tanks_manipulations.xhtml" id="add_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="addTankButton" styleClass="common_button" value="Add"
+                                     action="#{tankService.addTank(tank)}">
+                        <f:ajax execute="@form" render="addTankForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="addTankButton"/>
+                </h:form>
+                <h:form id="shortTankDelForm" styleClass="reg_form black_bg" style="width: 450px; height: 130px">
+                    <h:outputLabel form="name7" value="Id"/>
+                    <h:inputText id="name7" binding="#{delId}" converter="javax.faces.Integer"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <a href="/human_tank_service/tanks_manipulations.xhtml" id="del_profile"
+                       class="common_link">Update info</a>
+                    <h:commandButton id="shortTankDelButton" styleClass="common_button" value="Delete"
+                                     action="#{tankService.deleteTankById(delId.value)}">
+                        <f:ajax execute="@form" render="shortTankDelForm"/>
+                    </h:commandButton>
+                    <br/>
+                    <h:message class="error" for="shortTankDelButton"/>
+                </h:form>
+            </fieldset>
+        </div>
+        <fieldset>
+            <legend>Update</legend>
+            <h:form id="updateTankForm" styleClass="reg_form black_bg" style="width: 450px; height: 550px">
+                <h:outputLabel form="name8" value="Model id"/>
+                <h:inputText id="name8" value="#{tank.id}"/>
                 <br/>
-                <h:commandButton id="shortTankDelButton" value="Delete"
-                                 action="#{tankService.deleteTankById(delId.value)}">
-                    <f:ajax execute="@form" render="shortTankDelForm"/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name9" value="Model id"/>
+                <h:inputText id="name9" value="#{tank.idModel}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name10" value="Chassis id"/>
+                <h:inputText id="name10" value="#{tank.idChassis}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name11" value="Engine sn"/>
+                <h:inputText id="name11" value="#{tank.snEngine}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name12" value="Tower sn"/>
+                <h:inputText id="name12" value="#{tank.snTower}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name13" value="Weapon sn"/>
+                <h:inputText id="name13" value="#{tank.snWeapon}"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputLabel form="name14" value="Team number"/>
+                <h:inputText id="name14" value="#{tank.teamNumber}"/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="/human_tank_service/tanks_manipulations.xhtml" id="update_profile"
+                   class="common_link">Update info</a>
+                <h:commandButton id="updateTankButton" styleClass="common_button" value="Update"
+                                 action="#{tankService.updateTank(tank)}">
+                    <f:ajax execute="@form" render="updateTankForm"/>
                 </h:commandButton>
                 <br/>
-                <h:message class="error" for="shortTankDelButton"/>
+                <h:message class="error" for="updateTankButton"/>
             </h:form>
         </fieldset>
-    </fieldset>
+    </div>
+
+
 </h:body>
 </html>
