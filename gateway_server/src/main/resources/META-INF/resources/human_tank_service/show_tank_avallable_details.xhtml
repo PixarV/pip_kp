@@ -5,92 +5,44 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-    <h:outputStylesheet library="css" name="mystyle.css"/>
+    <h:outputStylesheet library="css" name="header.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="mini-default.css"/>
 </h:head>
 
-<h:body>
-    <a href="moderator_page.xhtml" style="font-size: 150%">Вернуться на главную</a>
-    <br/>
-    <fieldset>
-        <h:outputText value="Chassis" />
-        <h:dataTable value="#{chassisService.findAllChassiss()}" var="chass"
-                     styleClass="article-table"
-                     rules="all" id="result-table-chassis">
-            <h:column>
-                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-                #{chass.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Id_model <span class="sort-symbol">⮃</span></f:facet>
-                #{chass.model.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
-                #{chass.title}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
-                #{chass.turnSpeed}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
-                #{chass.weight}
-            </h:column>
-        </h:dataTable>
-    </fieldset>
-    <fieldset>
-        <h:outputText value="Models" />
-        <h:dataTable value="#{modelService.findAllModels()}" var="modl"
-                     styleClass="article-table"
-                     rules="all" id="result-table-models">
-            <h:column>
-                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Title <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.title}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.type}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Turn speed <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.maxSpeedForward}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.maxSpeedBackward}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Weight <span class="sort-symbol">⮃</span></f:facet>
-                #{modl.armor}
-            </h:column>
-        </h:dataTable>
-    </fieldset>
-    <fieldset>
-        <h:outputText value="Amun" />
-        <h:dataTable value="#{ammunitionService.findAllAmmunitions()}" var="amun"
-                     styleClass="article-table"
-                     rules="all" id="result-table">
-            <h:column>
-                <f:facet name="header">Id <span class="sort-symbol">⮃</span></f:facet>
-                #{amun.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Type <span class="sort-symbol">⮃</span></f:facet>
-                #{amun.type}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Callibr <span class="sort-symbol">⮃</span></f:facet>
-                #{amun.callibr}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Breakage <span class="sort-symbol">⮃</span></f:facet>
-                #{amun.breakage}
-            </h:column>
-        </h:dataTable>
-    </fieldset>
+<h:body styleClass="back_image">
+    <header id="menu">
+        <a href="#" class="logo brand">Logo</a>
+        <a href="/index.xhtml" class="button header_link">Home</a>
+        <a href="/human_service/logout" class="button header_link">Logout</a>
+        <a href="/human_tank_service/moderator_page.xhtml" class="button header_link">Moderator</a>
+    </header>
+
+    <div class="center">
+        <fieldset>
+            <legend>Model and Engine</legend>
+            <h:dataTable value="#{modelService.getAllModelEngine()}" var="amun"
+                         styleClass="article-table common_table"
+                         rules="all" id="result-table">
+                <h:column>
+                    <f:facet name="header"># model</f:facet>
+                    #{amun.modelId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Model title </f:facet>
+                    #{amun.modelTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"># engine </f:facet>
+                    #{amun.engineId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Engine title</f:facet>
+                    #{amun.engineTitle}
+                </h:column>
+            </h:dataTable>
+        </fieldset>
+    </div>
+
 </h:body>
 </html>

@@ -3,6 +3,7 @@ package com.itmo.contollers;
 import com.itmo.services.ModelService;
 import com.pip.entities.Engine;
 import com.pip.entities.Model;
+import com.pip.entities.Monster;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
@@ -65,5 +66,10 @@ public class ModelController {
     @GetMapping("/getEngines/{modelId}")
     List<Engine> getEngines(@PathVariable int modelId) {
         return modelService.getEngines(modelId);
+    }
+
+    @GetMapping("/getAllModelEngine")
+    List<Monster> getAllModelEngine() {
+        return modelService.getAllModelEngine();
     }
 }

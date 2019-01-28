@@ -3,6 +3,7 @@ package com.itmo.services;
 import com.itmo.dao.ModelDao;
 import com.pip.entities.Engine;
 import com.pip.entities.Model;
+import com.pip.entities.Monster;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -93,5 +94,9 @@ public class ModelService {
 
     public List<Engine> getEngines(int modelId) {
         return modelDao.getEngines(modelId);
+    }
+
+    public List<Monster> getAllModelEngine() {
+        return modelDao.getAllModelEngine();
     }
 }
