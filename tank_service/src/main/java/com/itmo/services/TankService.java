@@ -39,6 +39,12 @@ public class TankService {
                     .getCurrentInstance()
                     .addMessage("addTankForm:addTankButton", // id ratget form and target element
                             new FacesMessage("Success", "Success"));
+            tank.setSnWeapon("");
+            tank.setSnEngine("");
+            tank.setSnTower("");
+            tank.setIdChassis(0);
+            tank.setIdModel(0);
+            tank.setTeamNumber(0);
         } catch (JpaSystemException e) {
             String errorMessage = e.getCause().getCause().getMessage();
             String outputError = errorMessage.substring(0, errorMessage.indexOf("Where"));
@@ -77,7 +83,35 @@ public class TankService {
         return new ArrayList<>();
     }
 
-    public void updateTank(Tank tank) {
+    public void updateTank(Tank tempTank) {
+        Tank tank = tankDao.findEntityById(tempTank.getId());
+
+        if (!tempTank.getSnEngine().equals("")) {
+            tank.setSnEngine(tempTank.getSnEngine());
+        }
+
+        if (!tempTank.getSnTower().equals("")) {
+            tank.setSnTower(tempTank.getSnTower());
+        }
+        if (!tempTank.getSnWeapon().equals("")) {
+            tank.setSnWeapon(tempTank.getSnWeapon());
+        }
+
+        if (tempTank.getIdChassis() != 0) {
+            tank.setIdChassis(tempTank.getIdChassis());
+        }
+        if (tempTank.getIdModel() != 0) {
+            tank.setIdModel(tempTank.getIdModel());
+        }
+        if (tempTank.getTeamNumber() != 0) {
+            tank.setTeamNumber(tempTank.getTeamNumber());
+        }
         tankDao.custom_update(tank);
+        tempTank.setSnWeapon("");
+        tempTank.setSnEngine("");
+        tempTank.setSnTower("");
+        tempTank.setIdChassis(0);
+        tempTank.setIdModel(0);
+        tempTank.setTeamNumber(0);
     }
 }

@@ -117,7 +117,7 @@
                 </h:form>
                 <h:form id="shortTankDelForm" styleClass="reg_form black_bg" style="width: 450px; height: 130px">
                     <h:outputLabel form="name7" value="Id"/>
-                    <h:inputText id="name7" binding="#{delId}" converter="javax.faces.Integer"/>
+                    <h:inputText id="name7" binding="#{delId}" converter="javax.faces.Integer" required="true"/>
                     <br/>
                     <br/>
                     <br/>
@@ -135,8 +135,8 @@
         <fieldset>
             <legend>Update</legend>
             <h:form id="updateTankForm" styleClass="reg_form black_bg" style="width: 450px; height: 550px">
-                <h:outputLabel form="name8" value="Model id"/>
-                <h:inputText id="name8" value="#{tank.id}"/>
+                <h:outputLabel form="name8" value="Tank id"/>
+                <h:inputText id="name8" value="#{tank.id}" required="true"/>
                 <br/>
                 <br/>
                 <br/>
