@@ -3,4 +3,10 @@ zuul:
     cobol1:
       path: /cobol
       serviceId: cobol
-      strip=prefix: false
+      strip-prefix: false
+    java1:
+      path: /java
+      serviceId: java
+      strip-prefix: false
+
+
