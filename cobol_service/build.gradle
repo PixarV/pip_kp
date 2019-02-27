@@ -1,6 +1,6 @@
 dependencies {
+    compile boot["starterWeb"]
+    compile boot["springBootPlugin"]
     compile cloud["starterConfig"]
     compile cloud["eurekaClient"]
-    compile cloud["zuul"]
-
 }

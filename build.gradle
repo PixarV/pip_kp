@@ -9,13 +9,7 @@ buildscript {
         //testing libs
         mockitoVersion = '2.0.2-beta'
         junitVersion = '5.3.0-M1'
-
-        //persistency library
-        hibernateVersion = '5.2.1.Final'
-
-        //in memory test database
-        h2Version = '1.4.192'
-
+        
         //logging libs
         logbackVersion = '1.1.7'
         slf4jVersion = '1.7.21'
@@ -30,7 +24,6 @@ buildscript {
         boot = [
                 springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
                 starterWeb      : "org.springframework.boot:spring-boot-starter-web:$springBootVersion",
-                starterJetty    : "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion",
                 starterSecurity : "org.springframework.boot:spring-boot-starter-security:$springBootVersion",
                 starterJpa      : "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion",
                 starterMail     : "org.springframework.boot:spring-boot-starter-mail:$springBootVersion",
@@ -72,7 +65,6 @@ buildscript {
                 swagger2    : "io.springfox:springfox-swagger2:2.9.2",
                 swagger_ui  : "io.springfox:springfox-swagger-ui:2.9.2",
                 gson        : "com.google.code.gson:gson:2.8.5",
-                h2          : "com.h2database:h2:$h2Version",
                 lombok      : "org.projectlombok:lombok:$lombokVersion",
                 jstl        : "javax.servlet:jstl:1.2",
                 javaxEl     : "javax.el:javax.el-api:3.0.0",
@@ -81,14 +73,7 @@ buildscript {
                 javaee_api  : "javax:javaee-api:7.0",
                 postgresql  : "postgresql:postgresql:9.1-901-1.jdbc4"
         ]
-
-        hibernate = [
-                validator: "org.hibernate:hibernate-validator:5.1.3.Final",
-                ehcache  : "org.hibernate:hibernate-ehcache:$hibernateVersion",
-                java8    : "org.hibernate:hibernate-java8:$hibernateVersion",
-                em       : "org.hibernate:hibernate-entitymanager:$hibernateVersion",
-                core     : "org.hibernate:hibernate-core:$hibernateVersion",
-        ]
+        
     }
 
     repositories {
